@@ -1,0 +1,904 @@
+/* ====================================
+   ESTILS SIMULADOR C1 VALENCIÀ CIEACOVA
+   ==================================== */
+
+/* Variables CSS */
+:root {
+    --color-primari: #d97706;
+    --color-secundari: #64748b;
+    --color-èxit: #059669;
+    --color-advertència: #dc2626;
+    --color-perill: #dc2626;
+    --bg-primari: #ffffff;
+    --bg-secundari: #f8fafc;
+    --bg-fosc: #0f172a;
+    --text-primari: #1e293b;
+    --text-secundari: #64748b;
+    --color-vora: #e2e8f0;
+    --radi-vora: 8px;
+    --ombra-petita: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --ombra-mitjana: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --ombra-gran: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --transició: all 0.2s ease-in-out;
+}
+
+/* Colors temàtics valencianos */
+:root {
+    --valencià-daurat: #d97706;
+    --valencià-blau: #1e40af;
+    --valencià-roig: #dc2626;
+    --valencià-verd: #059669;
+}
+
+/* Reset i Estils Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primari);
+    background: var(--bg-secundari);
+    overflow-x: hidden;
+}
+
+/* Capçalera */
+.capçalera-examen {
+    background: var(--bg-primari);
+    border-bottom: 2px solid var(--color-vora);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--ombra-petita);
+}
+
+.info-examen h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--valencià-daurat);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.any-examen {
+    font-size: 0.875rem;
+    color: var(--text-secundari);
+    background: var(--bg-secundari);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-top: 0.25rem;
+    display: inline-block;
+}
+
+.secció-cronòmetre {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cronòmetre {
+    background: var(--bg-fosc);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radi-vora);
+    font-family: 'Courier New', monospace;
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--ombra-mitjana);
+}
+
+.botó-pausa {
+    background: var(--color-advertència);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radi-vora);
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transició);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.botó-pausa:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+/* Navegació per Seccions */
+.nav-seccions {
+    background: var(--bg-primari);
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--color-vora);
+}
+
+.pastilla-nav {
+    background: transparent;
+    border: 2px solid var(--color-vora);
+    padding: 0.75rem 1.25rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transició);
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 130px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.pastilla-nav.activa {
+    background: var(--valencià-daurat);
+    color: white;
+    border-color: var(--valencià-daurat);
+    box-shadow: var(--ombra-mitjana);
+}
+
+.pastilla-nav:not(.activa):hover {
+    border-color: var(--valencià-daurat);
+    transform: translateY(-2px);
+    box-shadow: var(--ombra-mitjana);
+}
+
+.temps-pastilla {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* Barra de Progrés */
+.contenidor-progrés {
+    background: var(--bg-primari);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--color-vora);
+}
+
+.barra-progrés {
+    width: 100%;
+    height: 8px;
+    background: var(--color-vora);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.farciment-progrés {
+    height: 100%;
+    background: linear-gradient(90deg, var(--valencià-daurat), var(--color-èxit));
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.text-progrés {
+    font-size: 0.875rem;
+    color: var(--text-secundari);
+    text-align: center;
+    display: block;
+}
+
+/* Contingut Principal */
+.contingut-examen {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.secció-examen {
+    display: none;
+}
+
+.secció-examen.activa {
+    display: block;
+    animation: aparèixer 0.3s ease-in;
+}
+
+@keyframes aparèixer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.capçalera-secció {
+    background: var(--bg-primari);
+    padding: 2rem;
+    border-radius: var(--radi-vora);
+    box-shadow: var(--ombra-petita);
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--valencià-daurat);
+}
+
+.capçalera-secció h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--valencià-daurat);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.descripció-secció {
+    color: var(--text-secundari);
+    font-size: 1.125rem;
+}
+
+/* Contenidor de Part */
+.contenidor-part {
+    background: var(--bg-primari);
+    border-radius: var(--radi-vora);
+    box-shadow: var(--ombra-petita);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--color-vora);
+}
+
+.capçalera-part {
+    background: linear-gradient(135deg, var(--valencià-daurat), #f59e0b);
+    color: white;
+    padding: 1.5rem 2rem;
+}
+
+.capçalera-part h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.capçalera-part p {
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+/* Passatge de Text */
+.passatge-text {
+    padding: 2rem;
+    line-height: 1.8;
+}
+
+.passatge-text h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--valencià-daurat);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.passatge-text p {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.passatge-text strong {
+    background: #fef3c7;
+    padding: 0.125rem 0.25rem;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+/* Graella de Preguntes */
+.graella-preguntes {
+    padding: 0 2rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.element-pregunta {
+    background: var(--bg-secundari);
+    padding: 1.25rem;
+    border-radius: var(--radi-vora);
+    border: 2px solid transparent;
+    transition: var(--transició);
+}
+
+.element-pregunta:hover {
+    border-color: var(--valencià-daurat);
+    box-shadow: var(--ombra-petita);
+}
+
+.número-pregunta {
+    background: var(--valencià-daurat);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.opcions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.opcions label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: var(--transició);
+    font-size: 0.95rem;
+}
+
+.opcions label:hover {
+    background: rgba(217, 119, 6, 0.1);
+}
+
+.opcions input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--valencià-daurat);
+}
+
+/* Preguntes d'Espais Buits */
+.graella-preguntes.espais-buits {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.pregunta-espai {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-secundari);
+    padding: 1rem;
+    border-radius: var(--radi-vora);
+}
+
+.pregunta-espai input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid var(--color-vora);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: var(--transició);
+}
+
+.pregunta-espai input:focus {
+    outline: none;
+    border-color: var(--valencià-daurat);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+/* Secció d'Escriptura */
+.tasca-escriptura {
+    padding: 2rem;
+}
+
+.enunciat-tasca {
+    background: var(--bg-secundari);
+    padding: 1.5rem;
+    border-radius: var(--radi-vora);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--valencià-daurat);
+}
+
+.enunciat-tasca h4 {
+    color: var(--valencià-daurat);
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+.enunciat-tasca blockquote {
+    background: white;
+    border-left: 4px solid var(--color-advertència);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.enunciat-tasca ul {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.enunciat-tasca li {
+    margin-bottom: 0.5rem;
+}
+
+.àrea-escriptura {
+    position: relative;
+}
+
+.comptador-paraules {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secundari);
+    border-radius: var(--radi-vora);
+    font-weight: 500;
+}
+
+.barra-comptador {
+    width: 150px;
+    height: 6px;
+    background: var(--color-vora);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.farciment-comptador {
+    height: 100%;
+    background: var(--color-èxit);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.àrea-escriptura textarea {
+    width: 100%;
+    padding: 1.5rem;
+    border: 2px solid var(--color-vora);
+    border-radius: var(--radi-vora);
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: var(--transició);
+}
+
+.àrea-escriptura textarea:focus {
+    outline: none;
+    border-color: var(--valencià-daurat);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+/* Elecció de Tasca */
+.elecció-tasca {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.opció-tasca {
+    background: var(--bg-secundari);
+    border: 2px solid var(--color-vora);
+    border-radius: var(--radi-vora);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transició);
+    position: relative;
+}
+
+.opció-tasca:hover {
+    border-color: var(--valencià-daurat);
+    box-shadow: var(--ombra-mitjana);
+    transform: translateY(-2px);
+}
+
+.opció-tasca.seleccionada {
+    border-color: var(--valencià-daurat);
+    background: rgba(217, 119, 6, 0.05);
+}
+
+.tipus-tasca {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--valencià-daurat);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.opció-tasca h4 {
+    color: var(--valencià-daurat);
+    margin-bottom: 1rem;
+}
+
+.opció-tasca blockquote {
+    background: white;
+    border-left: 4px solid var(--color-advertència);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Placeholders */
+.placeholder-mediació,
+.placeholder-oral {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secundari);
+}
+
+.placeholder-mediació i,
+.placeholder-oral i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--color-vora);
+}
+
+.parts-mediació,
+.parts-oral {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.part-mediació,
+.part-oral {
+    background: var(--bg-secundari);
+    padding: 1.5rem;
+    border-radius: var(--radi-vora);
+    border-left: 4px solid var(--valencià-daurat);
+}
+
+.part-mediació h4,
+.part-oral h4 {
+    color: var(--valencià-daurat);
+    margin-bottom: 0.5rem;
+}
+
+.nota {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radi-vora);
+    margin-top: 1rem;
+    border-left: 4px solid #d97706;
+}
+
+/* Accions de Secció */
+.accions-secció {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--bg-primari);
+    border-radius: var(--radi-vora);
+    box-shadow: var(--ombra-petita);
+}
+
+/* Botons */
+.botó-primari,
+.botó-secundari,
+.botó-èxit {
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: var(--radi-vora);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transició);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.botó-primari {
+    background: var(--valencià-daurat);
+    color: white;
+}
+
+.botó-primari:hover {
+    background: #b45309;
+    transform: translateY(-1px);
+    box-shadow: var(--ombra-mitjana);
+}
+
+.botó-secundari {
+    background: var(--color-secundari);
+    color: white;
+}
+
+.botó-secundari:hover {
+    background: #475569;
+    transform: translateY(-1px);
+}
+
+.botó-èxit {
+    background: var(--color-èxit);
+    color: white;
+}
+
+.botó-èxit:hover {
+    background: #047857;
+    transform: translateY(-1px);
+    box-shadow: var(--ombra-mitjana);
+}
+
+/* Botó d'Acció Flotant */
+.contenidor-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.fab {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--valencià-daurat);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--ombra-gran);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    transition: var(--transició);
+}
+
+.fab:hover {
+    background: #b45309;
+    transform: scale(1.1);
+}
+
+.opcions-fab {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: var(--transició);
+}
+
+.opcions-fab.activa {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.opció-fab {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    border: 1px solid var(--color-vora);
+    padding: 0.75rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: var(--ombra-mitjana);
+    transition: var(--transició);
+    white-space: nowrap;
+}
+
+.opció-fab:hover {
+    background: var(--bg-secundari);
+    transform: translateX(-5px);
+}
+
+.opció-fab i {
+    color: var(--valencià-daurat);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+}
+
+.modal.actiu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: aparèixer 0.3s ease;
+}
+
+.contingut-modal {
+    background: var(--bg-primari);
+    border-radius: var(--radi-vora);
+    box-shadow: var(--ombra-gran);
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.capçalera-modal {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--color-vora);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.capçalera-modal h2 {
+    color: var(--valencià-daurat);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tancar-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secundari);
+    padding: 0.25rem;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transició);
+}
+
+.tancar-modal:hover {
+    background: var(--bg-secundari);
+    color: var(--text-primari);
+}
+
+.cos-modal {
+    padding: 2rem;
+}
+
+/* Disseny Responsiu */
+@media (max-width: 768px) {
+    .capçalera-examen {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .secció-cronòmetre {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .contingut-examen {
+        padding: 1rem;
+    }
+
+    .nav-seccions {
+        padding: 1rem;
+    }
+
+    .pastilla-nav {
+        min-width: 100px;
+        font-size: 0.875rem;
+    }
+
+    .graella-preguntes {
+        grid-template-columns: 1fr;
+        padding: 0 1rem 1rem;
+    }
+
+    .elecció-tasca {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .accions-secció {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .contenidor-fab {
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .capçalera-part {
+        padding: 1rem;
+    }
+
+    .passatge-text {
+        padding: 1rem;
+    }
+
+    .àrea-escriptura textarea {
+        padding: 1rem;
+    }
+
+    .contingut-modal {
+        width: 95%;
+        margin: 1rem;
+    }
+}
+
+/* Estils d'Impressió */
+@media print {
+    .capçalera-examen,
+    .nav-seccions,
+    .contenidor-progrés,
+    .accions-secció,
+    .contenidor-fab {
+        display: none;
+    }
+
+    .secció-examen {
+        display: block !important;
+        page-break-before: always;
+    }
+
+    .contenidor-part {
+        page-break-inside: avoid;
+    }
+}
+
+/* Mode d'Alt Contrast */
+@media (prefers-contrast: high) {
+    :root {
+        --color-vora: #000000;
+        --text-secundari: #000000;
+    }
+}
+
+/* Moviment Reduït */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Estils Específics Valencians */
+.valencià-accent {
+    color: var(--valencià-daurat);
+    font-weight: 600;
+}
+
+.destacat-valencià {
+    background: linear-gradient(135deg, var(--valencià-daurat), #f59e0b);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.franja-valenciana {
+    background: linear-gradient(90deg, 
+        var(--valencià-roig) 0%, 
+        var(--valencià-roig) 25%, 
+        var(--valencià-daurat) 25%, 
+        var(--valencià-daurat) 50%, 
+        var(--valencià-blau) 50%, 
+        var(--valencià-blau) 75%, 
+        var(--valencià-daurat) 75%);
+    height: 4px;
+    width: 100%;
+}

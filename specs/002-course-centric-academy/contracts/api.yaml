@@ -1,0 +1,440 @@
+openapi: 3.0.3
+info:
+  title: Neolingus Academy API
+  description: Course-centric language certification platform API
+  version: 1.0.0
+  contact:
+    name: Neolingus Academy
+    email: api@neolingus.com
+
+servers:
+  - url: https://neolingus.com/api
+    description: Production server
+  - url: http://localhost:3000/api
+    description: Development server
+
+paths:
+  /academia/courses:
+    get:
+      summary: Get available courses
+      description: Retrieve all available language certification courses
+      tags: [Courses]
+      responses:
+        "200":
+          description: List of available courses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  courses:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Course"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /academia/courses/{language}:
+    get:
+      summary: Get courses by language
+      description: Retrieve courses for a specific language
+      tags: [Courses]
+      parameters:
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [english, valenciano]
+      responses:
+        "200":
+          description: Courses for the specified language
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  language:
+                    type: string
+                  courses:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Course"
+        "404":
+          description: Language not found
+
+  /academia/courses/{language}/{level}:
+    get:
+      summary: Get specific course
+      description: Retrieve course details for language and level
+      tags: [Courses]
+      parameters:
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: level
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Course details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseDetail"
+
+    post:
+      summary: Enroll in course
+      description: Enroll user in a specific course
+      tags: [Enrollment]
+      parameters:
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: level
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Successfully enrolled
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserCourseProgress"
+        "409":
+          description: Already enrolled in course
+
+  /academia/progress/{courseId}:
+    get:
+      summary: Get course progress
+      description: Retrieve user's progress for a specific course
+      tags: [Progress]
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: User's course progress
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserCourseProgress"
+
+  /academia/exams/sessions:
+    post:
+      summary: Start exam session
+      description: Create a new exam practice session
+      tags: [Exams]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateExamSession"
+      responses:
+        "201":
+          description: Exam session created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamSession"
+
+  /academia/exams/sessions/{sessionId}:
+    get:
+      summary: Get exam session
+      description: Retrieve exam session details
+      tags: [Exams]
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Exam session details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamSession"
+
+    patch:
+      summary: Update exam session
+      description: Update exam session with responses or completion
+      tags: [Exams]
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateExamSession"
+      responses:
+        "200":
+          description: Session updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamSession"
+
+  /ai/tutor/chat:
+    post:
+      summary: AI tutor interaction
+      description: Get AI tutoring assistance with streaming responses
+      tags: [AI Tutoring]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AITutorRequest"
+      responses:
+        "200":
+          description: AI tutor response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AITutorResponse"
+            text/event-stream:
+              schema:
+                type: string
+                description: Streaming AI response
+
+components:
+  schemas:
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        language:
+          type: string
+          enum: [english, valenciano]
+        level:
+          type: string
+          enum: [a1, a2, b1, b2, c1, c2]
+        certification_type:
+          type: string
+          enum: [eoi, jqcv, delf, goethe, cils]
+        title:
+          type: string
+        description:
+          type: string
+        components:
+          type: array
+          items:
+            type: string
+            enum: [reading, writing, listening, speaking]
+        is_active:
+          type: boolean
+
+    CourseDetail:
+      allOf:
+        - $ref: "#/components/schemas/Course"
+        - type: object
+          properties:
+            assessment_rubric:
+              type: object
+            exam_structure:
+              type: object
+            content_config:
+              type: object
+
+    UserCourseProgress:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        course_id:
+          type: string
+          format: uuid
+        enrollment_date:
+          type: string
+          format: date-time
+        last_activity:
+          type: string
+          format: date-time
+        overall_progress:
+          type: number
+          minimum: 0
+          maximum: 1
+        component_progress:
+          type: object
+          additionalProperties:
+            type: number
+            minimum: 0
+            maximum: 1
+        readiness_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        target_exam_date:
+          type: string
+          format: date
+          nullable: true
+
+    CreateExamSession:
+      type: object
+      required:
+        - course_id
+        - session_type
+        - component
+      properties:
+        course_id:
+          type: string
+          format: uuid
+        session_type:
+          type: string
+          enum: [practice, mock_exam, diagnostic]
+        component:
+          type: string
+          enum: [reading, writing, listening, speaking]
+
+    ExamSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        course_id:
+          type: string
+          format: uuid
+        session_type:
+          type: string
+          enum: [practice, mock_exam, diagnostic]
+        component:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        duration_seconds:
+          type: integer
+        responses:
+          type: object
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+          nullable: true
+        is_completed:
+          type: boolean
+        session_data:
+          type: object
+
+    UpdateExamSession:
+      type: object
+      properties:
+        responses:
+          type: object
+        is_completed:
+          type: boolean
+        completed_at:
+          type: string
+          format: date-time
+
+    AITutorRequest:
+      type: object
+      required:
+        - course_id
+        - message
+      properties:
+        course_id:
+          type: string
+          format: uuid
+        session_id:
+          type: string
+          format: uuid
+          nullable: true
+        message:
+          type: string
+        context_type:
+          type: string
+          enum: [general, session_specific, weakness_focused]
+          default: general
+
+    AITutorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        suggestions:
+          type: array
+          items:
+            type: string
+        resources:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              url:
+                type: string
+              type:
+                type: string
+        context_updated:
+          type: boolean
+
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Authentication required"
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Courses
+    description: Course management and discovery
+  - name: Enrollment
+    description: Course enrollment operations
+  - name: Progress
+    description: Progress tracking and analytics
+  - name: Exams
+    description: Exam sessions and practice
+  - name: AI Tutoring
+    description: AI-powered tutoring with streaming responses

@@ -1,0 +1,295 @@
+name: Cross-Browser Compatibility Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run nightly at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  # Quick smoke test on Chrome only for fast feedback
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build application
+      run: npm run build
+
+    - name: Install Playwright
+      run: npx playwright install chromium
+
+    - name: Run smoke tests (Chrome only)
+      run: npx playwright test --project=chromium-desktop --grep="@smoke"
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Upload smoke test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: smoke-test-results
+        path: test-results/
+        retention-days: 7
+
+  # Full cross-browser compatibility testing
+  cross-browser-test:
+    runs-on: ubuntu-latest
+    needs: smoke-test
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        browser-group:
+          - desktop-chrome
+          - desktop-firefox
+          - desktop-safari
+          - desktop-edge
+          - mobile-browsers
+          - visual-regression
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build application
+      run: npm run build
+
+    - name: Install Playwright browsers
+      run: |
+        npx playwright install
+        npx playwright install-deps
+
+    - name: Start application server
+      run: |
+        npm run start &
+        npx wait-on http://localhost:3000 --timeout 60000
+      env:
+        NODE_ENV: production
+
+    - name: Run Desktop Chrome tests
+      if: matrix.browser-group == 'desktop-chrome'
+      run: |
+        npx playwright test --project=chromium-desktop --project=chromium-desktop-previous
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Run Desktop Firefox tests
+      if: matrix.browser-group == 'desktop-firefox'
+      run: |
+        npx playwright test --project=firefox-desktop
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Run Desktop Safari tests
+      if: matrix.browser-group == 'desktop-safari'
+      run: |
+        npx playwright test --project=webkit-desktop
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Run Desktop Edge tests
+      if: matrix.browser-group == 'desktop-edge'
+      run: |
+        npx playwright test --project=edge-desktop
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Run Mobile Browser tests
+      if: matrix.browser-group == 'mobile-browsers'
+      run: |
+        npx playwright test --project=mobile-chrome --project=mobile-safari --project=tablet-chrome --project=tablet-safari
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Run Visual Regression tests
+      if: matrix.browser-group == 'visual-regression'
+      run: |
+        npx playwright test --project=visual-regression-chrome --project=visual-regression-firefox --project=visual-regression-webkit
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.browser-group }}
+        path: |
+          test-results/
+          playwright-report/
+        retention-days: 30
+
+    - name: Upload screenshots
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: screenshots-${{ matrix.browser-group }}
+        path: test-results/screenshots/
+        retention-days: 30
+
+  # Accessibility and performance testing
+  accessibility-performance:
+    runs-on: ubuntu-latest
+    needs: smoke-test
+    timeout-minutes: 30
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build application
+      run: npm run build
+
+    - name: Install Playwright
+      run: npx playwright install chromium
+
+    - name: Start application server
+      run: |
+        npm run start &
+        npx wait-on http://localhost:3000 --timeout 60000
+
+    - name: Run accessibility tests
+      run: npx playwright test --project=accessibility-chrome
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Run performance tests
+      run: npx playwright test --project=performance-chrome
+      env:
+        PLAYWRIGHT_BASE_URL: http://localhost:3000
+
+    - name: Upload accessibility results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: accessibility-results
+        path: test-results/
+        retention-days: 30
+
+  # Generate and publish comprehensive report
+  generate-report:
+    runs-on: ubuntu-latest
+    needs: [cross-browser-test, accessibility-performance]
+    if: always()
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Download all test artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: downloaded-artifacts/
+
+    - name: Generate compatibility report
+      run: |
+        node tests/browser-compatibility/scripts/generate-report.js downloaded-artifacts/
+
+    - name: Upload comprehensive report
+      uses: actions/upload-artifact@v4
+      with:
+        name: browser-compatibility-report
+        path: |
+          compatibility-report.html
+          compatibility-summary.json
+        retention-days: 90
+
+    - name: Comment on PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = 'compatibility-summary.json';
+
+          if (fs.existsSync(path)) {
+            const summary = JSON.parse(fs.readFileSync(path, 'utf8'));
+
+            const comment = `
+            ## 🌐 Cross-Browser Compatibility Test Results
+
+            **Overall Status**: ${summary.overallStatus}
+            **Total Tests**: ${summary.totalTests}
+            **Passed**: ${summary.passed} ✅
+            **Failed**: ${summary.failed} ❌
+            **Success Rate**: ${summary.successRate}%
+
+            ### Browser Results:
+            ${summary.browserResults.map(br =>
+              `- **${br.browser}**: ${br.status} (${br.passed}/${br.total})`
+            ).join('\n')}
+
+            ### Critical Issues:
+            ${summary.criticalIssues.length > 0 ?
+              summary.criticalIssues.map(issue => `- ${issue}`).join('\n') :
+              'None found ✅'
+            }
+
+            [View detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+          }
+
+  # Notify on failures
+  notify-failure:
+    runs-on: ubuntu-latest
+    needs: [cross-browser-test, accessibility-performance]
+    if: failure() && github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Notify team of failures
+      run: |
+        echo "Cross-browser compatibility tests failed on main branch"
+        echo "Check the test results and fix critical browser compatibility issues"
+        # Add actual notification logic here (Slack, email, etc.)
+
+# Environment variables for all jobs
+env:
+  CI: true
+  PLAYWRIGHT_BROWSERS_PATH: 0
+  # Add any environment-specific variables needed for testing

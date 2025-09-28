@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ca-valencia">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C2 Valencià CIEACOVA | NEOLINGUS Exam Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Exam Header -->
+    <header class="exam-header">
+        <div class="exam-info">
+            <h1><i class="fas fa-crown"></i> C2 Valencià CIEACOVA</h1>
+            <span class="exam-year">Certificat Superior de Maestria - 2024</span>
+        </div>
+        <div class="timer-section">
+            <div class="timer">
+                <i class="fas fa-hourglass-half"></i>
+                <span id="time-display">04:00:00</span>
+            </div>
+            <button class="pause-btn" id="pause-btn">
+                <i class="fas fa-pause"></i> Pausar
+            </button>
+        </div>
+    </header>
+
+    <!-- Section Navigation -->
+    <nav class="section-nav">
+        <div class="nav-pill active" data-section="reading-writing">
+            <div>📚 Lectura i Escriptura</div>
+            <div class="pill-time">240 min</div>
+        </div>
+        <div class="nav-pill" data-section="listening">
+            <div>🎧 Comprensió Oral</div>
+            <div class="pill-time">60 min</div>
+        </div>
+        <div class="nav-pill" data-section="speaking">
+            <div>🎤 Expressió Oral</div>
+            <div class="pill-time">20 min</div>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span class="progress-text" id="progress-text">0 / 55 tasques completades</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="exam-content">
+        
+        <!-- Reading & Writing Section -->
+        <section class="exam-section active" id="reading-writing-section">
+            <div class="section-header">
+                <h2><i class="fas fa-graduation-cap"></i> Comprensió Lectora i Expressió Escrita de Maestria</h2>
+                <p class="section-description">Aquesta secció avalua el domini expert de textos d'alta complexitat i l'expressió escrita de nivell superior.</p>
+            </div>
+
+            <!-- Exercise 1: Advanced Academic Text Analysis -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 1: Anàlisi de Text Acadèmic Especialitzat</h3>
+                    <p>Llegiu aquest text especialitzat sobre sociolingüística valenciana i responeu les preguntes (1-8).</p>
+                </div>
+                <div class="text-passage">
+                    <h4>La Planificació Lingüística del Valencià en el Context Socioeconòmic Contemporary</h4>
+                    <p>L'evolució sociolingüística del valencià durant els darrers decennis ha estat marcada per una sèrie de processos complexos que transcendeixen la mera recuperació idiomàtica. <strong>La revitalització lingüística</strong>, entesa com un fenomen multidimensional, ha configurat un panorama on conflueixen factors identitaris, econòmics i polítics de gran abast.</p>
+                    
+                    <p>Des d'una perspectiva diacrònica, la implementació de polítiques de normalització lingüística ha generat transformacions substancials en els usos socials de la llengua. <strong>L'aparell conceptual desenvolupat pels sociolingüistes catalans</strong> ha permès sistematitzar l'anàlisi d'aquests processos, identificant variables sociodemogràfiques determinants en la configuració dels repertoris lingüístics individuals i col·lectius.</p>
+                    
+                    <p>La tensió dialèctica entre la legitimitat institucional i l'acceptabilitat social constitueix un eix vertebrador en l'estudi de la vitalitat lingüística. Aquesta problemàtica s'accentua quan s'examinen els àmbits especialitzats del discurs científic i tècnic, on la presència del valencià encara presenta llacunes significatives. <strong>La terminologització</strong> i l'elaboració de registres formals específics representen reptes ingents per a la consolidació de la llengua en contextos d'alt prestigi social.</p>
+                    
+                    <p>D'altra banda, l'impacte de les tecnologies digitals ha introduït noves variables en l'equació sociolingüística. La presència del valencià en entorns virtuals, plataformes de comunicació i mitjans audiovisuals digitals configura un ecosistema comunicatiu inèdit, amb implicacions directes sobre les actituds lingüístiques dels parlants més joves.</p>
+                    
+                    <p>En aquest context, <strong>la planificació del corpus i la planificació de l'estatus</strong> han de convergir cap a estratègies integradores que transcendeixin les tradicionals dicotomies entre prescriptivisme i descriptivisme. La sostenibilitat a llarg termini del valencià com a llengua de cultura i comunicació especialitzada requereix una visió holística que articule les dimensions simbòliques, funcionals i estructurals del fenomen lingüístic.</p>
+                </div>
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">1</div>
+                        <p class="question-text">El concepte de "revitalització lingüística multidimensional" inclou principalment:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="A"> A) Només aspectes identitaris i culturals</label>
+                            <label><input type="radio" name="q1" value="B"> B) Factors identitaris, econòmics i polítics</label>
+                            <label><input type="radio" name="q1" value="C"> C) Exclusivament la recuperació idiomàtica</label>
+                            <label><input type="radio" name="q1" value="D"> D) La normalització institucional únicamente</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">2</div>
+                        <p class="question-text">L'"aparell conceptual desenvolupat pels sociolingüistes catalans" ha servit per a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="A"> A) Crear noves varietats dialectals</label>
+                            <label><input type="radio" name="q2" value="B"> B) Sistematitzar l'anàlisi dels processos sociolingüístics</label>
+                            <label><input type="radio" name="q2" value="C"> C) Establir normes gramaticals úniques</label>
+                            <label><input type="radio" name="q2" value="D"> D) Eliminar la variació lingüística</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">3</div>
+                        <p class="question-text">La "tensió dialèctica" entre legitimitat institucional i acceptabilitat social:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="A"> A) S'ha resolt completament</label>
+                            <label><input type="radio" name="q3" value="B"> B) Només afecta els registres col·loquials</label>
+                            <label><input type="radio" name="q3" value="C"> C) És especialment problemàtica en contextos especialitzats</label>
+                            <label><input type="radio" name="q3" value="D"> D) No té rellevància en la vitalitat lingüística</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">4</div>
+                        <p class="question-text">La "terminologització" es refereix al procés de:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="A"> A) Simplificació del vocabulari científic</label>
+                            <label><input type="radio" name="q4" value="B"> B) Desenvolupament de vocabulari especialitzat</label>
+                            <label><input type="radio" name="q4" value="C"> C) Traducció literal de termes estrangers</label>
+                            <label><input type="radio" name="q4" value="D"> D) Eliminació de barbarismes</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">5</div>
+                        <p class="question-text">L'impacte de les tecnologies digitals en la sociolingüística valenciana:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="A"> A) Ha estat completament negatiu</label>
+                            <label><input type="radio" name="q5" value="B"> B) Només afecta els parlants adults</label>
+                            <label><input type="radio" name="q5" value="C"> C) Configura un ecosistema comunicatiu inèdit</label>
+                            <label><input type="radio" name="q5" value="D"> D) No té implicacions sobre les actituds lingüístiques</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">6</div>
+                        <p class="question-text">La distinció entre "planificació del corpus" i "planificació de l'estatus" fa referència a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="A"> A) Diferents grups de parlants</label>
+                            <label><input type="radio" name="q6" value="B"> B) Aspectes estructurals vs. socials de la planificació lingüística</label>
+                            <label><input type="radio" name="q6" value="C"> C) Registres formals i informals</label>
+                            <label><input type="radio" name="q6" value="D"> D) Varietats territorials diferents</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">7</div>
+                        <p class="question-text">La "visió holística" proposada implica:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="A"> A) Prioritzar només les dimensions simbòliques</label>
+                            <label><input type="radio" name="q7" value="B"> B) Articular dimensions simbòliques, funcionals i estructurals</label>
+                            <label><input type="radio" name="q7" value="C"> C) Centrar-se exclusivament en aspectes tècnics</label>
+                            <label><input type="radio" name="q7" value="D"> D) Mantenir la dicotomia prescriptivisme-descriptivisme</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">8</div>
+                        <p class="question-text">L'autor defèn que la sostenibilitat del valencià requereix:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="A"> A) Un enfocament purament prescriptiu</label>
+                            <label><input type="radio" name="q8" value="B"> B) L'abandonament de la planificació lingüística</label>
+                            <label><input type="radio" name="q8" value="C"> C) Estratègies integradores que superin dicotomies tradicionals</label>
+                            <label><input type="radio" name="q8" value="D"> D) La limitació a contextos col·loquials</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 2: Complex Literary Criticism -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 2: Crítica Literària Complexa</h3>
+                    <p>Llegiu aquest fragment d'assaig crític sobre literatura valenciana contemporània i responeu les preguntes (9-16).</p>
+                </div>
+                <div class="text-passage">
+                    <h4>Fragment de "Paradigmes Narratius en la Literatura Valenciana Post-Transicional"</h4>
+                    <p><em>La configuració estètica de la narrativa valenciana contemporània revela una tensió productiva entre la recerca d'una veu pròpia i la inserció en circuits literaris transnacionals. Aquest fenomen, lluny de constituir una contradicció, articula una poètica de la hibridació que caracteritza les lletres valencianes del segle XXI.</em></p>
+                    
+                    <p><strong>La intertextualitat</strong> opera com a mecanisme vertebrador en autors com Ferran Torrent, Josep Franco o Isabel-Clara Simó, però transcendeix la mera citació per convertir-se en principi constructiu. <strong>L'apropiació creativa de models narratius hegemònics</strong> es conjumina amb la reivindicació d'una tradició literària específica, generant textos que interroguen tant les convencions del gènere com les fronteres identitàries.</p>
+                    
+                    <p>El tractament de l'espai urbà en aquestes narratives evidencia una conscièncía aguda dels processos de transformació sociodemogràfica. <strong>La ciutat postindustrial</strong> emergeix com a palimpsest on es superpose la memòria històrica i les dinàmiques de la globalització. En aquest context, la llengua funciona alhora com a vehicle d'expressió i com a objecte d'reflexió metalingüística.</p>
+                    
+                    <p>La heteroglossia bakhtiniana troba en la literatura valenciana actual un terreny particularment fèrtil. <strong>La polifonia lingüística</strong> que caracteritza el teixit social valencià —amb les seues tensions entre valencià, castellà i llengües de la immigració— es traslladà al discurs literari com a recurs estilístic i com a problema existencial dels personatges.</p>
+                    
+                    <p>Aquesta complexitat enunciativa planteja interrogants fonamentals sobre l'estatut del subjecte contemporani. <strong>La fragmentació identitària</strong>, lluny de constituir un obstacle narratiu, es revela com a font d'innovació formal i temàtica, configurant una literatura que reflexiona sobre les possibilitats i limitacions del projecte il·lustrat de construcció del self.</p>
+                </div>
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">9</div>
+                        <p class="question-text">La "tensió productiva" mencionada sorgeix entre:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="A"> A) Tradició i innovació literàries</label>
+                            <label><input type="radio" name="q9" value="B"> B) Veu pròpia i circuits transnacionals</label>
+                            <label><input type="radio" name="q9" value="C"> C) Valenciano i castellà</label>
+                            <label><input type="radio" name="q9" value="D"> D) Autors veterans i novells</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">10</div>
+                        <p class="question-text">Segons l'autor, la "poètica de la hibridació" constitueix:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="A"> A) Una contradicció irreconciliable</label>
+                            <label><input type="radio" name="q10" value="B"> B) Una característica definidora de les lletres valencianes actuals</label>
+                            <label><input type="radio" name="q10" value="C"> C) Un fenòmen exclusiu de la literatura valenciana</label>
+                            <label><input type="radio" name="q10" value="D"> D) Una tècnica narrativa convencional</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">11</div>
+                        <p class="question-text">La intertextualitat en els autors esmentats:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="A"> A) Es limita a la citació literal</label>
+                            <label><input type="radio" name="q11" value="B"> B) Funciona com a principi constructiu</label>
+                            <label><input type="radio" name="q11" value="C"> C) Evita les referències a altres textos</label>
+                            <label><input type="radio" name="q11" value="D"> D) Només apareix ocasionalment</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">12</div>
+                        <p class="question-text">La metàfora del "palimpsest" urbà suggereix:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="A"> A) La destrucció completa del passat</label>
+                            <label><input type="radio" name="q12" value="B"> B) La resistència als canvis urbans</label>
+                            <label><input type="radio" name="q12" value="C"> C) La superposició de memòria històrica i globalització</label>
+                            <label><input type="radio" name="q12" value="D"> D) La uniformització de l'espai urbà</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">13</div>
+                        <p class="question-text">La "heteroglossia bakhtiniana" fa referència a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="A"> A) L'ús exclusiu d'una varietat lingüística</label>
+                            <label><input type="radio" name="q13" value="B"> B) La diversitat de voices i registres en el discurs</label>
+                            <label><input type="radio" name="q13" value="C"> C) La traducció entre idiomes diferents</label>
+                            <label><input type="radio" name="q13" value="D"> D) La correcció gramatical estricta</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">14</div>
+                        <p class="question-text">La "polifonia lingüística" del teixit social valencià inclou:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="A"> A) Només valencià i castellà</label>
+                            <label><input type="radio" name="q14" value="B"> B) Valencià, castellà i llengües de la immigració</label>
+                            <label><input type="radio" name="q14" value="C"> C) Exclusivament llengües romàniques</label>
+                            <label><input type="radio" name="q14" value="D"> D) Només varietats dialectals valencianes</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">15</div>
+                        <p class="question-text">La "fragmentació identitària" en la literatura contemporània:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="A"> A) Constitueix un obstacle narratiu insuperable</label>
+                            <label><input type="radio" name="q15" value="B"> B) Es revela com a font d'innovació formal i temàtica</label>
+                            <label><input type="radio" name="q15" value="C"> C) Només afecta els personatges secundaris</label>
+                            <label><input type="radio" name="q15" value="D"> D) És un fenomen exclusivament contemporani</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">16</div>
+                        <p class="question-text">El "projecte il·lustrat de construcció del self" es qüestiona mitjançant:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="A"> A) El retorn a formes narratives tradicionals</label>
+                            <label><input type="radio" name="q16" value="B"> B) L'eliminació de la subjectivitat</label>
+                            <label><input type="radio" name="q16" value="C"> C) La reflexió sobre possibilitats i limitacions identitàries</label>
+                            <label><input type="radio" name="q16" value="D"> D) La defensa acrítica de la unitat del subjecte</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 3: Specialized Technical Text -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 3: Text Especialitzat en Ciències Socials</h3>
+                    <p>Llegiu aquest text sobre política lingüística europea i responeu les preguntes (17-24).</p>
+                </div>
+                <div class="text-passage">
+                    <h4>Informe: Polítiques de Multilingüisme a la Unió Europea i els seus Efectes sobre les Llengües Regionals</h4>
+                    
+                    <p><strong>Introducció metodològica:</strong> Aquest estudi examina la implementació de les directives europees sobre diversitat lingüística en el context específic de les llengües regionals amb reconeixement oficial limitat. S'han aplicat mètodes d'anàlisi comparativa multicaso, considerant variables sociopolítiques, demogràfiques i econòmiques en vint-i-dues comunitats lingüístiques de sis estats membres.</p>
+                    
+                    <p><strong>Marc teòric conceptual:</strong> <strong>La teoria dels drets lingüístics</strong> desenvolupada per Skutnabb-Kangas i Phillipson proporciona l'aparell analític per examinar les tensions entre les polítiques "top-down" de la UE i les necessitats "bottom-up" de les comunitats lingüístiques minoritàries. <strong>El paradigma de l'ecologia lingüística</strong> complementa aquesta perspectiva incorporant la dinàmica de competència i cooperació entre sistemes lingüístics en contacte.</p>
+                    
+                    <p><strong>Resultats de l'anàlisi quantitativa:</strong> Les dades recollides revelen una correlació negativa estadísticament significativa (r = -0.67, p < 0.01) entre el grau d'institucionalització de les llengües estatals dominants i els indicadors de vitalitat de les llengües regionals. Paradoxalment, <strong>les regions amb major autonomia administrativa</strong> mostren patrons de revitalització lingüística més consistents, independentment del suport explícit de les institucions europees.</p>
+                    
+                    <p><strong>Anàlisi qualitativa:</strong> Les entrevistes en profunditat amb actors institucionals i activistes lingüístics evidencien una dicotomia interpretativa respecte als objectius de les polítiques europees. Mentre els representants oficials emfasitzen la dimensió simbòlica del reconeixement cultural, <strong>els moviments grassroots</strong> prioritzen l'accés a recursos econòmics i la funcionalitat comunicativa en àmbits especialitzats.</p>
+                    
+                    <p><strong>Implicacions per a la governança multinivell:</strong> Els resultats suggereixen que <strong>la subsidiarietat lingüística efectiva</strong> requereix mecanismes de coordinació més sofisticats que transcendeixin la retòrica del reconeixement formal. La sostenibilitat de la diversitat lingüística europea depèn de la capacitat d'articular polítiques coherents que integren les dimensions local, regional, nacional i supranacional del fenomen lingüístic.</p>
+                </div>
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">17</div>
+                        <p class="question-text">La metodologia aplicada en l'estudi és principalment:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="A"> A) Anàlisi estadística univariable</label>
+                            <label><input type="radio" name="q17" value="B"> B) Anàlisi comparativa multicaso</label>
+                            <label><input type="radio" name="q17" value="C"> C) Estudi de cas únic</label>
+                            <label><input type="radio" name="q17" value="D"> D) Revisió bibliográfica exclusiva</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">18</div>
+                        <p class="question-text">La distinció "top-down" vs. "bottom-up" es refereix a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="A"> A) Diferents mètodes d'ensenyament</label>
+                            <label><input type="radio" name="q18" value="B"> B) Polítiques institucionals vs. necessitats comunitàries</label>
+                            <label><input type="radio" name="q18" value="C"> C) Varietats lingüístiques formals i informals</label>
+                            <label><input type="radio" name="q18" value="D"> D) Nivells educatius diferents</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">19</div>
+                        <p class="question-text">La correlació r = -0.67 indica que:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="A"> A) Hi ha una relació positiva forta</label>
+                            <label><input type="radio" name="q19" value="B"> B) No hi ha cap relació significativa</label>
+                            <label><input type="radio" name="q19" value="C"> C) Hi ha una relació negativa moderada-forta</label>
+                            <label><input type="radio" name="q19" value="D"> D) Les variables són independents</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">20</div>
+                        <p class="question-text">El resultat "paradoxal" esmentat es refereix a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q20" value="A"> A) La manca de correlació entre variables</label>
+                            <label><input type="radio" name="q20" value="B"> B) L'èxit de regions amb major autonomia administrativa</label>
+                            <label><input type="radio" name="q20" value="C"> C) La ineficàcia completa de les polítiques europees</label>
+                            <label><input type="radio" name="q20" value="D"> D) L'homogeneïtzació lingüística inesperada</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">21</div>
+                        <p class="question-text">Els "moviments grassroots" prioritzen:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q21" value="A"> A) Exclusivament el reconeixement simbòlic</label>
+                            <label><input type="radio" name="q21" value="B"> B) Recursos econòmics i funcionalitat comunicativa</label>
+                            <label><input type="radio" name="q21" value="C"> C) La integració en institucions europees</label>
+                            <label><input type="radio" name="q21" value="D"> D) La uniformització lingüística</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">22</div>
+                        <p class="question-text">La "subsidiarietat lingüística efectiva" requereix:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q22" value="A"> A) Només reconeixement formal</label>
+                            <label><input type="radio" name="q22" value="B"> B) Mecanismes de coordinació més sofisticats</label>
+                            <label><input type="radio" name="q22" value="C"> C) L'eliminació de la diversitat</label>
+                            <label><input type="radio" name="q22" value="D"> D) Polítiques exclusivament locals</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">23</div>
+                        <p class="question-text">La "governança multinivell" inclou dimensions:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q23" value="A"> A) Només locals i nacionals</label>
+                            <label><input type="radio" name="q23" value="B"> B) Local, regional, nacional i supranacional</label>
+                            <label><input type="radio" name="q23" value="C"> C) Exclusivament europees</label>
+                            <label><input type="radio" name="q23" value="D"> D) Només regionals i supranacionals</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">24</div>
+                        <p class="question-text">La conclusió principal de l'estudi suggereix que la diversitat lingüística europea:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q24" value="A"> A) És impossible de mantenir</label>
+                            <label><input type="radio" name="q24" value="B"> B) Depèn de polítiques coherents multinivell</label>
+                            <label><input type="radio" name="q24" value="C"> C) Només pot ser preservada localment</label>
+                            <label><input type="radio" name="q24" value="D"> D) És responsabilitat exclusiva de la UE</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 4: Advanced Text Matching -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 4: Síntesi i Relació de Conceptes Avançats</h3>
+                    <p>Relacioneu els enunciats complexos (25-35) amb les categories conceptuals apropiades (A-H).</p>
+                </div>
+                <div class="matching-container">
+                    <div class="texts-section">
+                        <h4>Categories Conceptuals</h4>
+                        <div class="match-text">
+                            <h5>A: Epistemologia del Coneixement</h5>
+                            <p>Paradigmes de construcció del saber científic, metodologies de recerca, validació d'hipòtesis, hermenèutica de la interpretació i sistemes de verificabilitat empírica.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>B: Teoria Crítica i Anàlisi del Discurs</h5>
+                            <p>Deconstrucció de narratives hegemòniques, anàlisi de poder simbòlic, ideologies subjacents, retòrica persuasiva i manipulació comunicativa.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>C: Sociolingüística Aplicada</h5>
+                            <p>Planificació lingüística, política d'idiomes, contacte de llengües, bilingüisme social, revitalització idiomàtica i ecologia comunicativa.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>D: Estètica i Teoria Literària</h5>
+                            <p>Poètiques contemporànies, intertextualitat, hibridació genèrica, vanguardisme postmodern, canàlisi narratològica i semàntica del text.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>E: Filosofia Política i Ètica</h5>
+                            <p>Teoria de la justícia, ètica aplicada, drets fonamentals, legitimitat democràtica, filosofia moral i responsabilitat col·lectiva.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>F: Antropologia Cultural</h5>
+                            <p>Relativisme cultural, etnografia comparativa, rituals simbòlics, tradicions orals, identitat col·lectiva i patrimoni immaterial.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>G: Economia Política</h5>
+                            <p>Sistemes econòmics comparats, desigualtats estructurals, globalització financera, desenvolupament sostenible i redistribució de recursos.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>H: Tecnologia i Societat</h5>
+                            <p>Innovació tecnològica, impacte social de la digitalització, intel·ligència artificial, ciberseguretat i transformació dels models comunicatius.</p>
+                        </div>
+                    </div>
+                    <div class="questions-section">
+                        <h4>Enunciats Complexos</h4>
+                        <div class="matching-questions">
+                            <div class="match-question">
+                                <div class="q-number">25</div>
+                                <p class="q-text">L'anàlisi dels mecanismes de falsabilitat popperiana en la construcció de teories científiques contemporànies.</p>
+                                <select class="match-select" name="q25">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">26</div>
+                                <p class="q-text">L'impacte de l'algorítmica predictiva en la reconfiguració de les relacions socials i la privacitat individual.</p>
+                                <select class="match-select" name="q26">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">27</div>
+                                <p class="q-text">La deconstrucció foucaultiana dels dispositifs disciplinaris en les narratives mediàtiques contemporànies.</p>
+                                <select class="match-select" name="q27">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">28</div>
+                                <p class="q-text">Els processos d'atriició lingüística en contextos de contacte asimètric entre llengües minoritàries i hegemòniques.</p>
+                                <select class="match-select" name="q28">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">29</div>
+                                <p class="q-text">L'aplicació de la teoria rawlsiana de la justícia distributiva en polítiques de renda bàsica universal.</p>
+                                <select class="match-select" name="q29">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">30</div>
+                                <p class="q-text">L'anàlisi de les estructures profundes del mite en les manifestacions culturals de les comunitats rurals valencianes.</p>
+                                <select class="match-select" name="q30">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">31</div>
+                                <p class="q-text">La hibridació genèrica en la narrativa postcolonial i les seues implicacions per a la teoria del receptor.</p>
+                                <select class="match-select" name="q31">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">32</div>
+                                <p class="q-text">Les asimetries del sistema financer global i els seus efectes en les economies perifériques mediterrànies.</p>
+                                <select class="match-select" name="q32">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">33</div>
+                                <p class="q-text">La fenomenologia hermenèutica com a mètode d'aproximació a l'experiència viscuda en la recerca social qualitativa.</p>
+                                <select class="match-select" name="q33">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">34</div>
+                                <p class="q-text">L'ètica de la responsabilitat en la implementació de polítiques ambientals i la justícia intergeneracional.</p>
+                                <select class="match-select" name="q34">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">35</div>
+                                <p class="q-text">La construcció discursiva de l'alteritat en els mitjans de comunicació i la perpetuació d'estereotips socials.</p>
+                                <select class="match-select" name="q35">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A: Epistemologia</option>
+                                    <option value="B">B: Teoria Crítica</option>
+                                    <option value="C">C: Sociolingüística</option>
+                                    <option value="D">D: Estètica Literària</option>
+                                    <option value="E">E: Filosofia Política</option>
+                                    <option value="F">F: Antropologia</option>
+                                    <option value="G">G: Economia Política</option>
+                                    <option value="H">H: Tecnologia i Societat</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Section -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Expressió Escrita de Maestria</h3>
+                    <p>Completeu les dues tasques d'escriptura de nivell superior següents.</p>
+                </div>
+
+                <!-- Writing Task 1: Academic Essay -->
+                <div class="writing-task">
+                    <div class="task-prompt">
+                        <h4>Tasca 1: Assaig Acadèmic (300-350 paraules)</h4>
+                        <p><strong>Tema:</strong> "La tensió entre globalització cultural i preservació identitària en el context valencià contemporani"</p>
+                        <p>Desenvolupeu un assaig acadèmic que examine aquesta problemàtica des d'una perspectiva crítica i multidisciplinària. L'assaig ha d'incloure:</p>
+                        <ul>
+                            <li>Anàlisi teòrica de la dialèctica globalització-identitat local</li>
+                            <li>Exemples específics del context sociocultural valencià</li>
+                            <li>Reflexió sobre les implicacions futures per a la cohesió social</li>
+                            <li>Proposta argumentada de síntesi o resolució del conflicte</li>
+                        </ul>
+                        <p><em>Utilitzeu un registre acadèmic rigorós amb terminologia especialitzada i estructura argumentativa complexa.</em></p>
+                    </div>
+                    <div class="writing-area">
+                        <div class="word-counter">
+                            <span>Paraules: <span id="academic-word-count">0</span> / 300-350</span>
+                            <div class="counter-bar">
+                                <div class="counter-fill" id="academic-counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea id="academic-text" placeholder="Desenvolupeu el vostre assaig acadèmic ací...
+
+La tensió dialèctica entre els processos de globalització cultural i la preservació de les identitats locals constitueix un dels fenòmens més complexos de l'època contemporània. En el context valencià específic, aquesta problemàtica adquireix dimensions particularment significatives..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Writing Task 2: Research Proposal -->
+                <div class="writing-task">
+                    <div class="task-prompt">
+                        <h4>Tasca 2: Proposta de Recerca (320-380 paraules)</h4>
+                        <p><strong>Situació:</strong> Sou investigador/a en ciències socials i voleu presentar una proposta per a un projecte de recerca sobre la revitalització del valencià en contextos urbans.</p>
+                        <p>Redacteu una proposta de recerca que inclogui:</p>
+                        <ul>
+                            <li>Justificació teòrica i contextualització del problema de recerca</li>
+                            <li>Objectius generals i específics amb formulació precisa</li>
+                            <li>Metodologia proposada amb tècniques d'investigació apropiades</li>
+                            <li>Resultats esperats i impacte potencial de la recerca</li>
+                            <li>Cronograma orientatiu i consideracions ètiques</li>
+                        </ul>
+                        <p><em>Utilitzeu el format i el llenguatge propis de les propostes de recerca acadèmica.</em></p>
+                    </div>
+                    <div class="writing-area">
+                        <div class="word-counter">
+                            <span>Paraules: <span id="research-word-count">0</span> / 320-380</span>
+                            <div class="counter-bar">
+                                <div class="counter-fill" id="research-counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea id="research-text" placeholder="Redacteu la vostra proposta de recerca ací...
+
+PROPOSTA DE RECERCA: DINÀMIQUES DE REVITALITZACIÓ LINGÜÍSTICA DEL VALENCIÀ EN CONTEXTOS URBANS CONTEMPORANIS
+
+1. JUSTIFICACIÓ I CONTEXTUALITZACIÓ TEÒRICA
+
+La revitalització de llengües minoritàries en entorns urbans complexos planteja desafiaments metodològics i teòrics que requereixen aproximacions interdisciplinàries..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Actions -->
+            <div class="section-actions">
+                <button class="btn-secondary" id="save-reading-writing">
+                    <i class="fas fa-save"></i> Desar Progrés
+                </button>
+                <button class="btn-primary" id="next-to-listening">
+                    <i class="fas fa-arrow-right"></i> Comprensió Oral
+                </button>
+            </div>
+        </section>
+
+        <!-- Listening Section -->
+        <section class="exam-section" id="listening-section">
+            <div class="section-header">
+                <h2><i class="fas fa-headphones"></i> Comprensió Oral Avançada</h2>
+                <p class="section-description">Aquesta secció avalua la comprensió d'àudios especialitzats i discursos complexos en valencià.</p>
+            </div>
+
+            <div class="listening-placeholder">
+                <i class="fas fa-headphones"></i>
+                <h3>Secció de Comprensió Oral Superior</h3>
+                <p>Aquesta secció inclourà exercicis d'escolta amb àudios acadèmics i especialitzats de nivell C2.</p>
+                <p class="note">Els exercicis d'àudio estaran disponibles en la versió completa de l'examen.</p>
+                
+                <div class="listening-types">
+                    <div class="listening-type">
+                        <h4>Conferències Acadèmiques</h4>
+                        <p>Ponències universitàries sobre temes especialitzats amb terminologia tècnica avançada.</p>
+                    </div>
+                    <div class="listening-type">
+                        <h4>Debats Professionals</h4>
+                        <p>Discussions expertes sobre qüestions complexes amb múltiples perspectves i matisos argumentatius.</p>
+                    </div>
+                    <div class="listening-type">
+                        <h4>Entrevistes Especialitzades</h4>
+                        <p>Conversations en profunditat amb experts sobre temes d'actualitat i recerca avançada.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-actions">
+                <button class="btn-secondary" id="save-listening">
+                    <i class="fas fa-save"></i> Desar Progrés
+                </button>
+                <button class="btn-primary" id="next-to-speaking">
+                    <i class="fas fa-arrow-right"></i> Expressió Oral
+                </button>
+            </div>
+        </section>
+
+        <!-- Speaking Section -->
+        <section class="exam-section" id="speaking-section">
+            <div class="section-header">
+                <h2><i class="fas fa-crown"></i> Expressió i Interacció Oral de Maestria</h2>
+                <p class="section-description">Aquesta secció avalua l'expressió oral espontània i la interacció comunicativa de nivell expert.</p>
+            </div>
+
+            <div class="speaking-placeholder">
+                <i class="fas fa-microphone"></i>
+                <h3>Secció d'Expressió Oral Superior</h3>
+                <p>Aquesta secció inclou proves d'expressió oral amb tasques comunicatives d'alta complexitat.</p>
+                
+                <div class="speaking-parts">
+                    <div class="speaking-part">
+                        <h4>Part 1: Dissertació Acadèmica</h4>
+                        <p>Exposició estructurada d'un tema especialitzat amb argumentació acadèmica rigorosa (8-10 minuts).</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 2: Debat Expert</h4>
+                        <p>Participació en debat especialitzat sobre qüestions controvertides amb defensa d'argumentacions complexes (10-12 minuts).</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 3: Mediació Lingüística</h4>
+                        <p>Interpretació i síntesi de textos especialitzats amb reformulació per a audiències diverses (6-8 minuts).</p>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>Criteris d'Avaluació C2:</strong> Domini expert de registres formals, precisió terminològica, fluïdesa natural, capacitat analítica, interacció sofisticada i adequació pragmàtica avançada.
+                </div>
+            </div>
+
+            <div class="section-actions">
+                <button class="btn-secondary" id="save-speaking">
+                    <i class="fas fa-save"></i> Desar Progrés
+                </button>
+                <button class="btn-success" id="finish-exam">
+                    <i class="fas fa-trophy"></i> Finalitzar Avaluació de Maestria
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab" id="fab-main">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div class="fab-options" id="fab-options">
+            <div class="fab-option" id="fab-help">
+                <i class="fas fa-question-circle"></i>
+                <span>Ajuda Especialitzada</span>
+            </div>
+            <div class="fab-option" id="fab-bookmark">
+                <i class="fas fa-bookmark"></i>
+                <span>Marcar Secció</span>
+            </div>
+            <div class="fab-option" id="fab-calculator">
+                <i class="fas fa-calculator"></i>
+                <span>Calculadora</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal" id="results-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-award"></i> Resultats d'Avaluació de Maestria</h2>
+                <button class="modal-close" id="close-results">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="results-summary"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

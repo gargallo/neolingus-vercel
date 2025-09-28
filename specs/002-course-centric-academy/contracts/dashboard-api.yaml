@@ -1,0 +1,1173 @@
+openapi: 3.0.3
+info:
+  title: Modern Dashboard API
+  description: API for the redesigned course-centric academy dashboard with gamification and analytics
+  version: 1.0.0
+  contact:
+    name: Neolingus Platform
+    url: https://neolingus.com
+
+servers:
+  - url: /api
+    description: API Base URL
+
+paths:
+  /dashboard/user/{userId}:
+    get:
+      summary: Get comprehensive dashboard data for user
+      description: Returns all dashboard data including analytics, widgets, and progress visualizations
+      operationId: getUserDashboard
+      tags: [Dashboard]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: User ID
+        - name: widgets
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+          description: Specific widgets to include
+        - name: timeframe
+          in: query
+          schema:
+            type: string
+            enum: [day, week, month, year]
+            default: month
+          description: Timeframe for analytics data
+      responses:
+        '200':
+          description: Dashboard data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardData'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /dashboard/analytics/{userId}:
+    get:
+      summary: Get detailed analytics data
+      description: Returns comprehensive analytics including engagement trends and performance metrics
+      operationId: getUserAnalytics
+      tags: [Analytics]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: timeframe
+          in: query
+          schema:
+            type: string
+            enum: [7d, 30d, 90d, 365d]
+            default: 30d
+        - name: metrics
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [engagement, performance, progress, streaks, xp]
+          description: Specific metrics to include
+      responses:
+        '200':
+          description: Analytics data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsData'
+
+    patch:
+      summary: Update user analytics
+      description: Update specific analytics fields (usually called by system events)
+      operationId: updateUserAnalytics
+      tags: [Analytics]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsUpdate'
+      responses:
+        '200':
+          description: Analytics updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAnalytics'
+
+  /dashboard/widgets:
+    get:
+      summary: Get available dashboard widgets
+      description: Returns all available widgets with their configurations
+      operationId: getAvailableWidgets
+      tags: [Widgets]
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [progress, courses, achievements, analytics, social]
+        - name: subscription_tier
+          in: query
+          schema:
+            type: string
+            enum: [basic, standard, premium]
+          description: Filter by required subscription tier
+      responses:
+        '200':
+          description: Available widgets retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DashboardWidget'
+
+  /dashboard/widgets/{userId}/preferences:
+    get:
+      summary: Get user widget preferences
+      description: Returns user's customized widget settings and layout
+      operationId: getUserWidgetPreferences
+      tags: [Widgets]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Widget preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserWidgetPreference'
+
+    put:
+      summary: Update user widget preferences
+      description: Update widget layout, visibility, and settings
+      operationId: updateWidgetPreferences
+      tags: [Widgets]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/WidgetPreferenceUpdate'
+      responses:
+        '200':
+          description: Widget preferences updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserWidgetPreference'
+
+  /dashboard/progress/{userId}:
+    get:
+      summary: Get user progress visualizations
+      description: Returns progress data with visualization configurations
+      operationId: getUserProgress
+      tags: [Progress]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: courseId
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Filter by specific course
+        - name: chartType
+          in: query
+          schema:
+            type: string
+            enum: [line, bar, radar, circular, heatmap]
+          description: Preferred chart type for visualization
+      responses:
+        '200':
+          description: Progress data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserProgressVisualization'
+
+    post:
+      summary: Create progress visualization
+      description: Create a new progress visualization configuration
+      operationId: createProgressVisualization
+      tags: [Progress]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgressVisualizationCreate'
+      responses:
+        '201':
+          description: Progress visualization created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProgressVisualization'
+
+  /dashboard/achievements/{userId}:
+    get:
+      summary: Get user achievements and gamification data
+      description: Returns badges, XP, level, and milestone information
+      operationId: getUserAchievements
+      tags: [Gamification]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [progress, streak, achievement, social, special]
+          description: Filter achievements by category
+      responses:
+        '200':
+          description: Achievements retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAchievements'
+
+  /dashboard/achievements/{userId}/badges/{badgeId}:
+    post:
+      summary: Award badge to user
+      description: Award a specific badge to a user (system endpoint)
+      operationId: awardBadge
+      tags: [Gamification]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: badgeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Reason for awarding the badge
+                xp_bonus:
+                  type: integer
+                  description: Additional XP to award
+      responses:
+        '201':
+          description: Badge awarded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Badge'
+
+  /dashboard/leaderboard:
+    get:
+      summary: Get leaderboard data
+      description: Returns leaderboard rankings for various metrics
+      operationId: getLeaderboard
+      tags: [Social]
+      parameters:
+        - name: metric
+          in: query
+          schema:
+            type: string
+            enum: [xp, streak, level, study_time]
+            default: xp
+        - name: timeframe
+          in: query
+          schema:
+            type: string
+            enum: [week, month, all_time]
+            default: month
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        '200':
+          description: Leaderboard data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardData'
+
+  /dashboard/themes/{userId}:
+    get:
+      summary: Get user theme preferences
+      description: Returns user's dashboard theme and customization settings
+      operationId: getUserTheme
+      tags: [Customization]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Theme preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemePreferences'
+
+    patch:
+      summary: Update user theme preferences
+      description: Update theme, layout, and visual customization settings
+      operationId: updateUserTheme
+      tags: [Customization]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThemeUpdate'
+      responses:
+        '200':
+          description: Theme preferences updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemePreferences'
+
+components:
+  schemas:
+    DashboardData:
+      type: object
+      properties:
+        user_stats:
+          $ref: '#/components/schemas/UserAnalytics'
+        widgets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfiguredWidget'
+        recent_progress:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProgressVisualization'
+        achievements:
+          $ref: '#/components/schemas/UserAchievements'
+        theme:
+          $ref: '#/components/schemas/ThemePreferences'
+
+    UserAnalytics:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        engagement:
+          type: object
+          properties:
+            total_login_days:
+              type: integer
+            current_streak:
+              type: integer
+            longest_streak:
+              type: integer
+            last_activity_at:
+              type: string
+              format: date-time
+              nullable: true
+            session_count_today:
+              type: integer
+            total_study_minutes:
+              type: integer
+            weekly_study_minutes:
+              type: array
+              items:
+                type: integer
+              minItems: 7
+              maxItems: 7
+        achievements:
+          type: object
+          properties:
+            total_xp:
+              type: integer
+            current_level:
+              type: integer
+              minimum: 1
+              maximum: 100
+            badges_earned:
+              type: array
+              items:
+                $ref: '#/components/schemas/Badge'
+            milestones_reached:
+              type: array
+              items:
+                type: string
+            next_milestone:
+              type: object
+              nullable: true
+              properties:
+                id:
+                  type: string
+                progress:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                required_xp:
+                  type: integer
+        preferences:
+          type: object
+          properties:
+            study_goal_minutes_daily:
+              type: integer
+            preferred_study_times:
+              type: array
+              items:
+                type: string
+                enum: [morning, afternoon, evening]
+            difficulty_preference:
+              type: string
+              enum: [adaptive, easy, medium, hard]
+            notification_preferences:
+              type: object
+              properties:
+                streak_reminders:
+                  type: boolean
+                achievement_alerts:
+                  type: boolean
+                study_goal_reminders:
+                  type: boolean
+                weekly_progress_summary:
+                  type: boolean
+        dashboard_config:
+          type: object
+          properties:
+            layout:
+              type: string
+              enum: [compact, comfortable, spacious]
+            theme:
+              type: string
+              enum: [light, dark, auto]
+            widget_order:
+              type: array
+              items:
+                type: string
+            hidden_widgets:
+              type: array
+              items:
+                type: string
+            quick_actions:
+              type: array
+              items:
+                type: string
+        performance:
+          type: object
+          properties:
+            average_session_score:
+              type: number
+            improvement_rate:
+              type: number
+            weak_areas:
+              type: array
+              items:
+                type: string
+            strong_areas:
+              type: array
+              items:
+                type: string
+            recommended_study_path:
+              type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    DashboardWidget:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        widget_type:
+          type: string
+        config:
+          type: object
+          properties:
+            title:
+              type: string
+            size:
+              type: string
+              enum: [small, medium, large, full-width]
+            position:
+              type: object
+              properties:
+                row:
+                  type: integer
+                column:
+                  type: integer
+                span_rows:
+                  type: integer
+                  default: 1
+                span_columns:
+                  type: integer
+                  default: 1
+            refresh_interval:
+              type: integer
+              nullable: true
+            data_source:
+              type: string
+            filters:
+              type: object
+        metadata:
+          type: object
+          properties:
+            category:
+              type: string
+              enum: [progress, courses, achievements, analytics, social]
+            description:
+              type: string
+            requires_subscription:
+              type: boolean
+            min_subscription_tier:
+              type: string
+              nullable: true
+            is_customizable:
+              type: boolean
+            supports_drill_down:
+              type: boolean
+        default_settings:
+          type: object
+          properties:
+            is_visible:
+              type: boolean
+            is_collapsible:
+              type: boolean
+            default_collapsed:
+              type: boolean
+            user_sortable:
+              type: boolean
+            admin_only:
+              type: boolean
+        is_active:
+          type: boolean
+
+    ConfiguredWidget:
+      allOf:
+        - $ref: '#/components/schemas/DashboardWidget'
+        - type: object
+          properties:
+            user_settings:
+              $ref: '#/components/schemas/UserWidgetPreference'
+            data:
+              type: object
+              description: Widget-specific data based on widget_type
+
+    UserWidgetPreference:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        widget_id:
+          type: string
+          format: uuid
+        position:
+          type: object
+          properties:
+            row:
+              type: integer
+              minimum: 1
+            column:
+              type: integer
+              minimum: 1
+            span_rows:
+              type: integer
+              minimum: 1
+              default: 1
+            span_columns:
+              type: integer
+              minimum: 1
+              default: 1
+        settings:
+          type: object
+          properties:
+            is_visible:
+              type: boolean
+            is_collapsed:
+              type: boolean
+            refresh_interval:
+              type: integer
+              nullable: true
+            custom_title:
+              type: string
+              nullable: true
+            filters:
+              type: object
+            display_options:
+              type: object
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    UserProgressVisualization:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        course_id:
+          type: string
+          format: uuid
+          nullable: true
+        progress:
+          type: object
+          properties:
+            overall_completion:
+              type: number
+              minimum: 0
+              maximum: 1
+            weekly_completion:
+              type: array
+              items:
+                type: number
+                minimum: 0
+                maximum: 1
+            skill_breakdown:
+              type: array
+              items:
+                $ref: '#/components/schemas/SkillProgress'
+            session_history:
+              type: array
+              items:
+                $ref: '#/components/schemas/SessionSummary'
+            time_spent:
+              type: object
+              properties:
+                total_minutes:
+                  type: integer
+                this_week:
+                  type: integer
+                daily_average:
+                  type: number
+                streak_minutes:
+                  type: integer
+        visualization_config:
+          type: object
+          properties:
+            chart_type:
+              type: string
+              enum: [line, bar, radar, circular, heatmap]
+            color_scheme:
+              type: string
+            show_comparisons:
+              type: boolean
+            show_predictions:
+              type: boolean
+            animation_enabled:
+              type: boolean
+            detail_level:
+              type: string
+              enum: [summary, detailed, comprehensive]
+        milestones:
+          type: object
+          properties:
+            completed:
+              type: array
+              items:
+                $ref: '#/components/schemas/MilestoneData'
+            current:
+              type: array
+              items:
+                $ref: '#/components/schemas/MilestoneData'
+            upcoming:
+              type: array
+              items:
+                $ref: '#/components/schemas/MilestoneData'
+            overdue:
+              type: array
+              items:
+                $ref: '#/components/schemas/MilestoneData'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        last_calculated_at:
+          type: string
+          format: date-time
+
+    SkillProgress:
+      type: object
+      properties:
+        skill_name:
+          type: string
+        skill_display_name:
+          type: string
+        current_level:
+          type: integer
+          minimum: 0
+          maximum: 100
+        target_level:
+          type: integer
+          minimum: 0
+          maximum: 100
+        improvement_rate:
+          type: number
+        sessions_practiced:
+          type: integer
+        last_practiced_at:
+          type: string
+          format: date-time
+          nullable: true
+        confidence_score:
+          type: number
+          minimum: 0
+          maximum: 1
+
+    SessionSummary:
+      type: object
+      properties:
+        session_id:
+          type: string
+          format: uuid
+        date:
+          type: string
+          format: date-time
+        duration_minutes:
+          type: number
+        score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        xp_earned:
+          type: integer
+        skills_practiced:
+          type: array
+          items:
+            type: string
+        difficulty_level:
+          type: integer
+          minimum: 1
+          maximum: 10
+        completion_status:
+          type: string
+          enum: [completed, partial, abandoned]
+
+    MilestoneData:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        target_date:
+          type: string
+          format: date-time
+          nullable: true
+        completion_date:
+          type: string
+          format: date-time
+          nullable: true
+        progress:
+          type: number
+          minimum: 0
+          maximum: 1
+        category:
+          type: string
+          enum: [skill, time, streak, course, social]
+        reward:
+          type: object
+          properties:
+            xp:
+              type: integer
+            badge:
+              $ref: '#/components/schemas/Badge'
+              nullable: true
+            unlock:
+              type: string
+              nullable: true
+
+    Badge:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        icon_url:
+          type: string
+          format: uri
+        category:
+          type: string
+          enum: [progress, streak, achievement, social, special]
+        rarity:
+          type: string
+          enum: [common, rare, epic, legendary]
+        earned_at:
+          type: string
+          format: date-time
+        xp_reward:
+          type: integer
+
+    UserAchievements:
+      type: object
+      properties:
+        total_xp:
+          type: integer
+        current_level:
+          type: integer
+        badges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Badge'
+        milestones:
+          type: array
+          items:
+            $ref: '#/components/schemas/MilestoneData'
+        streaks:
+          type: object
+          properties:
+            current:
+              type: integer
+            longest:
+              type: integer
+            weekly_streak:
+              type: boolean
+            monthly_streak:
+              type: boolean
+
+    LeaderboardData:
+      type: object
+      properties:
+        metric:
+          type: string
+        timeframe:
+          type: string
+        user_rank:
+          type: integer
+          nullable: true
+        rankings:
+          type: array
+          items:
+            type: object
+            properties:
+              user_id:
+                type: string
+                format: uuid
+              display_name:
+                type: string
+              value:
+                type: number
+              rank:
+                type: integer
+              badge:
+                type: string
+                nullable: true
+
+    ThemePreferences:
+      type: object
+      properties:
+        theme:
+          type: string
+          enum: [light, dark, auto]
+        layout:
+          type: string
+          enum: [compact, comfortable, spacious]
+        animations_enabled:
+          type: boolean
+        notifications_enabled:
+          type: boolean
+        accent_color:
+          type: string
+          pattern: '^#[0-9A-Fa-f]{6}$'
+          nullable: true
+        font_size:
+          type: string
+          enum: [small, medium, large]
+        high_contrast:
+          type: boolean
+
+    AnalyticsData:
+      type: object
+      properties:
+        engagement_trend:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              sessions:
+                type: integer
+              total_minutes:
+                type: number
+              avg_score:
+                type: number
+        skill_progress:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillProgress'
+        performance_metrics:
+          type: object
+          properties:
+            average_score:
+              type: number
+            improvement_rate:
+              type: number
+            weak_areas:
+              type: array
+              items:
+                type: string
+            strong_areas:
+              type: array
+              items:
+                type: string
+
+    AnalyticsUpdate:
+      type: object
+      properties:
+        engagement:
+          type: object
+          properties:
+            session_completed:
+              type: boolean
+            study_minutes:
+              type: number
+            xp_earned:
+              type: integer
+        achievement:
+          type: object
+          properties:
+            badge_earned:
+              type: string
+              nullable: true
+            milestone_reached:
+              type: string
+              nullable: true
+            xp_bonus:
+              type: integer
+
+    WidgetPreferenceUpdate:
+      type: object
+      properties:
+        widget_id:
+          type: string
+          format: uuid
+        position:
+          type: object
+          properties:
+            row:
+              type: integer
+              minimum: 1
+            column:
+              type: integer
+              minimum: 1
+            span_rows:
+              type: integer
+              minimum: 1
+            span_columns:
+              type: integer
+              minimum: 1
+        settings:
+          type: object
+          properties:
+            is_visible:
+              type: boolean
+            is_collapsed:
+              type: boolean
+            custom_title:
+              type: string
+              nullable: true
+            filters:
+              type: object
+            display_options:
+              type: object
+
+    ProgressVisualizationCreate:
+      type: object
+      required:
+        - course_id
+      properties:
+        course_id:
+          type: string
+          format: uuid
+          nullable: true
+        visualization_config:
+          type: object
+          properties:
+            chart_type:
+              type: string
+              enum: [line, bar, radar, circular, heatmap]
+              default: line
+            color_scheme:
+              type: string
+              default: blue
+            show_comparisons:
+              type: boolean
+              default: false
+            show_predictions:
+              type: boolean
+              default: true
+            animation_enabled:
+              type: boolean
+              default: true
+            detail_level:
+              type: string
+              enum: [summary, detailed, comprehensive]
+              default: summary
+
+    ThemeUpdate:
+      type: object
+      properties:
+        theme:
+          type: string
+          enum: [light, dark, auto]
+        layout:
+          type: string
+          enum: [compact, comfortable, spacious]
+        animations_enabled:
+          type: boolean
+        notifications_enabled:
+          type: boolean
+        accent_color:
+          type: string
+          pattern: '^#[0-9A-Fa-f]{6}$'
+          nullable: true
+        font_size:
+          type: string
+          enum: [small, medium, large]
+        high_contrast:
+          type: boolean
+
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code for client handling
+        details:
+          type: object
+          description: Additional error details
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Dashboard
+    description: Main dashboard operations
+  - name: Analytics
+    description: User analytics and engagement tracking
+  - name: Widgets
+    description: Dashboard widget management
+  - name: Progress
+    description: Progress visualization and tracking
+  - name: Gamification
+    description: Achievements, XP, and gamification features
+  - name: Social
+    description: Leaderboards and social features
+  - name: Customization
+    description: Theme and personalization settings

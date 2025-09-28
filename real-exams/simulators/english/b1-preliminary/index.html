@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambridge B1 Preliminary (PET) - NEOLINGUS Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="exam-container">
+        <!-- Header -->
+        <header class="exam-header">
+            <div class="exam-info">
+                <h1><i class="fas fa-graduation-cap"></i> Cambridge B1 Preliminary (PET)</h1>
+                <span class="exam-year">Official Exam 2022</span>
+            </div>
+            <div class="timer-section">
+                <div class="timer" id="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="time-display">02:20:00</span>
+                </div>
+                <button class="pause-btn" id="pause-btn">
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Pills -->
+        <nav class="section-nav">
+            <button class="nav-pill active" data-section="reading-writing">
+                <i class="fas fa-book-pen"></i>
+                Reading & Writing
+                <span class="pill-time">1h 30m</span>
+            </button>
+            <button class="nav-pill" data-section="listening">
+                <i class="fas fa-headphones"></i>
+                Listening
+                <span class="pill-time">30m</span>
+            </button>
+            <button class="nav-pill" data-section="speaking">
+                <i class="fas fa-microphone"></i>
+                Speaking
+                <span class="pill-time">12-17m</span>
+            </button>
+        </nav>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">0 / 44 questions completed</span>
+        </div>
+
+        <!-- Main Content -->
+        <main class="exam-content">
+            
+            <!-- Reading & Writing Section -->
+            <section id="reading-writing-section" class="exam-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-book-pen"></i> Reading & Writing</h2>
+                    <p class="section-description">Complete all parts (37 questions + 2 writing tasks)</p>
+                </div>
+
+                <!-- Reading Part 1: Signs and Messages -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 1: Real-world Notices</h3>
+                        <p>For questions 1-5, look at the text in each question. What does it say? Choose the best answer (A, B or C).</p>
+                    </div>
+                    
+                    <div class="questions-grid reading-part1">
+                        <div class="question-item">
+                            <span class="question-number">1</span>
+                            <div class="sign-display">
+                                <div class="sign">
+                                    HOTEL GUESTS ONLY<br>
+                                    Swimming Pool<br>
+                                    Open 6am - 10pm<br>
+                                    Children under 14 must<br>
+                                    be accompanied by an adult
+                                </div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q1" value="A"> A) Adults must supervise children at the swimming pool</label>
+                                <label><input type="radio" name="q1" value="B"> B) The swimming pool is only for adults</label>
+                                <label><input type="radio" name="q1" value="C"> C) Children over 14 can use the pool alone</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">2</span>
+                            <div class="sign-display">
+                                <div class="sign message">
+                                    Hi Sarah,<br>
+                                    Meeting moved to 3pm in Conference Room B.<br>
+                                    Please bring the sales reports.<br>
+                                    Thanks!<br>
+                                    Mark
+                                </div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q2" value="A"> A) Sarah should arrive at the original time</label>
+                                <label><input type="radio" name="q2" value="B"> B) The meeting location has changed</label>
+                                <label><input type="radio" name="q2" value="C"> C) Sarah needs to prepare some documents</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">3</span>
+                            <div class="sign-display">
+                                <div class="sign">
+                                    CINEMA<br>
+                                    Students: 50% discount<br>
+                                    on Tuesday evening shows<br>
+                                    (Must show student ID)
+                                </div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q3" value="A"> A) Students pay half price on Tuesday evenings</label>
+                                <label><input type="radio" name="q3" value="B"> B) Student discount is available every evening</label>
+                                <label><input type="radio" name="q3" value="C"> C) Students don't need to show identification</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">4</span>
+                            <div class="sign-display">
+                                <div class="sign message">
+                                    Lucy,<br>
+                                    Can't pick you up at 8.<br>
+                                    Train cancelled - taking the bus instead.<br>
+                                    Will be there by 8:30.<br>
+                                    Dad
+                                </div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q4" value="A"> A) Dad will be on time</label>
+                                <label><input type="radio" name="q4" value="B"> B) Dad will be 30 minutes late</label>
+                                <label><input type="radio" name="q4" value="C"> C) The train is running late</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">5</span>
+                            <div class="sign-display">
+                                <div class="sign">
+                                    PARKING<br>
+                                    £2 per hour<br>
+                                    Maximum stay: 4 hours<br>
+                                    Exact change only<br>
+                                    No refunds
+                                </div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q5" value="A"> A) You can park for as long as you want</label>
+                                <label><input type="radio" name="q5" value="B"> B) You can get your money back if you leave early</label>
+                                <label><input type="radio" name="q5" value="C"> C) You cannot park for more than four hours</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 2: Matching -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 2: Matching</h3>
+                        <p>For questions 6-10, read the descriptions of people and the descriptions of books. Which book would be the most suitable for each person?</p>
+                    </div>
+                    
+                    <div class="matching-container">
+                        <div class="people-descriptions">
+                            <h4>People</h4>
+                            <div class="person-item">
+                                <span class="question-number">6</span>
+                                <p><strong>Anna</strong> is planning a trip to Japan and wants to learn about the culture and customs before she goes. She's particularly interested in traditional food and festivals.</p>
+                                <select name="q6" class="matching-select">
+                                    <option value="">Choose a book...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+                            
+                            <div class="person-item">
+                                <span class="question-number">7</span>
+                                <p><strong>Mark</strong> loves adventure stories, especially those involving treasure hunting and ancient mysteries. He prefers fast-paced action with lots of excitement.</p>
+                                <select name="q7" class="matching-select">
+                                    <option value="">Choose a book...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+
+                            <div class="person-item">
+                                <span class="question-number">8</span>
+                                <p><strong>Sophie</strong> is interested in environmental issues and climate change. She wants to understand how individuals can make a difference in protecting the planet.</p>
+                                <select name="q8" class="matching-select">
+                                    <option value="">Choose a book...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+
+                            <div class="person-item">
+                                <span class="question-number">9</span>
+                                <p><strong>David</strong> wants to improve his cooking skills and try new recipes. He's a beginner who needs clear, step-by-step instructions for simple meals.</p>
+                                <select name="q9" class="matching-select">
+                                    <option value="">Choose a book...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+
+                            <div class="person-item">
+                                <span class="question-number">10</span>
+                                <p><strong>Emma</strong> is fascinated by space exploration and wants to learn about the latest discoveries about planets and stars. She enjoys scientific explanations that are easy to understand.</p>
+                                <select name="q10" class="matching-select">
+                                    <option value="">Choose a book...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="books-descriptions">
+                            <h4>Books</h4>
+                            <div class="book-item">
+                                <strong>A. Japanese Culture and Traditions</strong><br>
+                                Discover the rich culture of Japan through its festivals, food, and ancient customs. Perfect for travelers.
+                            </div>
+                            <div class="book-item">
+                                <strong>B. Green Living: Simple Steps to Save Our Planet</strong><br>
+                                Practical advice on how everyone can help protect the environment in their daily lives.
+                            </div>
+                            <div class="book-item">
+                                <strong>C. Cooking Made Easy: Recipes for Beginners</strong><br>
+                                Simple recipes with clear instructions for people who are just starting to cook.
+                            </div>
+                            <div class="book-item">
+                                <strong>D. The Mystery of the Lost Temple</strong><br>
+                                An exciting adventure story about archaeologists searching for ancient treasure.
+                            </div>
+                            <div class="book-item">
+                                <strong>E. Understanding the Universe</strong><br>
+                                An accessible guide to space exploration and recent discoveries about our solar system.
+                            </div>
+                            <div class="book-item">
+                                <strong>F. Advanced French Cuisine</strong><br>
+                                Complex recipes and techniques for experienced chefs and cooking enthusiasts.
+                            </div>
+                            <div class="book-item">
+                                <strong>G. The Secret Garden Adventure</strong><br>
+                                A thrilling tale of hidden treasures and ancient mysteries in an English manor.
+                            </div>
+                            <div class="book-item">
+                                <strong>H. Modern Art Movements</strong><br>
+                                A comprehensive study of contemporary art and artists from around the world.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 3: Long Text -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 3: Long Text</h3>
+                        <p>For questions 11-15, read the article about urban gardening. Choose the best answer (A, B, C or D).</p>
+                    </div>
+                    
+                    <div class="text-passage">
+                        <h4>Growing Food in the City</h4>
+                        <p>
+                            In cities around the world, people are discovering the joys of urban gardening. From rooftop gardens in New York to community plots in London, city dwellers are finding creative ways to grow their own food despite limited space and concrete surroundings.
+                        </p>
+                        <p>
+                            Urban gardening isn't just about saving money on groceries, though that's certainly a benefit. Many people find that growing their own vegetables and herbs gives them a sense of connection to their food and the environment. "There's something magical about planting a seed and watching it grow into something you can eat," says Maria Santos, who tends a small garden on her apartment balcony in Barcelona.
+                        </p>
+                        <p>
+                            The practice is also bringing communities together. In many neighborhoods, residents have converted empty lots into shared growing spaces where people of all ages work side by side. These community gardens often become social hubs where neighbors meet, share knowledge, and build friendships that might never have formed otherwise.
+                        </p>
+                        <p>
+                            However, urban gardening does present some challenges. Limited space means gardeners must be creative with vertical growing systems and container gardens. City soil can be contaminated, so many urban gardeners use raised beds with imported soil. And finding enough sunlight in areas surrounded by tall buildings can be difficult.
+                        </p>
+                        <p>
+                            Despite these obstacles, the urban gardening movement continues to grow. City governments are beginning to recognize the benefits and are providing support through grants for community gardens and relaxed regulations for rooftop farming. As more people seek sustainable ways of living, urban gardening offers a promising solution for creating greener, more self-sufficient cities.
+                        </p>
+                    </div>
+
+                    <div class="questions-grid">
+                        <div class="question-item">
+                            <span class="question-number">11</span>
+                            <div class="options">
+                                <p class="question-text">What is the main purpose of the article?</p>
+                                <label><input type="radio" name="q11" value="A"> A) To criticize city planning policies</label>
+                                <label><input type="radio" name="q11" value="B"> B) To explain the growing trend of urban gardening</label>
+                                <label><input type="radio" name="q11" value="C"> C) To compare different types of gardens</label>
+                                <label><input type="radio" name="q11" value="D"> D) To provide gardening tips for beginners</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">12</span>
+                            <div class="options">
+                                <p class="question-text">According to Maria Santos, what makes gardening special?</p>
+                                <label><input type="radio" name="q12" value="A"> A) The process of growing your own food</label>
+                                <label><input type="radio" name="q12" value="B"> B) The money saved on groceries</label>
+                                <label><input type="radio" name="q12" value="C"> C) The beautiful flowers that grow</label>
+                                <label><input type="radio" name="q12" value="D"> D) The size of her balcony garden</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">13</span>
+                            <div class="options">
+                                <p class="question-text">What social benefit do community gardens provide?</p>
+                                <label><input type="radio" name="q13" value="A"> A) They reduce crime in neighborhoods</label>
+                                <label><input type="radio" name="q13" value="B"> B) They provide jobs for unemployed people</label>
+                                <label><input type="radio" name="q13" value="C"> C) They help neighbors meet and make friends</label>
+                                <label><input type="radio" name="q13" value="D"> D) They increase property values</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">14</span>
+                            <div class="options">
+                                <p class="question-text">What challenge is NOT mentioned in the article?</p>
+                                <label><input type="radio" name="q14" value="A"> A) Lack of space</label>
+                                <label><input type="radio" name="q14" value="B"> B) Poor soil quality</label>
+                                <label><input type="radio" name="q14" value="C"> C) Insufficient sunlight</label>
+                                <label><input type="radio" name="q14" value="D"> D) High cost of equipment</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">15</span>
+                            <div class="options">
+                                <p class="question-text">How are city governments supporting urban gardening?</p>
+                                <label><input type="radio" name="q15" value="A"> A) By building more parks</label>
+                                <label><input type="radio" name="q15" value="B"> B) By providing money and changing rules</label>
+                                <label><input type="radio" name="q15" value="C"> C) By offering free gardening classes</label>
+                                <label><input type="radio" name="q15" value="D"> D) By selling land at reduced prices</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 4: Gapped Text -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 4: Gapped Text</h3>
+                        <p>For questions 16-20, choose from the sentences A-H the one which fits each gap. There are three extra sentences which you do not need to use.</p>
+                    </div>
+                    
+                    <div class="gapped-text-container">
+                        <div class="text-passage gapped">
+                            <h4>The History of the Bicycle</h4>
+                            <p>
+                                The bicycle has been one of the most important inventions in human transportation. Its development took place over many decades in the 19th century. <span class="gap" data-gap="16" id="gap-16">(16)</span>
+                            </p>
+                            <p>
+                                The first machine that resembled a bicycle was invented in 1817 by Baron Karl von Drais in Germany. However, this early version had no pedals and riders had to push themselves along with their feet. <span class="gap" data-gap="17" id="gap-17">(17)</span>
+                            </p>
+                            <p>
+                                In the 1860s, pedals were finally added to the front wheel, creating what was called the "velocipede." <span class="gap" data-gap="18" id="gap-18">(18)</span> Despite being uncomfortable to ride, it became quite popular in France and other parts of Europe.
+                            </p>
+                            <p>
+                                The next major development came in the 1870s with the creation of the "ordinary" or "penny-farthing" bicycle. <span class="gap" data-gap="19" id="gap-19">(19)</span> This design allowed riders to go faster, but it was also more dangerous because of the high center of gravity.
+                            </p>
+                            <p>
+                                Finally, in the 1880s, the "safety bicycle" was invented. This had two wheels of equal size and a chain drive to the rear wheel. <span class="gap" data-gap="20" id="gap-20">(20)</span> This design became the basis for all modern bicycles.
+                            </p>
+                        </div>
+
+                        <div class="sentence-bank">
+                            <h5>Choose from these sentences:</h5>
+                            <div class="sentence-options">
+                                <button class="sentence-option" data-value="A" id="option-A">
+                                    <strong>A</strong> It was much safer and easier to ride than previous models.
+                                </button>
+                                <button class="sentence-option" data-value="B" id="option-B">
+                                    <strong>B</strong> Many different inventors contributed to creating the modern bicycle we know today.
+                                </button>
+                                <button class="sentence-option" data-value="C" id="option-C">
+                                    <strong>C</strong> It took nearly 50 years before pedals were invented.
+                                </button>
+                                <button class="sentence-option" data-value="D" id="option-D">
+                                    <strong>D</strong> The front wheel was much larger than the back wheel.
+                                </button>
+                                <button class="sentence-option" data-value="E" id="option-E">
+                                    <strong>E</strong> This design is still used in bicycles today.
+                                </button>
+                                <button class="sentence-option" data-value="F" id="option-F">
+                                    <strong>F</strong> It was also known as the "boneshaker" because of the rough ride it provided.
+                                </button>
+                                <button class="sentence-option" data-value="G" id="option-G">
+                                    <strong>G</strong> However, women found it difficult to ride while wearing long skirts.
+                                </button>
+                                <button class="sentence-option" data-value="H" id="option-H">
+                                    <strong>H</strong> The invention of the pneumatic tire made cycling much more comfortable.
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 5: Multiple Choice Cloze -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 5: Multiple Choice Cloze</h3>
+                        <p>For questions 21-26, choose the correct word (A, B, C or D) for each gap.</p>
+                    </div>
+                    
+                    <div class="text-passage">
+                        <h4>The Benefits of Learning a Musical Instrument</h4>
+                        <p>
+                            Learning to play a musical instrument can be one of the most rewarding experiences in life. (21) _____ many people think it's difficult to start as an adult, research shows that it's never too late to begin. Playing an instrument offers benefits (22) _____ go far beyond just making music.
+                        </p>
+                        <p>
+                            Scientists have discovered that learning music helps improve memory and concentration. People (23) _____ play instruments regularly show better problem-solving skills than those who don't. This is because music training exercises both sides of the brain simultaneously.
+                        </p>
+                        <p>
+                            Music is also (24) _____ excellent way to reduce stress and improve mental health. When we play an instrument, our minds focus completely on the task, (25) _____ means we temporarily forget about daily worries and problems. Many musicians describe this feeling as being "in the zone."
+                        </p>
+                        <p>
+                            Furthermore, playing music can be a social activity. Joining a band or orchestra gives people the opportunity to meet others who share similar interests. Many lifelong friendships have (26) _____ formed through making music together. Whether you choose piano, guitar, or any other instrument, the journey of musical learning is always worthwhile.
+                        </p>
+                    </div>
+
+                    <div class="questions-grid cloze-grid">
+                        <div class="question-item">
+                            <span class="question-number">21</span>
+                            <div class="options">
+                                <label><input type="radio" name="q21" value="A"> A) Although</label>
+                                <label><input type="radio" name="q21" value="B"> B) However</label>
+                                <label><input type="radio" name="q21" value="C"> C) Despite</label>
+                                <label><input type="radio" name="q21" value="D"> D) Because</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">22</span>
+                            <div class="options">
+                                <label><input type="radio" name="q22" value="A"> A) which</label>
+                                <label><input type="radio" name="q22" value="B"> B) who</label>
+                                <label><input type="radio" name="q22" value="C"> C) where</label>
+                                <label><input type="radio" name="q22" value="D"> D) when</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">23</span>
+                            <div class="options">
+                                <label><input type="radio" name="q23" value="A"> A) which</label>
+                                <label><input type="radio" name="q23" value="B"> B) what</label>
+                                <label><input type="radio" name="q23" value="C"> C) who</label>
+                                <label><input type="radio" name="q23" value="D"> D) whose</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">24</span>
+                            <div class="options">
+                                <label><input type="radio" name="q24" value="A"> A) a</label>
+                                <label><input type="radio" name="q24" value="B"> B) an</label>
+                                <label><input type="radio" name="q24" value="C"> C) the</label>
+                                <label><input type="radio" name="q24" value="D"> D) some</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">25</span>
+                            <div class="options">
+                                <label><input type="radio" name="q25" value="A"> A) that</label>
+                                <label><input type="radio" name="q25" value="B"> B) which</label>
+                                <label><input type="radio" name="q25" value="C"> C) what</label>
+                                <label><input type="radio" name="q25" value="D"> D) who</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">26</span>
+                            <div class="options">
+                                <label><input type="radio" name="q26" value="A"> A) been</label>
+                                <label><input type="radio" name="q26" value="B"> B) had</label>
+                                <label><input type="radio" name="q26" value="C"> C) have</label>
+                                <label><input type="radio" name="q26" value="D"> D) being</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 6: Open Cloze -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 6: Open Cloze</h3>
+                        <p>For questions 27-32, write ONE word for each gap.</p>
+                    </div>
+                    
+                    <div class="text-passage">
+                        <h4>The Rise of Electric Vehicles</h4>
+                        <p>
+                            Electric vehicles are becoming increasingly popular around the world. Many people are choosing (27) _____ buy electric cars because they are better for the environment than traditional petrol cars. Governments are also encouraging people to make the switch by offering financial incentives.
+                        </p>
+                        <p>
+                            One of the main advantages of electric cars (28) _____ that they produce no emissions while driving. This helps to reduce air pollution in cities, (29) _____ is especially important for public health. Electric cars are also much quieter than conventional vehicles.
+                        </p>
+                        <p>
+                            However, there are still some challenges. The biggest concern for many potential buyers is (30) _____ far they can travel on a single charge. Most modern electric cars can travel between 200-300 kilometers, but this is still less than petrol cars.
+                        </p>
+                        <p>
+                            Another issue is the lack of charging stations. Although the number of charging points is growing rapidly, drivers still need to plan their journeys carefully. Many people (31) _____ live in apartments also find it difficult to charge their cars at home.
+                        </p>
+                        <p>
+                            Despite these challenges, experts predict that electric vehicles will soon make (32) _____ the majority of new car sales. As battery technology continues to improve and charging infrastructure expands, electric cars are likely to become the norm rather than the exception.
+                        </p>
+                    </div>
+
+                    <div class="questions-grid gap-fill">
+                        <div class="gap-question">
+                            <span class="question-number">27</span>
+                            <input type="text" name="q27" placeholder="One word only" maxlength="15">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">28</span>
+                            <input type="text" name="q28" placeholder="One word only" maxlength="15">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">29</span>
+                            <input type="text" name="q29" placeholder="One word only" maxlength="15">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">30</span>
+                            <input type="text" name="q30" placeholder="One word only" maxlength="15">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">31</span>
+                            <input type="text" name="q31" placeholder="One word only" maxlength="15">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">32</span>
+                            <input type="text" name="q32" placeholder="One word only" maxlength="15">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 7: Word Formation -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 7: Word Formation</h3>
+                        <p>For questions 33-35, use the word given in capitals to form a word that fits in the gap.</p>
+                    </div>
+                    
+                    <div class="word-formation-container">
+                        <div class="text-passage">
+                            <h4>The Importance of Teamwork</h4>
+                            <p>
+                                Working effectively as part of a team is a skill that can lead to great (33) <input type="text" name="q33" class="word-formation-input" placeholder="Enter word"> in both personal and professional life. <span class="root-word">SUCCESS</span>
+                            </p>
+                            <p>
+                                Good teamwork requires people to communicate openly and honestly with each other. Team members need to (34) <input type="text" name="q34" class="word-formation-input" placeholder="Enter word"> understand what their colleagues are trying to achieve. <span class="root-word">REAL</span>
+                            </p>
+                            <p>
+                                It's also important to be (35) <input type="text" name="q35" class="word-formation-input" placeholder="Enter word"> when listening to other people's ideas, even if you don't agree with them at first. <span class="root-word">CARE</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Writing Part 1: Email -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Writing Part 1: Email</h3>
+                        <p>You received this email from your English friend, Chris. Write an email to Chris. In your email, you should use all the notes and write about 100 words.</p>
+                    </div>
+                    
+                    <div class="writing-task">
+                        <div class="task-prompt">
+                            <div class="email-prompt">
+                                <div class="email-header">
+                                    <strong>From:</strong> Chris<br>
+                                    <strong>To:</strong> You<br>
+                                    <strong>Subject:</strong> Birthday party plans
+                                </div>
+                                <div class="email-body">
+                                    Hi!<br><br>
+                                    I'm planning my birthday party for next month. I'd like to invite you!<br><br>
+                                    What kind of food should I prepare? <span class="note">[suggest something]</span><br>
+                                    Should I have the party indoors or outdoors? <span class="note">[give your opinion and reason]</span><br>
+                                    Can you help me with the decorations? <span class="note">[say yes/no and why]</span><br><br>
+                                    Let me know what you think!<br><br>
+                                    Chris
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="writing-area">
+                            <div class="word-counter">
+                                <span id="email-word-count">0</span> / ~100 words
+                                <div class="counter-bar">
+                                    <div class="counter-fill" id="email-counter-fill"></div>
+                                </div>
+                            </div>
+                            <textarea 
+                                id="email-text" 
+                                placeholder="Write your email here..."
+                                rows="12"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Writing Part 2: Choice of Tasks -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Writing Part 2: Choose ONE Task</h3>
+                        <p>Write about 100 words for the task you choose.</p>
+                    </div>
+                    
+                    <div class="task-choice">
+                        <div class="task-option" data-task="article">
+                            <div class="task-type">
+                                <i class="fas fa-newspaper"></i> Article
+                            </div>
+                            <h4>Option A</h4>
+                            <p>You see this announcement on an English-language website:</p>
+                            <blockquote>
+                                <strong>Articles wanted: The perfect day out</strong><br>
+                                Tell us about a perfect day out you had recently. Where did you go? What did you do? Why was it so special?<br>
+                                The best articles will be published on our website.
+                            </blockquote>
+                        </div>
+
+                        <div class="task-option" data-task="story">
+                            <div class="task-type">
+                                <i class="fas fa-book"></i> Story
+                            </div>
+                            <h4>Option B</h4>
+                            <p>Your English teacher has asked you to write a story. Your story must begin with this sentence:</p>
+                            <blockquote>
+                                <strong>"When I opened the door, I couldn't believe what I saw."</strong>
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <div class="writing-area" id="part2-writing" style="display: none;">
+                        <div class="word-counter">
+                            <span id="part2-word-count">0</span> / ~100 words
+                            <div class="counter-bar">
+                                <div class="counter-fill" id="part2-counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="part2-text" 
+                            placeholder="Choose a task above and write your answer here..."
+                            rows="12"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-reading-writing">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-primary" id="next-to-listening">
+                        Next Section: Listening <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Listening Section -->
+            <section id="listening-section" class="exam-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-headphones"></i> Listening</h2>
+                    <p class="section-description">Listen to the recordings and answer questions 1-25</p>
+                </div>
+
+                <div class="audio-controls">
+                    <audio id="main-audio" controls controlsList="nodownload">
+                        <source src="../../01-INGLES/B1/B1_Preliminary_cambridge_2022.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div class="audio-info">
+                        <p><i class="fas fa-info-circle"></i> You will hear each recording twice</p>
+                    </div>
+                </div>
+
+                <!-- Listening Parts placeholder -->
+                <div class="part-container">
+                    <div class="listening-placeholder">
+                        <i class="fas fa-headphones"></i>
+                        <p>Audio content and questions will be loaded here</p>
+                        <p class="note">This is a demonstration version. Full audio integration coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-listening">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-primary" id="next-to-speaking">
+                        Next Section: Speaking <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Speaking Section -->
+            <section id="speaking-section" class="exam-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-microphone"></i> Speaking</h2>
+                    <p class="section-description">4 parts: Interview, Photo description, Discussion, General discussion</p>
+                </div>
+
+                <div class="speaking-placeholder">
+                    <i class="fas fa-microphone"></i>
+                    <h3>Speaking Simulator</h3>
+                    <p>Interactive speaking practice with AI examiner</p>
+                    <p class="note">This section requires microphone access and will be available in the full version.</p>
+                    
+                    <div class="speaking-parts">
+                        <div class="speaking-part">
+                            <h4>Part 1: Interview (2-3 minutes)</h4>
+                            <p>Personal questions about yourself, experiences, and future plans</p>
+                        </div>
+                        <div class="speaking-part">
+                            <h4>Part 2: Photo Description (2-3 minutes)</h4>
+                            <p>Describe a photograph for 1 minute, then answer follow-up questions</p>
+                        </div>
+                        <div class="speaking-part">
+                            <h4>Part 3: Discussion (4-5 minutes)</h4>
+                            <p>Collaborative discussion with another candidate using prompt materials</p>
+                        </div>
+                        <div class="speaking-part">
+                            <h4>Part 4: General Discussion (3-4 minutes)</h4>
+                            <p>Further discussion related to Part 3 topic with examiner and candidate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-speaking">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-success" id="finish-exam">
+                        <i class="fas fa-flag-checkered"></i> Finish Exam
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Floating Action Button -->
+        <div class="fab-container">
+            <button class="fab" id="fab-main">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="fab-options" id="fab-options">
+                <button class="fab-option" id="fab-help">
+                    <i class="fas fa-question"></i>
+                    <span>Help</span>
+                </button>
+                <button class="fab-option" id="fab-bookmark">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Bookmark</span>
+                </button>
+                <button class="fab-option" id="fab-calculator">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculator</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal for Results -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-bar"></i> Exam Results</h2>
+                <button class="modal-close" id="close-results">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="results-summary">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

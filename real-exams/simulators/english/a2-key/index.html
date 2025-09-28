@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambridge A2 Key (KET) - NEOLINGUS Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="exam-container">
+        <!-- Header -->
+        <header class="exam-header">
+            <div class="exam-info">
+                <h1><i class="fas fa-graduation-cap"></i> Cambridge A2 Key (KET)</h1>
+                <span class="exam-year">Official Exam Format</span>
+            </div>
+            <div class="timer-section">
+                <div class="timer" id="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="time-display">01:40:00</span>
+                </div>
+                <button class="pause-btn" id="pause-btn">
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Pills -->
+        <nav class="section-nav">
+            <button class="nav-pill active" data-section="reading-writing">
+                <i class="fas fa-book-pen"></i>
+                Reading & Writing
+                <span class="pill-time">1h 10m</span>
+            </button>
+            <button class="nav-pill" data-section="listening">
+                <i class="fas fa-headphones"></i>
+                Listening
+                <span class="pill-time">30m</span>
+            </button>
+            <button class="nav-pill" data-section="speaking">
+                <i class="fas fa-microphone"></i>
+                Speaking
+                <span class="pill-time">8-10m</span>
+            </button>
+        </nav>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">0 / 37 questions completed</span>
+        </div>
+
+        <!-- Main Content -->
+        <main class="exam-content">
+            
+            <!-- Reading & Writing Section -->
+            <section id="reading-writing-section" class="exam-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-book-pen"></i> Reading & Writing</h2>
+                    <p class="section-description">Complete all parts (35 questions + 2 writing tasks)</p>
+                </div>
+
+                <!-- Reading Part 1: Signs and Notices -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 1: Signs and Notices</h3>
+                        <p>For questions 1-6, look at the text in each question. What does it say? Choose the best answer (A, B or C).</p>
+                    </div>
+                    
+                    <div class="questions-grid reading-part1">
+                        <div class="question-item">
+                            <span class="question-number">1</span>
+                            <div class="sign-display">
+                                <div class="sign">NO PARKING<br>MON-FRI<br>8AM-6PM</div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q1" value="A"> A) You can park here at weekends</label>
+                                <label><input type="radio" name="q1" value="B"> B) You cannot park here after 6pm on weekdays</label>
+                                <label><input type="radio" name="q1" value="C"> C) You can park here before 8am on Monday</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">2</span>
+                            <div class="sign-display">
+                                <div class="sign">LIBRARY<br>Please return all books<br>by June 15th<br>Thank you</div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q2" value="A"> A) You can borrow new books after June 15th</label>
+                                <label><input type="radio" name="q2" value="B"> B) The library closes on June 15th</label>
+                                <label><input type="radio" name="q2" value="C"> C) All books must be back by June 15th</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">3</span>
+                            <div class="sign-display">
+                                <div class="sign message">From: Mom<br>Gone shopping.<br>Your dinner is in the fridge.<br>Heat for 3 minutes.</div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q3" value="A"> A) Mom will cook dinner when she returns</label>
+                                <label><input type="radio" name="q3" value="B"> B) Your dinner is ready to eat</label>
+                                <label><input type="radio" name="q3" value="C"> C) You need to heat your dinner</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">4</span>
+                            <div class="sign-display">
+                                <div class="sign">SWIMMING POOL<br>CLOSED<br>for cleaning<br>Opens 2pm</div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q4" value="A"> A) The pool will open again at 2pm</label>
+                                <label><input type="radio" name="q4" value="B"> B) The pool is only open for cleaning at 2pm</label>
+                                <label><input type="radio" name="q4" value="C"> C) The pool closes at 2pm for cleaning</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">5</span>
+                            <div class="sign-display">
+                                <div class="sign message">Hi Sarah!<br>Can't meet you at 7.<br>Train delayed 30 minutes.<br>See you at 7:30 instead.<br>Tom</div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q5" value="A"> A) Tom will be 30 minutes early</label>
+                                <label><input type="radio" name="q5" value="B"> B) Tom will arrive 30 minutes late</label>
+                                <label><input type="radio" name="q5" value="C"> C) The meeting is cancelled</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">6</span>
+                            <div class="sign-display">
+                                <div class="sign">SALE!<br>Buy 2 T-shirts<br>Get 1 FREE<br>This week only</div>
+                            </div>
+                            <div class="options">
+                                <label><input type="radio" name="q6" value="A"> A) You pay for 2 T-shirts and get 3</label>
+                                <label><input type="radio" name="q6" value="B"> B) All T-shirts are free this week</label>
+                                <label><input type="radio" name="q6" value="C"> C) You can only buy 2 T-shirts this week</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 2: Matching -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 2: Matching</h3>
+                        <p>For questions 7-13, read the descriptions of people and the descriptions of courses. Match each person to a course.</p>
+                    </div>
+                    
+                    <div class="matching-container">
+                        <div class="people-descriptions">
+                            <h4>People</h4>
+                            <div class="person-item">
+                                <span class="question-number">7</span>
+                                <p><strong>Maria</strong> wants to learn to cook healthy meals. She works full-time so can only attend evening classes.</p>
+                                <select name="q7" class="matching-select">
+                                    <option value="">Choose a course...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+                            
+                            <div class="person-item">
+                                <span class="question-number">8</span>
+                                <p><strong>John</strong> is interested in photography and has some experience. He wants to improve his skills on weekends.</p>
+                                <select name="q8" class="matching-select">
+                                    <option value="">Choose a course...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+
+                            <div class="person-item">
+                                <span class="question-number">9</span>
+                                <p><strong>Lisa</strong> loves dancing and wants to learn a new style. She's free on Tuesday and Thursday evenings.</p>
+                                <select name="q9" class="matching-select">
+                                    <option value="">Choose a course...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+
+                            <div class="person-item">
+                                <span class="question-number">10</span>
+                                <p><strong>David</strong> wants to learn a new language for his job. He needs classes during lunch breaks.</p>
+                                <select name="q10" class="matching-select">
+                                    <option value="">Choose a course...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+
+                            <div class="person-item">
+                                <span class="question-number">11</span>
+                                <p><strong>Anna</strong> is retired and wants to learn computer skills. She prefers morning classes.</p>
+                                <select name="q11" class="matching-select">
+                                    <option value="">Choose a course...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+
+                            <div class="person-item">
+                                <span class="question-number">12</span>
+                                <p><strong>Peter</strong> wants to get fit and enjoys team sports. He's available on weekends.</p>
+                                <select name="q12" class="matching-select">
+                                    <option value="">Choose a course...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+
+                            <div class="person-item">
+                                <span class="question-number">13</span>
+                                <p><strong>Emma</strong> is a beginner who wants to learn to paint. She can only attend classes on Saturday mornings.</p>
+                                <select name="q13" class="matching-select">
+                                    <option value="">Choose a course...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    <option value="H">H</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="courses-descriptions">
+                            <h4>Courses</h4>
+                            <div class="course-item">
+                                <strong>A. Computer Basics for Seniors</strong><br>
+                                Monday and Wednesday mornings, 10am-12pm. Learn email, internet and basic programs.
+                            </div>
+                            <div class="course-item">
+                                <strong>B. Advanced Photography</strong><br>
+                                Saturday afternoons, 2pm-5pm. For students with some experience. Digital techniques and editing.
+                            </div>
+                            <div class="course-item">
+                                <strong>C. Football Training</strong><br>
+                                Sunday mornings, 9am-11am. Join our local team for training and matches.
+                            </div>
+                            <div class="course-item">
+                                <strong>D. Business Spanish</strong><br>
+                                Tuesday and Thursday lunch time, 12:30pm-1:30pm. Learn Spanish for work.
+                            </div>
+                            <div class="course-item">
+                                <strong>E. Healthy Cooking</strong><br>
+                                Monday evenings, 7pm-9pm. Learn to cook nutritious and delicious meals.
+                            </div>
+                            <div class="course-item">
+                                <strong>F. Painting for Beginners</strong><br>
+                                Saturday mornings, 9am-12pm. No experience necessary. All materials provided.
+                            </div>
+                            <div class="course-item">
+                                <strong>G. Salsa Dancing</strong><br>
+                                Tuesday and Thursday evenings, 8pm-9:30pm. Learn this fun Latin dance.
+                            </div>
+                            <div class="course-item">
+                                <strong>H. Yoga and Fitness</strong><br>
+                                Wednesday evenings, 6pm-7:30pm. Improve your health and flexibility.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 3: Long Text -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 3: Long Text</h3>
+                        <p>For questions 14-20, read the article about a young businessman. Choose the best answer (A, B, C or D).</p>
+                    </div>
+                    
+                    <div class="text-passage">
+                        <h4>Young Entrepreneur Makes It Big</h4>
+                        <p>
+                            At just 19 years old, Alex Thompson has already achieved more than many people twice his age. His online business, which he started from his bedroom three years ago, now employs fifteen people and has customers all over the world.
+                        </p>
+                        <p>
+                            "It all began when I was still at school," explains Alex. "I was always interested in computers and I noticed that many small businesses didn't have websites. I thought this was a great opportunity." Alex taught himself how to design websites by watching online videos and reading books. His first customer was his uncle's restaurant.
+                        </p>
+                        <p>
+                            The business grew quickly through word of mouth. "I was lucky because my early customers were really happy with my work and they recommended me to their friends," says Alex. "I soon realized I needed help, so I hired my first employee last year."
+                        </p>
+                        <p>
+                            Alex believes that young people have advantages when starting a business. "We're not afraid to try new things and we understand technology. Also, we don't have families to support yet, so we can take risks." However, he admits that being young also has disadvantages. "Some older customers don't take you seriously at first. You have to prove yourself."
+                        </p>
+                        <p>
+                            What's next for Alex? "I want to expand the business internationally. We're already getting inquiries from companies in Europe, and I think there's a big opportunity there. But I won't grow too fast - I learned that from watching other companies fail."
+                        </p>
+                    </div>
+
+                    <div class="questions-grid">
+                        <div class="question-item">
+                            <span class="question-number">14</span>
+                            <div class="options">
+                                <p class="question-text">What do we learn about Alex's business in the first paragraph?</p>
+                                <label><input type="radio" name="q14" value="A"> A) It's been running for three years</label>
+                                <label><input type="radio" name="q14" value="B"> B) It employs nineteen people</label>
+                                <label><input type="radio" name="q14" value="C"> C) It only has local customers</label>
+                                <label><input type="radio" name="q14" value="D"> D) It's based in his bedroom</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">15</span>
+                            <div class="options">
+                                <p class="question-text">How did Alex learn to design websites?</p>
+                                <label><input type="radio" name="q15" value="A"> A) At school</label>
+                                <label><input type="radio" name="q15" value="B"> B) From his uncle</label>
+                                <label><input type="radio" name="q15" value="C"> C) By teaching himself</label>
+                                <label><input type="radio" name="q15" value="D"> D) At college</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">16</span>
+                            <div class="options">
+                                <p class="question-text">According to Alex, why did his business grow quickly?</p>
+                                <label><input type="radio" name="q16" value="A"> A) He worked very hard</label>
+                                <label><input type="radio" name="q16" value="B"> B) His customers recommended him</label>
+                                <label><input type="radio" name="q16" value="C"> C) He charged low prices</label>
+                                <label><input type="radio" name="q16" value="D"> D) He hired good employees</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">17</span>
+                            <div class="options">
+                                <p class="question-text">What does Alex say is an advantage of being young in business?</p>
+                                <label><input type="radio" name="q17" value="A"> A) Young people have more money</label>
+                                <label><input type="radio" name="q17" value="B"> B) Young people have fewer responsibilities</label>
+                                <label><input type="radio" name="q17" value="C"> C) Young people work harder</label>
+                                <label><input type="radio" name="q17" value="D"> D) Young people are more experienced</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">18</span>
+                            <div class="options">
+                                <p class="question-text">What problem does Alex mention about being young?</p>
+                                <label><input type="radio" name="q18" value="A"> A) He makes mistakes</label>
+                                <label><input type="radio" name="q18" value="B"> B) Some customers doubt his abilities</label>
+                                <label><input type="radio" name="q18" value="C"> C) He doesn't understand technology</label>
+                                <label><input type="radio" name="q18" value="D"> D) He's afraid to take risks</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">19</span>
+                            <div class="options">
+                                <p class="question-text">What are Alex's plans for the future?</p>
+                                <label><input type="radio" name="q19" value="A"> A) To find customers in other countries</label>
+                                <label><input type="radio" name="q19" value="B"> B) To study at university</label>
+                                <label><input type="radio" name="q19" value="C"> C) To hire more employees</label>
+                                <label><input type="radio" name="q19" value="D"> D) To start a different business</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">20</span>
+                            <div class="options">
+                                <p class="question-text">Alex says he won't grow his business too quickly because he</p>
+                                <label><input type="radio" name="q20" value="A"> A) doesn't have enough money</label>
+                                <label><input type="radio" name="q20" value="B"> B) wants to help other companies</label>
+                                <label><input type="radio" name="q20" value="C"> C) has learned from other companies' mistakes</label>
+                                <label><input type="radio" name="q20" value="D"> D) needs to find more customers first</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 4: Multiple Choice Cloze -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 4: Multiple Choice Cloze</h3>
+                        <p>For questions 21-27, choose the correct word (A, B, C or D) for each gap.</p>
+                    </div>
+                    
+                    <div class="text-passage">
+                        <h4>A Perfect Day Out</h4>
+                        <p>
+                            Last Saturday was a beautiful sunny day, (21) _____ we decided to visit the countryside. We got up early and drove to a small village about an hour from our home. The village was in a valley (22) _____ there were lots of old stone houses.
+                        </p>
+                        <p>
+                            We parked the car and walked around the village. There was a lovely old church and a small shop (23) _____ sold local products. The shop owner was very friendly and told us about the history of the village. He said it was built over 400 years (24) _____.
+                        </p>
+                        <p>
+                            After lunch at a village pub, we (25) _____ to climb the hill behind the village. It took us about thirty minutes to reach the top, but the view was amazing. We could see for miles in every direction. We stayed there for a while, taking photos and enjoying the peace and quiet.
+                        </p>
+                        <p>
+                            We had a wonderful day, and we'll definitely go back soon. It's nice to (26) _____ a break from city life sometimes. I would recommend this village to anyone who wants to experience the real countryside. You can easily get there by car, and there's plenty to see and do (27) _____ the day.
+                        </p>
+                    </div>
+
+                    <div class="questions-grid cloze-grid">
+                        <div class="question-item">
+                            <span class="question-number">21</span>
+                            <div class="options">
+                                <label><input type="radio" name="q21" value="A"> A) because</label>
+                                <label><input type="radio" name="q21" value="B"> B) but</label>
+                                <label><input type="radio" name="q21" value="C"> C) so</label>
+                                <label><input type="radio" name="q21" value="D"> D) or</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">22</span>
+                            <div class="options">
+                                <label><input type="radio" name="q22" value="A"> A) where</label>
+                                <label><input type="radio" name="q22" value="B"> B) which</label>
+                                <label><input type="radio" name="q22" value="C"> C) who</label>
+                                <label><input type="radio" name="q22" value="D"> D) when</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">23</span>
+                            <div class="options">
+                                <label><input type="radio" name="q23" value="A"> A) what</label>
+                                <label><input type="radio" name="q23" value="B"> B) who</label>
+                                <label><input type="radio" name="q23" value="C"> C) which</label>
+                                <label><input type="radio" name="q23" value="D"> D) where</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">24</span>
+                            <div class="options">
+                                <label><input type="radio" name="q24" value="A"> A) before</label>
+                                <label><input type="radio" name="q24" value="B"> B) ago</label>
+                                <label><input type="radio" name="q24" value="C"> C) since</label>
+                                <label><input type="radio" name="q24" value="D"> D) for</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">25</span>
+                            <div class="options">
+                                <label><input type="radio" name="q25" value="A"> A) decided</label>
+                                <label><input type="radio" name="q25" value="B"> B) wanted</label>
+                                <label><input type="radio" name="q25" value="C"> C) thought</label>
+                                <label><input type="radio" name="q25" value="D"> D) hoped</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">26</span>
+                            <div class="options">
+                                <label><input type="radio" name="q26" value="A"> A) have</label>
+                                <label><input type="radio" name="q26" value="B"> B) make</label>
+                                <label><input type="radio" name="q26" value="C"> C) take</label>
+                                <label><input type="radio" name="q26" value="D"> D) do</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">27</span>
+                            <div class="options">
+                                <label><input type="radio" name="q27" value="A"> A) during</label>
+                                <label><input type="radio" name="q27" value="B"> B) while</label>
+                                <label><input type="radio" name="q27" value="C"> C) for</label>
+                                <label><input type="radio" name="q27" value="D"> D) through</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reading Part 5: Open Cloze -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Reading Part 5: Open Cloze</h3>
+                        <p>For questions 28-32, write ONE word for each gap.</p>
+                    </div>
+                    
+                    <div class="text-passage">
+                        <h4>Learning to Drive</h4>
+                        <p>
+                            When I was eighteen, I decided (28) _____ learn to drive. My father said he would teach me, but I thought it would be better (29) _____ have professional lessons. I found a driving school near my house and booked ten lessons with an instructor called Mike.
+                        </p>
+                        <p>
+                            My first lesson (30) _____ terrible! I was so nervous that I couldn't remember anything. Mike was very patient and told me not to worry. "Everyone makes mistakes at first," he said. "The important thing (31) _____ to keep practicing."
+                        </p>
+                        <p>
+                            After eight lessons, I felt much more confident. Mike said I was ready to take my driving test. I (32) _____ never been so nervous in my life, but I passed! Now I drive everywhere and can't imagine life without a car.
+                        </p>
+                    </div>
+
+                    <div class="questions-grid gap-fill">
+                        <div class="gap-question">
+                            <span class="question-number">28</span>
+                            <input type="text" name="q28" placeholder="One word only" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">29</span>
+                            <input type="text" name="q29" placeholder="One word only" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">30</span>
+                            <input type="text" name="q30" placeholder="One word only" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">31</span>
+                            <input type="text" name="q31" placeholder="One word only" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">32</span>
+                            <input type="text" name="q32" placeholder="One word only" maxlength="20">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Writing Part 1: Sentence Transformations -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Writing Part 1: Sentence Transformations</h3>
+                        <p>For questions 33-35, complete the second sentence using the word given, so that it means the same as the first sentence. Use 2-5 words.</p>
+                    </div>
+                    
+                    <div class="writing-transformations">
+                        <div class="transformation-item">
+                            <span class="question-number">33</span>
+                            <div class="sentence-pair">
+                                <p class="original">This book is more interesting than that one.</p>
+                                <p class="keyword"><strong>AS</strong></p>
+                                <p class="completion">
+                                    That book is not 
+                                    <input type="text" name="q33" placeholder="Complete here" class="transformation-input"> 
+                                    this one.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="transformation-item">
+                            <span class="question-number">34</span>
+                            <div class="sentence-pair">
+                                <p class="original">I haven't been to the cinema for ages.</p>
+                                <p class="keyword"><strong>TIME</strong></p>
+                                <p class="completion">
+                                    It's a long 
+                                    <input type="text" name="q34" placeholder="Complete here" class="transformation-input"> 
+                                    went to the cinema.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="transformation-item">
+                            <span class="question-number">35</span>
+                            <div class="sentence-pair">
+                                <p class="original">She gave me her phone number.</p>
+                                <p class="keyword"><strong>GAVE</strong></p>
+                                <p class="completion">
+                                    She 
+                                    <input type="text" name="q35" placeholder="Complete here" class="transformation-input"> 
+                                    phone number.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Writing Part 2: Email -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Writing Part 2: Email</h3>
+                        <p>You received this email from your English friend, Sam. Write an email to Sam. In your email, you should answer all the questions. Write at least 25 words.</p>
+                    </div>
+                    
+                    <div class="writing-task">
+                        <div class="task-prompt">
+                            <div class="email-prompt">
+                                <strong>From:</strong> Sam<br>
+                                <strong>To:</strong> You<br>
+                                <strong>Subject:</strong> Weekend plans<br><br>
+                                Hi! How are you? I'm coming to visit your town next weekend. What's the weather like there? What should we do? Can you recommend a good restaurant?<br>
+                                Looking forward to hearing from you!<br>
+                                Sam
+                            </div>
+                        </div>
+                        
+                        <div class="writing-area">
+                            <div class="word-counter">
+                                <span id="email-word-count">0</span> / 25+ words
+                                <div class="counter-bar">
+                                    <div class="counter-fill" id="email-counter-fill"></div>
+                                </div>
+                            </div>
+                            <textarea 
+                                id="email-text" 
+                                placeholder="Write your email here..."
+                                rows="8"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Writing Part 3: Story -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Writing Part 3: Story</h3>
+                        <p>Look at the three pictures below. Write a story about what happens. Write at least 35 words.</p>
+                    </div>
+                    
+                    <div class="writing-task">
+                        <div class="task-prompt">
+                            <div class="picture-sequence">
+                                <div class="picture-item">
+                                    <div class="picture-placeholder">
+                                        <i class="fas fa-user"></i>
+                                        <p>Picture 1: A boy looking at a bike in a shop window</p>
+                                    </div>
+                                </div>
+                                <div class="picture-item">
+                                    <div class="picture-placeholder">
+                                        <i class="fas fa-piggy-bank"></i>
+                                        <p>Picture 2: The boy saving money in a piggy bank</p>
+                                    </div>
+                                </div>
+                                <div class="picture-item">
+                                    <div class="picture-placeholder">
+                                        <i class="fas fa-bicycle"></i>
+                                        <p>Picture 3: The boy riding his new bike happily</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="writing-area">
+                            <div class="word-counter">
+                                <span id="story-word-count">0</span> / 35+ words
+                                <div class="counter-bar">
+                                    <div class="counter-fill" id="story-counter-fill"></div>
+                                </div>
+                            </div>
+                            <textarea 
+                                id="story-text" 
+                                placeholder="Write your story here..."
+                                rows="8"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-reading-writing">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-primary" id="next-to-listening">
+                        Next Section: Listening <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Listening Section -->
+            <section id="listening-section" class="exam-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-headphones"></i> Listening</h2>
+                    <p class="section-description">Listen to the recordings and answer questions 1-20</p>
+                </div>
+
+                <div class="audio-controls">
+                    <audio id="main-audio" controls controlsList="nodownload">
+                        <source src="../../01-INGLES/A2/A2_Cambridge.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div class="audio-info">
+                        <p><i class="fas fa-info-circle"></i> You will hear each recording twice</p>
+                    </div>
+                </div>
+
+                <!-- Listening Parts placeholder -->
+                <div class="part-container">
+                    <div class="listening-placeholder">
+                        <i class="fas fa-headphones"></i>
+                        <p>Audio content and questions will be loaded here</p>
+                        <p class="note">This is a demonstration version. Full audio integration coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-listening">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-primary" id="next-to-speaking">
+                        Next Section: Speaking <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Speaking Section -->
+            <section id="speaking-section" class="exam-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-microphone"></i> Speaking</h2>
+                    <p class="section-description">2 parts: Interview and Collaborative task</p>
+                </div>
+
+                <div class="speaking-placeholder">
+                    <i class="fas fa-microphone"></i>
+                    <h3>Speaking Simulator</h3>
+                    <p>Interactive speaking practice with AI examiner</p>
+                    <p class="note">This section requires microphone access and will be available in the full version.</p>
+                    
+                    <div class="speaking-parts">
+                        <div class="speaking-part">
+                            <h4>Part 1: Interview (3-4 minutes)</h4>
+                            <p>Personal questions about yourself, family, interests, etc.</p>
+                        </div>
+                        <div class="speaking-part">
+                            <h4>Part 2: Collaborative Task (5-6 minutes)</h4>
+                            <p>Discussion and decision-making with another candidate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-speaking">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-success" id="finish-exam">
+                        <i class="fas fa-flag-checkered"></i> Finish Exam
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Floating Action Button -->
+        <div class="fab-container">
+            <button class="fab" id="fab-main">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="fab-options" id="fab-options">
+                <button class="fab-option" id="fab-help">
+                    <i class="fas fa-question"></i>
+                    <span>Help</span>
+                </button>
+                <button class="fab-option" id="fab-bookmark">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Bookmark</span>
+                </button>
+                <button class="fab-option" id="fab-calculator">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculator</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal for Results -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-bar"></i> Exam Results</h2>
+                <button class="modal-close" id="close-results">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="results-summary">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

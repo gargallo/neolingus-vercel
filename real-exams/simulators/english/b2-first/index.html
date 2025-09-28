@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambridge B2 First (FCE) 2022 - NEOLINGUS Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="exam-container">
+        <!-- Header -->
+        <header class="exam-header">
+            <div class="exam-info">
+                <h1><i class="fas fa-graduation-cap"></i> Cambridge B2 First (FCE)</h1>
+                <span class="exam-year">Official Exam 2022</span>
+            </div>
+            <div class="timer-section">
+                <div class="timer" id="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="time-display">03:30:00</span>
+                </div>
+                <button class="pause-btn" id="pause-btn">
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Pills -->
+        <nav class="section-nav">
+            <button class="nav-pill active" data-section="reading">
+                <i class="fas fa-book-open"></i>
+                Reading & Use of English
+                <span class="pill-time">1h 15m</span>
+            </button>
+            <button class="nav-pill" data-section="writing">
+                <i class="fas fa-pen"></i>
+                Writing
+                <span class="pill-time">1h 20m</span>
+            </button>
+            <button class="nav-pill" data-section="listening">
+                <i class="fas fa-headphones"></i>
+                Listening
+                <span class="pill-time">40m</span>
+            </button>
+            <button class="nav-pill" data-section="speaking">
+                <i class="fas fa-microphone"></i>
+                Speaking
+                <span class="pill-time">14m</span>
+            </button>
+        </nav>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">0 / 52 questions completed</span>
+        </div>
+
+        <!-- Main Content -->
+        <main class="exam-content">
+            
+            <!-- Reading & Use of English Section -->
+            <section id="reading-section" class="exam-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-book-open"></i> Reading & Use of English</h2>
+                    <p class="section-description">Part 1-7: Complete all parts (52 questions total)</p>
+                </div>
+
+                <!-- Part 1: Multiple Choice Cloze -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Part 1: Multiple Choice Cloze</h3>
+                        <p>For questions 1-8, read the text below and decide which answer (A, B, C or D) best fits each gap.</p>
+                    </div>
+                    
+                    <div class="text-passage">
+                        <h4>The Future of Work</h4>
+                        <p>
+                            The world of work is changing rapidly, and many experts believe that the changes we are witnessing today are just the beginning. Technological advances are <strong>(1) ____</strong> the way we work, live and communicate in ways that would have been unimaginable just a few decades ago.
+                        </p>
+                        <p>
+                            One of the most significant trends is the <strong>(2) ____</strong> towards remote working. The pandemic has shown that many jobs can be done effectively from home, and this has <strong>(3) ____</strong> to a fundamental shift in attitudes towards flexible working arrangements.
+                        </p>
+                        <p>
+                            However, this transition is not without its challenges. Companies must <strong>(4) ____</strong> with issues such as maintaining team cohesion and ensuring effective communication when employees are scattered across different locations.
+                        </p>
+                        <p>
+                            Artificial intelligence is another factor that is <strong>(5) ____</strong> to reshape the employment landscape. While some jobs may become obsolete, new opportunities are likely to <strong>(6) ____</strong> in fields that require creativity, emotional intelligence, and complex problem-solving skills.
+                        </p>
+                        <p>
+                            Educational institutions are already beginning to <strong>(7) ____</strong> their curricula to prepare students for this changing world. The emphasis is increasingly on developing skills that complement rather than compete with technology.
+                        </p>
+                        <p>
+                            Despite the uncertainties, most economists remain <strong>(8) ____</strong> about the future of work, believing that human adaptability will enable us to thrive in this new environment.
+                        </p>
+                    </div>
+
+                    <div class="questions-grid">
+                        <div class="question-item">
+                            <span class="question-number">1</span>
+                            <div class="options">
+                                <label><input type="radio" name="q1" value="A"> A) converting</label>
+                                <label><input type="radio" name="q1" value="B"> B) transforming</label>
+                                <label><input type="radio" name="q1" value="C"> C) altering</label>
+                                <label><input type="radio" name="q1" value="D"> D) modifying</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">2</span>
+                            <div class="options">
+                                <label><input type="radio" name="q2" value="A"> A) movement</label>
+                                <label><input type="radio" name="q2" value="B"> B) shift</label>
+                                <label><input type="radio" name="q2" value="C"> C) change</label>
+                                <label><input type="radio" name="q2" value="D"> D) development</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">3</span>
+                            <div class="options">
+                                <label><input type="radio" name="q3" value="A"> A) resulted</label>
+                                <label><input type="radio" name="q3" value="B"> B) led</label>
+                                <label><input type="radio" name="q3" value="C"> C) caused</label>
+                                <label><input type="radio" name="q3" value="D"> D) brought</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">4</span>
+                            <div class="options">
+                                <label><input type="radio" name="q4" value="A"> A) cope</label>
+                                <label><input type="radio" name="q4" value="B"> B) handle</label>
+                                <label><input type="radio" name="q4" value="C"> C) manage</label>
+                                <label><input type="radio" name="q4" value="D"> D) deal</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">5</span>
+                            <div class="options">
+                                <label><input type="radio" name="q5" value="A"> A) bound</label>
+                                <label><input type="radio" name="q5" value="B"> B) likely</label>
+                                <label><input type="radio" name="q5" value="C"> C) due</label>
+                                <label><input type="radio" name="q5" value="D"> D) about</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">6</span>
+                            <div class="options">
+                                <label><input type="radio" name="q6" value="A"> A) emerge</label>
+                                <label><input type="radio" name="q6" value="B"> B) appear</label>
+                                <label><input type="radio" name="q6" value="C"> C) arise</label>
+                                <label><input type="radio" name="q6" value="D"> D) develop</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">7</span>
+                            <div class="options">
+                                <label><input type="radio" name="q7" value="A"> A) adapt</label>
+                                <label><input type="radio" name="q7" value="B"> B) adjust</label>
+                                <label><input type="radio" name="q7" value="C"> C) modify</label>
+                                <label><input type="radio" name="q7" value="D"> D) change</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <span class="question-number">8</span>
+                            <div class="options">
+                                <label><input type="radio" name="q8" value="A"> A) positive</label>
+                                <label><input type="radio" name="q8" value="B"> B) optimistic</label>
+                                <label><input type="radio" name="q8" value="C"> C) confident</label>
+                                <label><input type="radio" name="q8" value="D"> D) hopeful</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2: Open Cloze -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Part 2: Open Cloze</h3>
+                        <p>For questions 9-16, read the text below and think of the word which best fits each gap. Use only one word in each gap.</p>
+                    </div>
+                    
+                    <div class="text-passage">
+                        <h4>The Power of Music</h4>
+                        <p>
+                            Music has the extraordinary ability to transport us <strong>(9) ____</strong> different times and places. Whether it's a song that reminds us of our childhood or a piece of classical music that makes us feel emotional, the power of music to evoke memories and feelings is truly remarkable.
+                        </p>
+                        <p>
+                            Scientists have been studying <strong>(10) ____</strong> music affects the brain, and their findings suggest that listening to music activates multiple areas <strong>(11) ____</strong> the same time. This might explain why music can be so effective <strong>(12) ____</strong> therapy for people suffering from various neurological conditions.
+                        </p>
+                        <p>
+                            <strong>(13) ____</strong> is also interesting to note that the type of music we prefer often reflects our personality. Research has shown that people who enjoy complex jazz or classical music tend to be more creative and open <strong>(14) ____</strong> new experiences, while those who prefer pop music are generally more extroverted.
+                        </p>
+                        <p>
+                            Music education has been shown to have numerous benefits for children. <strong>(15) ____</strong> only does learning to play an instrument improve mathematical skills, but it also enhances memory and concentration. Many schools are now recognizing the importance of music in the curriculum and are investing <strong>(16) ____</strong> better music programs.
+                        </p>
+                    </div>
+
+                    <div class="questions-grid gap-fill">
+                        <div class="gap-question">
+                            <span class="question-number">9</span>
+                            <input type="text" name="q9" placeholder="Enter one word" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">10</span>
+                            <input type="text" name="q10" placeholder="Enter one word" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">11</span>
+                            <input type="text" name="q11" placeholder="Enter one word" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">12</span>
+                            <input type="text" name="q12" placeholder="Enter one word" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">13</span>
+                            <input type="text" name="q13" placeholder="Enter one word" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">14</span>
+                            <input type="text" name="q14" placeholder="Enter one word" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">15</span>
+                            <input type="text" name="q15" placeholder="Enter one word" maxlength="20">
+                        </div>
+                        <div class="gap-question">
+                            <span class="question-number">16</span>
+                            <input type="text" name="q16" placeholder="Enter one word" maxlength="20">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-reading">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-primary" id="next-section">
+                        Next Section: Writing <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Writing Section -->
+            <section id="writing-section" class="exam-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-pen"></i> Writing</h2>
+                    <p class="section-description">Complete both writing tasks (140-190 words each)</p>
+                </div>
+
+                <!-- Part 1: Essay -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Part 1: Essay (Required)</h3>
+                        <p>You must answer this question. Write your answer in 140-190 words in an appropriate style.</p>
+                    </div>
+                    
+                    <div class="writing-task">
+                        <div class="task-prompt">
+                            <h4>Task</h4>
+                            <p>In your English class you have been talking about the environment. Your teacher has asked you to write an essay about the following topic:</p>
+                            <blockquote>
+                                <strong>"Young people today are more environmentally conscious than previous generations."</strong>
+                            </blockquote>
+                            <p>Write an essay giving your opinion on this statement. You should:</p>
+                            <ul>
+                                <li>Give reasons for your opinion</li>
+                                <li>Provide examples to support your ideas</li>
+                                <li>Consider alternative viewpoints</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="writing-area">
+                            <div class="word-counter">
+                                <span id="essay-word-count">0</span> / 190 words
+                                <div class="counter-bar">
+                                    <div class="counter-fill" id="essay-counter-fill"></div>
+                                </div>
+                            </div>
+                            <textarea 
+                                id="essay-text" 
+                                placeholder="Write your essay here..."
+                                rows="15"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2: Choice of Tasks -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Part 2: Choose ONE of the following tasks</h3>
+                        <p>Write your answer in 140-190 words in an appropriate style.</p>
+                    </div>
+                    
+                    <div class="task-choice">
+                        <div class="task-option" data-task="article">
+                            <div class="task-type">
+                                <i class="fas fa-newspaper"></i> Article
+                            </div>
+                            <h4>Question 2</h4>
+                            <p>You see this announcement in an international magazine:</p>
+                            <blockquote>
+                                <strong>BEST PLACE TO VISIT IN YOUR COUNTRY</strong><br>
+                                We want our readers to discover amazing places around the world. Write an article about the best place to visit in your country. Explain why you recommend it and what makes it special.
+                            </blockquote>
+                        </div>
+
+                        <div class="task-option" data-task="email">
+                            <div class="task-type">
+                                <i class="fas fa-envelope"></i> Email
+                            </div>
+                            <h4>Question 3</h4>
+                            <p>You have received this email from your English-speaking friend Sam:</p>
+                            <blockquote>
+                                I'm planning to visit your country next month and I'd love to experience some local traditions. Could you recommend some interesting cultural events or festivals? Also, what should I know about local customs?<br>
+                                Looking forward to your suggestions!<br>
+                                Sam
+                            </blockquote>
+                        </div>
+
+                        <div class="task-option" data-task="review">
+                            <div class="task-type">
+                                <i class="fas fa-star"></i> Review
+                            </div>
+                            <h4>Question 4</h4>
+                            <p>You see this request on an English-language website:</p>
+                            <blockquote>
+                                <strong>REVIEWS WANTED: Mobile Apps</strong><br>
+                                Have you used a mobile app that changed the way you do something? Write a review explaining what the app does, how it has helped you, and whether you would recommend it to others.
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <div class="writing-area" id="part2-writing" style="display: none;">
+                        <div class="word-counter">
+                            <span id="part2-word-count">0</span> / 190 words
+                            <div class="counter-bar">
+                                <div class="counter-fill" id="part2-counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="part2-text" 
+                            placeholder="Choose a task above and write your answer here..."
+                            rows="15"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-writing">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-primary" id="next-to-listening">
+                        Next Section: Listening <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Listening Section -->
+            <section id="listening-section" class="exam-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-headphones"></i> Listening</h2>
+                    <p class="section-description">Part 1-4: Listen to audio recordings and answer questions</p>
+                </div>
+
+                <div class="audio-controls">
+                    <audio id="main-audio" controls controlsList="nodownload">
+                        <source src="../../01-INGLES/B2/B2_First_Cambridge_2022.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div class="audio-info">
+                        <p><i class="fas fa-info-circle"></i> You will hear each recording twice</p>
+                    </div>
+                </div>
+
+                <!-- Listening Parts would be added here -->
+                <div class="part-container">
+                    <div class="part-header">
+                        <h3>Part 1: Multiple Choice</h3>
+                        <p>You will hear people talking in eight different situations. For questions 1-8, choose the best answer (A, B or C).</p>
+                    </div>
+                    
+                    <div class="listening-placeholder">
+                        <i class="fas fa-headphones"></i>
+                        <p>Audio content and questions will be loaded here</p>
+                        <p class="note">This is a demonstration version. Full audio integration coming soon.</p>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-listening">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-primary" id="next-to-speaking">
+                        Next Section: Speaking <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Speaking Section -->
+            <section id="speaking-section" class="exam-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-microphone"></i> Speaking</h2>
+                    <p class="section-description">4 parts: Interview, Individual task, Collaborative task, Discussion</p>
+                </div>
+
+                <div class="speaking-placeholder">
+                    <i class="fas fa-microphone"></i>
+                    <h3>Speaking Simulator</h3>
+                    <p>Interactive speaking practice with AI examiner</p>
+                    <p class="note">This section requires microphone access and will be available in the full version.</p>
+                    
+                    <div class="speaking-parts">
+                        <div class="speaking-part">
+                            <h4>Part 1: Interview (2 minutes)</h4>
+                            <p>Personal questions about yourself, family, interests, etc.</p>
+                        </div>
+                        <div class="speaking-part">
+                            <h4>Part 2: Individual Long Turn (4 minutes)</h4>
+                            <p>Compare two photographs and answer questions</p>
+                        </div>
+                        <div class="speaking-part">
+                            <h4>Part 3: Collaborative Task (4 minutes)</h4>
+                            <p>Discuss a task with another candidate</p>
+                        </div>
+                        <div class="speaking-part">
+                            <h4>Part 4: Discussion (4 minutes)</h4>
+                            <p>Further discussion related to Part 3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn-secondary" id="save-speaking">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button class="btn-success" id="finish-exam">
+                        <i class="fas fa-flag-checkered"></i> Finish Exam
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Floating Action Button -->
+        <div class="fab-container">
+            <button class="fab" id="fab-main">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="fab-options" id="fab-options">
+                <button class="fab-option" id="fab-help">
+                    <i class="fas fa-question"></i>
+                    <span>Help</span>
+                </button>
+                <button class="fab-option" id="fab-bookmark">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Bookmark</span>
+                </button>
+                <button class="fab-option" id="fab-calculator">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculator</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal for Results -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-bar"></i> Exam Results</h2>
+                <button class="modal-close" id="close-results">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="results-summary">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

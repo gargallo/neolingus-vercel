@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ca-valencia">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2 Valencià CIEACOVA | NEOLINGUS Exam Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Exam Header -->
+    <header class="exam-header">
+        <div class="exam-info">
+            <h1><i class="fas fa-graduation-cap"></i> B2 Valencià CIEACOVA</h1>
+            <span class="exam-year">Certificat Intermedi Alt - 2024</span>
+        </div>
+        <div class="timer-section">
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time-display">03:00:00</span>
+            </div>
+            <button class="pause-btn" id="pause-btn">
+                <i class="fas fa-pause"></i> Pausar
+            </button>
+        </div>
+    </header>
+
+    <!-- Section Navigation -->
+    <nav class="section-nav">
+        <div class="nav-pill active" data-section="reading-writing">
+            <div>📖 Lectura i Escriptura</div>
+            <div class="pill-time">180 min</div>
+        </div>
+        <div class="nav-pill" data-section="listening">
+            <div>🎧 Comprensió Oral</div>
+            <div class="pill-time">40 min</div>
+        </div>
+        <div class="nav-pill" data-section="speaking">
+            <div>🎤 Expressió Oral</div>
+            <div class="pill-time">15 min</div>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span class="progress-text" id="progress-text">0 / 50 preguntes completades</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="exam-content">
+        
+        <!-- Reading & Writing Section -->
+        <section class="exam-section active" id="reading-writing-section">
+            <div class="section-header">
+                <h2><i class="fas fa-book-open"></i> Comprensió Lectora i Expressió Escrita</h2>
+                <p class="section-description">Aquesta secció avalua la comprensió de textos complexos i l'expressió escrita estructurada de nivell B2.</p>
+            </div>
+
+            <!-- Exercise 1: Critical Text Analysis -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 1: Anàlisi Crítica de Text</h3>
+                    <p>Llegiu el següent text sobre els reptes de la digitalització educativa i responeu les preguntes (1-6).</p>
+                </div>
+                <div class="text-passage">
+                    <h4>La Revolució Digital en l'Educació: Oportunitats i Desafiaments</h4>
+                    <p>La integració de les tecnologies digitals en l'àmbit educatiu ha representat una de les transformacions més significatives dels darrers decennis. <strong>Aquest procés d'innovació tecnològica</strong> no sols ha modificat les metodologies d'ensenyament tradicionals, sinó que també ha redefinit el concepte mateix d'aprenentatge en el segle XXI.</p>
+                    
+                    <p>D'una banda, les plataformes digitals ofereixen possibilitats pedagògiques inèdites. La personalització de l'aprenentatge, mitjançant algoritmes adaptatsius que s'ajusten al ritme individual de cada estudiant, permet un enfocament més inclusiu i efectiu. A més, l'accés a recursos educatius oberts i la col·laboració internacional faciliten l'intercanvi de coneixements i experiències entre institucions de tot el món.</p>
+                    
+                    <p>No obstant això, aquest procés de digitalització presenta reptes considerables. <strong>La bretxa digital</strong> continua sent una realitat que afecta principalment els col·lectius més vulnerables, perpetuant les desigualtats socioeconòmiques existents. Així mateix, la sobreexposició a les pantalles i la dependència tecnològica plantegen interrogants sobre els efectes a llarg termini en el desenvolupament cognitiu dels estudiants.</p>
+                    
+                    <p>El paper del professorat també ha evolucionat substancialment. Els docents han passat de ser transmissors de continguts a actuar com a facilitadors i orientadors de l'aprenentatge. Aquesta transició requereix una formació contínua i una adaptació constant a les noves eines tecnològiques, cosa que suposa un esforç considerable per part dels professionals de l'educació.</p>
+                    
+                    <p>En definitiva, la revolució digital educativa exigeix un enfocament equilibrat que aprofiti les oportunitats que ofereixen les noves tecnologies sense perdre de vista la importància de la dimensió humana en l'educació.</p>
+                </div>
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">1</div>
+                        <p class="question-text">Segons el text, la principal transformació de la digitalització educativa ha estat:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="A"> A) La substitució completa dels mètodes tradicionals</label>
+                            <label><input type="radio" name="q1" value="B"> B) La redefinició del concepte d'aprenentatge</label>
+                            <label><input type="radio" name="q1" value="C"> C) L'eliminació de la bretxa digital</label>
+                            <label><input type="radio" name="q1" value="D"> D) La creació de nous perfils professionals</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">2</div>
+                        <p class="question-text">Els algoritmes adaptatinus esmentats en el text permeten:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="A"> A) Accelerar el procés d'aprenentatge de tots els estudiants</label>
+                            <label><input type="radio" name="q2" value="B"> B) Personalitzar l'educació segons les necessitats individuals</label>
+                            <label><input type="radio" name="q2" value="C"> C) Substituir completament la funció docent</label>
+                            <label><input type="radio" name="q2" value="D"> D) Garantir l'èxit acadèmic de tots els alumnes</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">3</div>
+                        <p class="question-text">La "bretxa digital" fa referència a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="A"> A) Les diferències tecnològiques entre països</label>
+                            <label><input type="radio" name="q3" value="B"> B) Els problemes tècnics de les plataformes educatives</label>
+                            <label><input type="radio" name="q3" value="C"> C) Les desigualtats en l'accés a la tecnologia</label>
+                            <label><input type="radio" name="q3" value="D"> D) La resistència dels docents al canvi tecnològic</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">4</div>
+                        <p class="question-text">Segons l'autor, el nou rol dels docents consisteix a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="A"> A) Transmetre continguts de manera més eficient</label>
+                            <label><input type="radio" name="q4" value="B"> B) Actuar com a facilitadors de l'aprenentatge</label>
+                            <label><input type="radio" name="q4" value="C"> C) Desenvolupar noves tecnologies educatives</label>
+                            <label><input type="radio" name="q4" value="D"> D) Substituir les eines tecnològiques quan falten</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">5</div>
+                        <p class="question-text">L'actitud de l'autor respecte a la digitalització educativa es pot descriure com:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="A"> A) Completament favorable</label>
+                            <label><input type="radio" name="q5" value="B"> B) Moderadament crítica</label>
+                            <label><input type="radio" name="q5" value="C"> C) Equilibrada i reflexiva</label>
+                            <label><input type="radio" name="q5" value="D"> D) Clarament oposada</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">6</div>
+                        <p class="question-text">La conclusió principal del text suggereix la necessitat de:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="A"> A) Accelerar el procés de digitalització</label>
+                            <label><input type="radio" name="q6" value="B"> B) Tornar als mètodes tradicionals</label>
+                            <label><input type="radio" name="q6" value="C"> C) Mantenir un enfocament equilibrat</label>
+                            <label><input type="radio" name="q6" value="D"> D) Formar més docents especialitzats</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 2: Literary and Cultural Analysis -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 2: Anàlisi Literària i Cultural</h3>
+                    <p>Llegiu aquest fragment literari sobre la València contemporània i responeu les preguntes (7-12).</p>
+                </div>
+                <div class="text-passage">
+                    <h4>Fragment de "Miralls de la Ciutat" de Carme Miquel</h4>
+                    <p><em>La ciutat es desperta amb el murmuri dels primers tramvies que creuen els bulevards modernitzats. València, amb la seua fisonomia canviant, acullen les reminiscències d'un passat noble i les aspiracions d'un futur cosmopolita.</em></p>
+                    
+                    <p>Caminant pels carrers del Carme, on les façanes centenàries conviven amb els grafitis contemporanis, <strong>m'adone que cada pedra conta una història diferent</strong>. Les dones que van al mercat central mantenen vives les tradicions oralitat, mentre que els joves artistes transformen els murs en galeries a l'aire lliure.</p>
+                    
+                    <p>L'Albufera, ese espill natural que reflecteix les nostres arrels, sembla contemplar amb serenitat les transformacions urbanes. <strong>Els arrossars, testimonis silenciosos de generacions de pagesos</strong>, resisteixen l'avenç inexorable de la modernitat, recordant-nos que la identitat no es pot desconnectar de la terra.</p>
+                    
+                    <p>En les nits de juliol, quan la calor s'adhereix a l'asfalt com una segona pell, la ciutat revela la seua ànima mediterrània. Les terrasses s'omplen de converses en valencià, castellà i idiomes estrangers, creant una simfonia poliglota que defineix la València del segle XXI.</p>
+                    
+                    <p>Tanmateix, aquest equilibri entre tradició i modernitat no està exempt de tensions. La gentrificació amenaça els barris històrics, i l'especulació immobiliària desplaça les famílies que han viscut ací durant generacions. <strong>La ciutat, com un organisme viu, ha de trobar la manera de créixer sense perdre la seua essència</strong>.</p>
+                </div>
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">7</div>
+                        <p class="question-text">L'expressió "fisonomia canviant" fa referència a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="A"> A) L'aspecte físic de les persones</label>
+                            <label><input type="radio" name="q7" value="B"> B) La transformació urbana de la ciutat</label>
+                            <label><input type="radio" name="q7" value="C"> C) Les condicions climàtiques variables</label>
+                            <label><input type="radio" name="q7" value="D"> D) L'estat d'ànim dels habitants</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">8</div>
+                        <p class="question-text">Segons el fragment, els carrers del Carme es caracteritzen per:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="A"> A) Estar completament modernitzats</label>
+                            <label><input type="radio" name="q8" value="B"> B) Mantenir només l'arquitectura històrica</label>
+                            <label><input type="radio" name="q8" value="C"> C) Combinar elements històrics i contemporanis</label>
+                            <label><input type="radio" name="q8" value="D"> D) Ser exclusivament zones comercials</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">9</div>
+                        <p class="question-text">L'Albufera simbolitza en el text:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="A"> A) La resistència al canvi</label>
+                            <label><input type="radio" name="q9" value="B"> B) La connexió amb les arrels culturals</label>
+                            <label><input type="radio" name="q9" value="C"> C) L'atracció turística principal</label>
+                            <label><input type="radio" name="q9" value="D"> D) El conflicte entre rural i urbà</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">10</div>
+                        <p class="question-text">La "simfonia poliglota" esmentada es refereix a:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="A"> A) Els concerts multiculturals a les places</label>
+                            <label><input type="radio" name="q10" value="B"> B) La diversitat lingüística de la ciutat</label>
+                            <label><input type="radio" name="q10" value="C"> C) Els programes radiofònics en diferents idiomes</label>
+                            <label><input type="radio" name="q10" value="D"> D) Les tradicions musicals valencianes</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">11</div>
+                        <p class="question-text">El principal conflicte descrit en el text és:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="A"> A) La resistència dels habitants als canvis</label>
+                            <label><input type="radio" name="q11" value="B"> B) L'oposició entre joves i grans</label>
+                            <label><input type="radio" name="q11" value="C"> C) La tensió entre desenvolupament i identitat</label>
+                            <label><input type="radio" name="q11" value="D"> D) La competència entre idiomes</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">12</div>
+                        <p class="question-text">El to general del fragment es pot descriure com:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="A"> A) Nostàlgic i melancòlic</label>
+                            <label><input type="radio" name="q12" value="B"> B) Crític i pessimista</label>
+                            <label><input type="radio" name="q12" value="C"> C) Reflexiu i equilibrat</label>
+                            <label><input type="radio" name="q12" value="D"> D) Entusiasta i optimista</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 3: Formal Text Comprehension -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 3: Comprensió de Text Formal</h3>
+                    <p>Llegiu aquest informe sobre sostenibilitat urbana i responeu les preguntes (13-18).</p>
+                </div>
+                <div class="text-passage">
+                    <h4>Informe: Estratègies de Sostenibilitat Urbana per a les Ciutats Mediterrànies</h4>
+                    <p><strong>Context i objectius:</strong> L'actual crisi climàtica requereix una resposta coordinada i efectiva per part dels governs locals, especialment en l'àmbit mediterrani, on la pressió demogràfica i turística intensifica els reptes ambientals. Aquest informe examina les estratègies implementades en diverses ciutats de la conca mediterrània per promoure un desenvolupament urbà més sostenible.</p>
+                    
+                    <p><strong>Metodologia:</strong> S'han analitzat 25 ciutats mediterrànies amb poblacions superiors als 200.000 habitants, avaluant indicadors com la qualitat de l'aire, la gestió de residus, l'eficiència energètica i la mobilitat sostenible. Les dades s'han obtingut mitjançant enquestes directes als ajuntaments i organismes ambientals locals.</p>
+                    
+                    <p><strong>Resultats principals:</strong> Les ciutats que han implementat polítiques integrals de sostenibilitat mostren una reducció mitjana del 23% en les emissions de CO₂ durant el període 2018-2023. <strong>Barcelona i València destaquen per les seues iniciatives en mobilitat elèctrica</strong>, mentre que Nice i Palma han excel·lit en la gestió eficient dels recursos hídrics.</p>
+                    
+                    <p><strong>Bones pràctiques identificades:</strong> La creació de zones de baixes emissions, la promoció del transport públic elèctric, la implementació de sistemes de recollida selectiva de residus i el foment dels espais verds urbans han demostrat ser les mesures més efectives. A més, la participació ciutadana en els processos de decisió ha resultat fonamental per garantir l'acceptació i l'èxit de les polítiques implementades.</p>
+                    
+                    <p><strong>Recomanacions:</strong> Per optimitzar els resultats, es proposa l'establiment d'una xarxa de col·laboració entre ciutats mediterrànies que facilite l'intercanvi d'experiències i recursos. Així mateix, és imprescindible incrementar la inversió en tecnologies verdes i establir sistemes de monitoratge permanent per avaluar l'impacte real de les mesures adoptades.</p>
+                </div>
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">13</div>
+                        <p class="question-text">L'objectiu principal d'aquest informe és:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="A"> A) Criticar les polítiques ambientals actuals</label>
+                            <label><input type="radio" name="q13" value="B"> B) Examinar estratègies de sostenibilitat urbana</label>
+                            <label><input type="radio" name="q13" value="C"> C) Promoure el turisme sostenible</label>
+                            <label><input type="radio" name="q13" value="D"> D) Analitzar la crisi climàtica global</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">14</div>
+                        <p class="question-text">El criteri de selecció de les ciutats analitzades ha estat:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="A"> A) La seua proximitat al mar</label>
+                            <label><input type="radio" name="q14" value="B"> B) El nivell de contaminació atmosfèrica</label>
+                            <label><input type="radio" name="q14" value="C"> C) La població superior a 200.000 habitants</label>
+                            <label><input type="radio" name="q14" value="D"> D) L'existència de polítiques ambientals</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">15</div>
+                        <p class="question-text">Segons els resultats, la reducció d'emissions de CO₂ ha estat:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="A"> A) Del 23% en totes les ciutats</label>
+                            <label><input type="radio" name="q15" value="B"> B) Variable segons la ciutat</label>
+                            <label><input type="radio" name="q15" value="C"> C) Mitjana del 23% en les ciutats amb polítiques integrals</label>
+                            <label><input type="radio" name="q15" value="D"> D) Insignificant en la majoria de casos</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">16</div>
+                        <p class="question-text">Barcelona i València es destaquen especialment per:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="A"> A) La gestió dels recursos hídrics</label>
+                            <label><input type="radio" name="q16" value="B"> B) Les iniciatives en mobilitat elèctrica</label>
+                            <label><input type="radio" name="q16" value="C"> C) La creació d'espais verds</label>
+                            <label><input type="radio" name="q16" value="D"> D) La recollida selectiva de residus</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">17</div>
+                        <p class="question-text">Segons l'informe, la participació ciutadana és important perquè:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="A"> A) Redueix els costos de les polítiques</label>
+                            <label><input type="radio" name="q17" value="B"> B) Accelera la implementació de mesures</label>
+                            <label><input type="radio" name="q17" value="C"> C) Garanteix l'acceptació de les polítiques</label>
+                            <label><input type="radio" name="q17" value="D"> D) Millora la qualitat tècnica de les decisions</label>
+                        </div>
+                    </div>
+                    <div class="question-item">
+                        <div class="question-number">18</div>
+                        <p class="question-text">Entre les recomanacions proposades NO es troba:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="A"> A) Crear una xarxa de col·laboració mediterrània</label>
+                            <label><input type="radio" name="q18" value="B"> B) Incrementar la inversió en tecnologies verdes</label>
+                            <label><input type="radio" name="q18" value="C"> C) Establir sistemes de monitoratge permanent</label>
+                            <label><input type="radio" name="q18" value="D"> D) Reduir la població urbana de les ciutats</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 4: Text Matching -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 4: Relaciona Textos</h3>
+                    <p>Relacioneu les situacions (19-30) amb els textos apropiats (A-F). Cada text es pot utilitzar més d'una vegada.</p>
+                </div>
+                <div class="matching-container">
+                    <div class="texts-section">
+                        <h4>Textos</h4>
+                        <div class="match-text">
+                            <h5>Text A: Convocatòria d'Ajudes</h5>
+                            <p>La Conselleria d'Educació convoca ajudes per a projectes d'innovació pedagògica en centres educatius públics. Termini de presentació: fins el 30 de novembre. Import màxim per projecte: 15.000 euros. Requisits: equip minim de tres docents i implementació durant el curs 2024-25.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>Text B: Programa Cultural</h5>
+                            <p>El Centre Cultural presenta la programació d'hivern amb espectacles de teatre, dansa contemporània i música clàssica. Abonament de temporada amb descompte del 25%. Aforament limitat. Reserva anticipada recomanada. Activitats paral·leles per a famílies els caps de setmana.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>Text C: Oferta Laboral</h5>
+                            <p>Important empresa tecnològica busca desenvolupador/a web amb experiència en frameworks moderns. Oferim contracte indefinit, formació continuada, flexibilitat horària i possibilitat de teletreball. Imprescindible nivell alt d'anglès i disponibilitat per a viatjar ocasionalment.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>Text D: Curs de Formació</h5>
+                            <p>Institut de Llengües ofereix cursos intensius de japonès per a principiants. Metodologia comunicativa amb professors nadius. Horaris matinals i vespertins disponibles. Preu especial per a estudiants universitaris. Inscripcions obertes fins completar grups de màxim 12 persones.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>Text E: Servei de Salut</h5>
+                            <p>Nou centre de fisoteràpia especialitzat en lesions esportives i rehabilitació. Professionals col·legiats amb experiència en clubs professionals. Consulta sense cita prèvia de dilluns a divendres. Tractaments personalitzats i teràpies avançades. Concertats amb assegurances principals.</p>
+                        </div>
+                        <div class="match-text">
+                            <h5>Text F: Activitat Mediambiental</h5>
+                            <p>Organitzem excursions de senderisme ecològic als parcs naturals de la Comunitat Valenciana. Guies especialitzats en fauna i flora autòctona. Activitat familiar apta per a tots els nivells. Material tècnic inclòs. Programa de sensibilització ambiental per a escoles.</p>
+                        </div>
+                    </div>
+                    <div class="questions-section">
+                        <h4>Situacions</h4>
+                        <div class="matching-questions">
+                            <div class="match-question">
+                                <div class="q-number">19</div>
+                                <p class="q-text">Busques una activitat cultural variada per a la temporada d'hivern.</p>
+                                <select class="match-select" name="q19">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">20</div>
+                                <p class="q-text">Necessites tractament per una lesió muscular després de fer esport.</p>
+                                <select class="match-select" name="q20">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">21</div>
+                                <p class="q-text">Ets docent i vols desenvolupar un projecte innovador al teu centre.</p>
+                                <select class="match-select" name="q21">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">22</div>
+                                <p class="q-text">Vols aprendre un idioma asiàtic amb metodologia moderna.</p>
+                                <select class="match-select" name="q22">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">23</div>
+                                <p class="q-text">Busques feina en el sector tecnològic amb flexibilitat horària.</p>
+                                <select class="match-select" name="q23">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">24</div>
+                                <p class="q-text">Vols organitzar una activitat educativa sobre natura per a alumnes.</p>
+                                <select class="match-select" name="q24">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">25</div>
+                                <p class="q-text">Prefereixes activitats culturals amb descomptes per abonament.</p>
+                                <select class="match-select" name="q25">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">26</div>
+                                <p class="q-text">Busques un centre mèdic que accepte la teua assegurança privada.</p>
+                                <select class="match-select" name="q26">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">27</div>
+                                <p class="q-text">Necessites finançament per a un projecte educatiu del teu institut.</p>
+                                <select class="match-select" name="q27">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">28</div>
+                                <p class="q-text">Vols una activitat a l'aire lliure adequada per a tota la família.</p>
+                                <select class="match-select" name="q28">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">29</div>
+                                <p class="q-text">Busques formació en idiomes amb professors nadius.</p>
+                                <select class="match-select" name="q29">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                            <div class="match-question">
+                                <div class="q-number">30</div>
+                                <p class="q-text">Vols una feina que permeta combinar oficina i teletreball.</p>
+                                <select class="match-select" name="q30">
+                                    <option value="">Triar...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Section -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Expressió Escrita</h3>
+                    <p>Completeu les dues tasques d'escriptura següents.</p>
+                </div>
+
+                <!-- Writing Task 1: Formal Essay -->
+                <div class="writing-task">
+                    <div class="task-prompt">
+                        <h4>Tasca 1: Assaig Argumentatiu (200-250 paraules)</h4>
+                        <p><strong>Tema:</strong> "L'impacte de la intel·ligència artificial en el mercat laboral valencià"</p>
+                        <p>Escriviu un assaig argumentatiu que examine com la intel·ligència artificial està transformant el panorama laboral a la Comunitat Valenciana. Heu d'incloure:</p>
+                        <ul>
+                            <li>Les oportunitats i reptes que presenta la IA per als treballadors</li>
+                            <li>Sectors específics que es veuen més afectats</li>
+                            <li>Propostes per adaptar-se als canvis tecnològics</li>
+                        </ul>
+                        <p><em>Utilitzeu un registre formal i estructureu el text amb una introducció, desenvolupament i conclusió clars.</em></p>
+                    </div>
+                    <div class="writing-area">
+                        <div class="word-counter">
+                            <span>Paraules: <span id="essay-word-count">0</span> / 200-250</span>
+                            <div class="counter-bar">
+                                <div class="counter-fill" id="essay-counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea id="essay-text" placeholder="Escriviu el vostre assaig argumentatiu ací...
+
+La intel·ligència artificial ha irromput amb força en el teixit econòmic valencià, generant tant expectatives com incerteses sobre el futur del treball. Aquesta revolució tecnològica presenta..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Writing Task 2: Professional Report -->
+                <div class="writing-task">
+                    <div class="task-prompt">
+                        <h4>Tasca 2: Informe Professional (220-280 paraules)</h4>
+                        <p><strong>Situació:</strong> Sou coordinador/a d'un projecte de sostenibilitat en una empresa valenciana.</p>
+                        <p>Redacteu un informe dirigit a la direcció de l'empresa sobre les mesures de sostenibilitat implementades durant l'últim trimestre. L'informe ha d'incloure:</p>
+                        <ul>
+                            <li>Objectius assolits i dades quantitatives</li>
+                            <li>Principals reptes trobats i com s'han resolt</li>
+                            <li>Recomanacions per al pròxim trimestre</li>
+                            <li>Impacte econòmic i mediambiental de les mesures</li>
+                        </ul>
+                        <p><em>Utilitzeu un to professional i estructura d'informe (introducció, desenvolupament, conclusions i recomanacions).</em></p>
+                    </div>
+                    <div class="writing-area">
+                        <div class="word-counter">
+                            <span>Paraules: <span id="report-word-count">0</span> / 220-280</span>
+                            <div class="counter-bar">
+                                <div class="counter-fill" id="report-counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea id="report-text" placeholder="Escriviu el vostre informe professional ací...
+
+INFORME TRIMESTRAL DE SOSTENIBILITAT
+Destinatari: Direcció General
+Data: [Data actual]
+
+INTRODUCCIÓ
+Durant el darrer trimestre, s'han implementat diverses mesures de sostenibilitat que han produït resultats significatius..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Actions -->
+            <div class="section-actions">
+                <button class="btn-secondary" id="save-reading-writing">
+                    <i class="fas fa-save"></i> Desar Progrés
+                </button>
+                <button class="btn-primary" id="next-to-listening">
+                    <i class="fas fa-arrow-right"></i> Comprensió Oral
+                </button>
+            </div>
+        </section>
+
+        <!-- Listening Section -->
+        <section class="exam-section" id="listening-section">
+            <div class="section-header">
+                <h2><i class="fas fa-headphones"></i> Comprensió Oral</h2>
+                <p class="section-description">Aquesta secció avalua la comprensió d'àudios complexos en valencià estàndard.</p>
+            </div>
+
+            <div class="listening-placeholder">
+                <i class="fas fa-headphones"></i>
+                <h3>Secció de Comprensió Oral</h3>
+                <p>Aquesta secció inclourà exercicis d'escolta amb àudios de nivell B2 en valencià.</p>
+                <p class="note">Els exercicis d'àudio estaran disponibles en la versió completa de l'examen.</p>
+            </div>
+
+            <div class="section-actions">
+                <button class="btn-secondary" id="save-listening">
+                    <i class="fas fa-save"></i> Desar Progrés
+                </button>
+                <button class="btn-primary" id="next-to-speaking">
+                    <i class="fas fa-arrow-right"></i> Expressió Oral
+                </button>
+            </div>
+        </section>
+
+        <!-- Speaking Section -->
+        <section class="exam-section" id="speaking-section">
+            <div class="section-header">
+                <h2><i class="fas fa-microphone"></i> Expressió i Interacció Oral</h2>
+                <p class="section-description">Aquesta secció avalua l'expressió oral espontània i la interacció comunicativa.</p>
+            </div>
+
+            <div class="speaking-placeholder">
+                <i class="fas fa-microphone"></i>
+                <h3>Secció d'Expressió Oral</h3>
+                <p>Aquesta secció inclou proves d'expressió oral amb tasques comunicatives complexes.</p>
+                
+                <div class="speaking-parts">
+                    <div class="speaking-part">
+                        <h4>Part 1: Monòleg Estructurat</h4>
+                        <p>Presentació d'un tema d'actualitat amb argumentació personal (4-5 minuts).</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 2: Interacció</h4>
+                        <p>Debat i intercavi d'opinions sobre temes controvertits (6-7 minuts).</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 3: Negociació</h4>
+                        <p>Resolució de situacions problemàtiques mitjançant el diàleg (4-5 minuts).</p>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>Nota:</strong> L'avaluació de l'expressió oral es realitza amb examinadors certificats en sessions presencials.
+                </div>
+            </div>
+
+            <div class="section-actions">
+                <button class="btn-secondary" id="save-speaking">
+                    <i class="fas fa-save"></i> Desar Progrés
+                </button>
+                <button class="btn-success" id="finish-exam">
+                    <i class="fas fa-flag-checkered"></i> Finalitzar Examen
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab" id="fab-main">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div class="fab-options" id="fab-options">
+            <div class="fab-option" id="fab-help">
+                <i class="fas fa-question-circle"></i>
+                <span>Ajuda</span>
+            </div>
+            <div class="fab-option" id="fab-bookmark">
+                <i class="fas fa-bookmark"></i>
+                <span>Marcar</span>
+            </div>
+            <div class="fab-option" id="fab-calculator">
+                <i class="fas fa-calculator"></i>
+                <span>Calculadora</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal" id="results-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-line"></i> Resultats de l'Examen</h2>
+                <button class="modal-close" id="close-results">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="results-summary"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

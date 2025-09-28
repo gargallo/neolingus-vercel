@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambridge C2 Proficiency - Reading & Writing Practice | NEOLINGUS</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Practice Cambridge C2 Proficiency (CPE) exam with authentic simulation. Master advanced reading and writing tasks with automatic scoring and expert feedback.">
+    <meta name="keywords" content="Cambridge C2 Proficiency, CPE exam, English mastery, advanced reading writing, NEOLINGUS">
+    <meta name="author" content="NEOLINGUS">
+    <meta property="og:title" content="Cambridge C2 Proficiency Practice - NEOLINGUS">
+    <meta property="og:description" content="Authentic C2 Proficiency exam simulation with expert-level assessment">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Icons and Fonts -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#dc2626">
+</head>
+
+<body>
+    <!-- Exam Header -->
+    <header class="exam-header">
+        <div class="exam-info">
+            <h1>
+                <i class="fas fa-crown"></i>
+                Cambridge C2 Proficiency (CPE)
+            </h1>
+            <div class="exam-year">Master Level Practice 2024</div>
+        </div>
+        <div class="timer-section">
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time-display">03:30:00</span>
+            </div>
+            <button id="pause-btn" class="pause-btn">
+                <i class="fas fa-pause"></i> Pause
+            </button>
+        </div>
+    </header>
+
+    <!-- Section Navigation -->
+    <nav class="section-nav">
+        <div class="nav-pill active" data-section="reading-writing">
+            <i class="fas fa-book-open"></i>
+            <span>Reading & Writing</span>
+            <div class="pill-time">3h 30m</div>
+        </div>
+        <div class="nav-pill" data-section="listening">
+            <i class="fas fa-headphones-alt"></i>
+            <span>Listening</span>
+            <div class="pill-time">40 min</div>
+        </div>
+        <div class="nav-pill" data-section="speaking">
+            <i class="fas fa-microphone-alt"></i>
+            <span>Speaking</span>
+            <div class="pill-time">16 min</div>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <span id="progress-text" class="progress-text">0 / 59 questions completed</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="exam-content">
+        
+        <!-- Reading & Writing Section -->
+        <section id="reading-writing-section" class="exam-section active">
+            <div class="section-header">
+                <h2><i class="fas fa-book-open"></i> Reading & Writing</h2>
+                <p class="section-description">8 parts, 59 questions • 3 hours 30 minutes</p>
+            </div>
+
+            <!-- Reading Part 1: Multiple Choice -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Reading Part 1: Multiple Choice</h3>
+                    <p>Read three challenging texts and answer 6 multiple-choice questions demonstrating detailed understanding</p>
+                </div>
+                
+                <div class="text-passage">
+                    <h4>Text 1</h4>
+                    <p><strong>The Epistemology of Artificial Consciousness</strong></p>
+                    <p>The question of whether artificial intelligence can achieve genuine consciousness remains one of the most perplexing philosophical conundrums of our era. While computational models have demonstrated remarkable prowess in mimicking human cognitive processes, the fundamental nature of consciousness itself continues to elude both philosophers and scientists. The 'hard problem' of consciousness, as articulated by David Chalmers, posits that subjective experience – the qualitative, felt aspects of mental states – cannot be reduced to mere information processing. This presents a formidable challenge to those who advocate for the possibility of machine consciousness, as current AI systems, however sophisticated, appear to lack the phenomenological richness that characterizes human awareness. The implications of this debate extend far beyond academic discourse, touching upon fundamental questions of moral agency, legal responsibility, and the very nature of personhood in an increasingly automated world.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">1</div>
+                        <div class="question-text">What does the writer suggest about the 'hard problem' of consciousness?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="A"> A) It represents an insurmountable obstacle to machine consciousness</label>
+                            <label><input type="radio" name="q1" value="B"> B) It highlights the irreducibility of subjective experience to computational processes</label>
+                            <label><input type="radio" name="q1" value="C"> C) It demonstrates the superiority of human cognition over artificial intelligence</label>
+                            <label><input type="radio" name="q1" value="D"> D) It proves that consciousness is fundamentally incompatible with digital systems</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">2</div>
+                        <div class="question-text">According to the text, what makes this debate particularly significant?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="A"> A) Its potential to revolutionize computer science</label>
+                            <label><input type="radio" name="q2" value="B"> B) Its implications for practical and ethical considerations in society</label>
+                            <label><input type="radio" name="q2" value="C"> C) Its capacity to resolve longstanding philosophical disputes</label>
+                            <label><input type="radio" name="q2" value="D"> D) Its influence on the development of new technologies</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-passage">
+                    <h4>Text 2</h4>
+                    <p><strong>The Paradox of Cultural Preservation in Globalization</strong></p>
+                    <p>Globalization presents a profound paradox for cultural preservation: while it threatens to homogenize diverse traditions under a monolithic global culture, it simultaneously provides unprecedented tools for documenting, sharing, and revitalizing endangered cultural practices. The digital revolution has democratized access to cultural expression, enabling marginalized communities to bypass traditional gatekeepers and reach global audiences directly. However, this same technology risks commodifying authentic cultural practices, transforming sacred traditions into consumable content for global consumption. The challenge lies not in resisting globalization – an arguably futile endeavor – but in navigating it strategically to preserve cultural distinctiveness while embracing beneficial cross-cultural exchanges. This requires a nuanced understanding of which aspects of culture are core to identity and which can adapt without compromising authenticity.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">3</div>
+                        <div class="question-text">What does the writer identify as the central paradox of globalization?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="A"> A) It both threatens and facilitates cultural preservation</label>
+                            <label><input type="radio" name="q3" value="B"> B) It creates more problems than it solves for traditional societies</label>
+                            <label><input type="radio" name="q3" value="C"> C) It benefits wealthy nations while harming developing cultures</label>
+                            <label><input type="radio" name="q3" value="D"> D) It promotes democracy while undermining local autonomy</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">4</div>
+                        <div class="question-text">What approach does the writer advocate for dealing with globalization?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="A"> A) Complete resistance to global influences</label>
+                            <label><input type="radio" name="q4" value="B"> B) Uncritical embrace of all cultural exchanges</label>
+                            <label><input type="radio" name="q4" value="C"> C) Strategic engagement that distinguishes core from adaptable elements</label>
+                            <label><input type="radio" name="q4" value="D"> D) Government regulation of cultural interactions</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-passage">
+                    <h4>Text 3</h4>
+                    <p><strong>The Aesthetics of Imperfection in Contemporary Art</strong></p>
+                    <p>Contemporary art's embrace of imperfection represents a radical departure from classical notions of aesthetic perfection, challenging viewers to reconsider their fundamental assumptions about beauty, value, and artistic merit. This movement, often termed 'post-perfectionism,' draws inspiration from Japanese wabi-sabi philosophy, which finds beauty in transience, asymmetry, and the marks of time and use. Artists working within this paradigm deliberately incorporate flaws, accidents, and deterioration into their work, arguing that perfection is not only unattainable but ultimately sterile and disconnected from human experience. The aesthetic of imperfection serves as a critique of both consumer culture's obsession with flawless surfaces and the art market's commodification of beauty. By celebrating the rough, the incomplete, and the deteriorating, these artists invite contemplation of mortality, authenticity, and the beauty inherent in life's inevitable decay.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">5</div>
+                        <div class="question-text">What does the writer suggest about 'post-perfectionist' art?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="A"> A) It represents a failure to achieve traditional artistic standards</label>
+                            <label><input type="radio" name="q5" value="B"> B) It challenges conventional concepts of aesthetic value</label>
+                            <label><input type="radio" name="q5" value="C"> C) It appeals primarily to collectors seeking novelty</label>
+                            <label><input type="radio" name="q5" value="D"> D) It reflects artists' inability to master classical techniques</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">6</div>
+                        <div class="question-text">According to the text, what broader cultural critique does this aesthetic movement offer?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="A"> A) The superficiality of consumer culture and art commodification</label>
+                            <label><input type="radio" name="q6" value="B"> B) The decline of craftsmanship in modern society</label>
+                            <label><input type="radio" name="q6" value="C"> C) The excessive intellectualization of contemporary art</label>
+                            <label><input type="radio" name="q6" value="D"> D) The dominance of Western aesthetic traditions</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Part 2: Gapped Text -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Reading Part 2: Gapped Text</h3>
+                    <p>Read a complex text with paragraphs removed and choose the correct paragraph from options A-H</p>
+                </div>
+                
+                <div class="gapped-text-container">
+                    <div class="text-passage gapped">
+                        <h4>The Neuroscience of Creativity: Unraveling the Enigma of Innovation</h4>
+                        
+                        <p>Creativity has long been regarded as the most ineffable of human capacities, defying attempts at systematic analysis and remaining largely impervious to scientific investigation. However, recent advances in neuroscience have begun to illuminate the complex neural mechanisms underlying creative thought, revealing a fascinating interplay between different brain networks that challenges traditional assumptions about the creative process.</p>
+
+                        <div class="gap" data-gap="7" id="gap-7">(7)</div>
+
+                        <p>The default mode network, active during rest and introspection, appears to play a crucial role in generating novel ideas by allowing the mind to make unexpected connections between seemingly unrelated concepts. This network works in dynamic tension with the executive attention network, which evaluates and refines these nascent ideas, determining which ones merit further development.</p>
+
+                        <div class="gap" data-gap="8" id="gap-8">(8)</div>
+
+                        <p>Neuroplasticity research has also revealed that creativity is not a fixed trait but rather a capacity that can be enhanced through specific practices and interventions. Environmental factors, including exposure to diverse experiences and deliberate cultivation of curiosity, can significantly influence the brain's creative potential by strengthening neural pathways associated with innovative thinking.</p>
+
+                        <div class="gap" data-gap="9" id="gap-9">(9)</div>
+
+                        <p>The implications of these discoveries extend far beyond academic curiosity, offering practical applications for education, therapy, and organizational innovation. Understanding the neurobiological basis of creativity could revolutionize how we approach problem-solving in fields ranging from scientific research to artistic expression.</p>
+
+                        <div class="gap" data-gap="10" id="gap-10">(10)</div>
+
+                        <p>Furthermore, the research challenges the romantic notion of the isolated genius, suggesting instead that creativity is fundamentally collaborative, both neurologically and socially. The brain's creative networks mirror the collaborative nature of innovation itself, requiring integration between different types of thinking and multiple perspectives.</p>
+
+                        <div class="gap" data-gap="11" id="gap-11">(11)</div>
+
+                        <p>Perhaps most intriguingly, the studies indicate that certain forms of mental illness, particularly bipolar disorder and mild depression, may be associated with enhanced creative capacity. This correlation, while not implying causation, suggests that the boundary between psychological disturbance and creative genius may be more porous than previously assumed.</p>
+
+                        <div class="gap" data-gap="12" id="gap-12">(12)</div>
+
+                        <p>As our understanding of creativity's neurological foundations continues to evolve, we stand on the threshold of unprecedented insights into what makes us uniquely human. The ability to create, to imagine possibilities that do not yet exist, remains one of our species' most remarkable achievements, and science is finally beginning to explain how this magic happens.</p>
+                    </div>
+
+                    <div class="sentence-bank">
+                        <h5>Choose from the following paragraphs A-H:</h5>
+                        <div class="sentence-options">
+                            <div class="sentence-option" data-value="A" id="option-A">A) This finding has profound implications for our understanding of mental health, suggesting that what we often pathologize as dysfunction may, in certain contexts, represent alternative forms of cognitive processing that contribute to human innovation and cultural advancement.</div>
+                            
+                            <div class="sentence-option" data-value="B" id="option-B">B) The emergence of brain imaging technologies, particularly functional magnetic resonance imaging (fMRI), has provided researchers with unprecedented access to the living brain during creative tasks, allowing them to observe neural activity in real-time as subjects engage in creative problem-solving.</div>
+                            
+                            <div class="sentence-option" data-value="C" id="option-C">C) Interestingly, the most creative individuals appear to demonstrate exceptional ability to switch between these networks, maintaining cognitive flexibility that allows them to generate ideas while simultaneously evaluating their viability and potential impact.</div>
+                            
+                            <div class="sentence-option" data-value="D" id="option-D">D) This research has also identified specific training programs that can enhance creative thinking by targeting particular neural networks, offering hope for individuals and organizations seeking to boost their innovative capacity through evidence-based interventions.</div>
+                            
+                            <div class="sentence-option" data-value="E" id="option-E">E) Additionally, studies have shown that diverse teams consistently outperform homogeneous groups in creative tasks, mirroring the brain's requirement for diverse neural inputs to generate truly innovative solutions to complex problems.</div>
+                            
+                            <div class="sentence-option" data-value="F" id="option-F">F) However, these technological advances have also revealed that creativity is far more complex than initially anticipated, involving not just one brain region but multiple networks that must coordinate in sophisticated ways to produce innovative thoughts and solutions.</div>
+                            
+                            <div class="sentence-option" data-value="G" id="option-G">G) These insights are already being applied in educational settings, where curricula are being redesigned to incorporate activities that specifically target the development of creative neural networks, potentially transforming how future generations approach complex problem-solving.</div>
+                            
+                            <div class="sentence-option" data-value="H" id="option-H">H) The research has also highlighted the importance of incubation periods in the creative process, during which the unconscious mind continues to work on problems even when conscious attention is directed elsewhere, explaining why breakthrough insights often occur during seemingly unrelated activities.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Part 3: Multiple Choice (Long Text) -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Reading Part 3: Multiple Choice</h3>
+                    <p>Read a sophisticated academic text and answer 7 detailed comprehension questions</p>
+                </div>
+                
+                <div class="text-passage">
+                    <h4>Quantum Mechanics and the Philosophy of Science: Implications for Human Understanding</h4>
+                    
+                    <p>The quantum revolution of the early twentieth century fundamentally altered our understanding of physical reality, introducing concepts so counterintuitive that they continue to challenge our most basic assumptions about the nature of existence. The principle of superposition, which allows quantum particles to exist in multiple states simultaneously until observed, defies classical logic and suggests that reality at its most fundamental level operates according to principles radically different from those governing our everyday experience. This phenomenon has profound implications not merely for physics, but for epistemology – the study of knowledge itself.</p>
+
+                    <p>Werner Heisenberg's uncertainty principle further complicated matters by demonstrating that certain pairs of properties, such as position and momentum, cannot be simultaneously measured with perfect accuracy. This limitation is not merely technological but represents a fundamental feature of quantum reality. The act of observation itself becomes implicated in determining what we can know, blurring the traditional distinction between observer and observed that has been central to scientific methodology since the Enlightenment.</p>
+
+                    <p>The Copenhagen interpretation, developed primarily by Niels Bohr and his colleagues, attempts to resolve these paradoxes by arguing that quantum mechanics provides a complete description of physical phenomena, but that this completeness necessarily includes the measuring apparatus and the experimental context. According to this view, questions about what quantum systems are "really" doing when not observed are meaningless – the theory describes only what can be measured, not some underlying reality independent of measurement.</p>
+
+                    <p>Einstein famously objected to this interpretation, arguing that it implied an unacceptable incompleteness in our description of physical reality. His assertion that "God does not play dice with the universe" reflected his conviction that quantum mechanics, however successful as a predictive tool, must be supplemented by additional "hidden variables" that would restore determinism to physics. The subsequent development of Bell's theorem in the 1960s, however, demonstrated that any hidden variable theory would have to violate locality – the principle that objects are only influenced by their immediate surroundings.</p>
+
+                    <p>The philosophical implications of quantum mechanics extend beyond physics into questions about the nature of consciousness and free will. Some interpretations suggest that consciousness plays a fundamental role in quantum measurement, leading to speculative theories about quantum effects in the brain and their potential influence on human decision-making. While these ideas remain highly controversial and lack empirical support, they illustrate the profound challenge that quantum mechanics poses to materialist conceptions of mind and consciousness.</p>
+
+                    <p>The many-worlds interpretation, proposed by Hugh Everett III, offers perhaps the most radical solution to quantum paradoxes by suggesting that all possible quantum outcomes actually occur, but in separate, parallel universes. According to this view, Schrödinger's famous cat is simultaneously alive and dead, but in different branches of reality that can never interact. While this interpretation preserves the deterministic nature of quantum evolution, it does so at the cost of postulating an infinite number of parallel realities.</p>
+
+                    <p>Recent developments in quantum information theory have opened new avenues for exploring these fundamental questions. Quantum entanglement, once dismissed as a mere theoretical curiosity, has proven to have practical applications in quantum computing and cryptography. The phenomenon demonstrates that quantum correlations can persist across vast distances, challenging our intuitive understanding of space and locality in ways that continue to puzzle physicists and philosophers alike.</p>
+
+                    <p>The implications of quantum mechanics for human understanding are perhaps best summarized by Bohr's observation that "anyone who is not shocked by quantum theory has not understood it." The theory forces us to confront the limitations of human intuition and classical logic when dealing with fundamental reality. It suggests that the universe at its deepest level operates according to principles that may be forever beyond the reach of everyday comprehension, requiring us to develop new forms of understanding that transcend the categories of classical thought.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">13</div>
+                        <div class="question-text">What does the writer suggest about the principle of superposition?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="A"> A) It demonstrates the superiority of quantum physics over classical physics</label>
+                            <label><input type="radio" name="q13" value="B"> B) It reveals fundamental inconsistencies in our understanding of reality</label>
+                            <label><input type="radio" name="q13" value="C"> C) It indicates that reality operates differently at quantum and macroscopic scales</label>
+                            <label><input type="radio" name="q13" value="D"> D) It proves that observation is unnecessary for quantum phenomena</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">14</div>
+                        <div class="question-text">According to the text, what is significant about Heisenberg's uncertainty principle?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="A"> A) It represents a temporary limitation that will be overcome by better technology</label>
+                            <label><input type="radio" name="q14" value="B"> B) It demonstrates a fundamental characteristic of quantum reality involving measurement</label>
+                            <label><input type="radio" name="q14" value="C"> C) It proves that quantum mechanics is an incomplete theory</label>
+                            <label><input type="radio" name="q14" value="D"> D) It shows that scientific objectivity is impossible to achieve</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">15</div>
+                        <div class="question-text">What does the Copenhagen interpretation suggest about quantum reality?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="A"> A) Quantum systems have definite properties independent of observation</label>
+                            <label><input type="radio" name="q15" value="B"> B) Physical reality exists only in relation to measurement and observation</label>
+                            <label><input type="radio" name="q15" value="C"> C) Quantum mechanics provides an incomplete description of physical phenomena</label>
+                            <label><input type="radio" name="q15" value="D"> D) Hidden variables determine quantum behavior</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">16</div>
+                        <div class="question-text">What does the writer indicate about Einstein's objections to quantum mechanics?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="A"> A) They were based on emotional rather than scientific grounds</label>
+                            <label><input type="radio" name="q16" value="B"> B) They led to the development of more complete theories</label>
+                            <label><input type="radio" name="q16" value="C"> C) They were ultimately refuted by Bell's theorem</label>
+                            <label><input type="radio" name="q16" value="D"> D) They reflected his preference for deterministic explanations</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">17</div>
+                        <div class="question-text">What does the writer suggest about quantum effects and consciousness?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="A"> A) They provide definitive proof of quantum effects in the brain</label>
+                            <label><input type="radio" name="q17" value="B"> B) They represent well-established scientific theories</label>
+                            <label><input type="radio" name="q17" value="C"> C) They illustrate the challenge quantum mechanics poses to materialist views</label>
+                            <label><input type="radio" name="q17" value="D"> D) They explain the mechanism of human decision-making</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">18</div>
+                        <div class="question-text">How does the writer characterize the many-worlds interpretation?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="A"> A) As the most scientifically credible explanation of quantum phenomena</label>
+                            <label><input type="radio" name="q18" value="B"> B) As a theory that preserves determinism at the cost of postulating multiple realities</label>
+                            <label><input type="radio" name="q18" value="C"> C) As an interpretation that has been experimentally verified</label>
+                            <label><input type="radio" name="q18" value="D"> D) As a solution that eliminates all quantum paradoxes</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">19</div>
+                        <div class="question-text">What does the writer conclude about quantum mechanics and human understanding?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="A"> A) It will eventually be fully comprehensible through classical logic</label>
+                            <label><input type="radio" name="q19" value="B"> B) It requires the development of new forms of understanding</label>
+                            <label><input type="radio" name="q19" value="C"> C) It proves that human intuition is fundamentally unreliable</label>
+                            <label><input type="radio" name="q19" value="D"> D) It demonstrates the limitations of scientific methodology</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Part 4: Multiple Matching -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Reading Part 4: Multiple Matching</h3>
+                    <p>Read 4 complex texts and match statements 20-37 to the appropriate texts</p>
+                </div>
+                
+                <div class="matching-container">
+                    <div class="texts-section">
+                        <h4>Texts A-D: Perspectives on Artificial Intelligence Ethics</h4>
+                        
+                        <div class="match-text" data-text="A">
+                            <h5>Text A - The Utilitarian Approach</h5>
+                            <p>Utilitarian ethics provides a compelling framework for evaluating artificial intelligence applications by focusing on outcomes and consequences rather than intentions or inherent characteristics of the technology itself. From this perspective, the moral worth of AI systems should be judged primarily by their capacity to maximize overall human welfare and minimize suffering. This approach offers practical advantages in policy-making contexts, as it provides clear criteria for assessment: does the AI system produce more good than harm when all affected parties are considered? However, utilitarian analysis of AI ethics faces significant challenges, particularly in quantifying and comparing different types of benefits and harms. The framework struggles with edge cases involving minority rights, where maximizing overall utility might justify harmful treatment of smaller groups. Additionally, the utilitarian calculus becomes extraordinarily complex when considering long-term consequences of AI deployment, as the ripple effects of these technologies may unfold over decades or centuries in unpredictable ways. Despite these limitations, utilitarian thinking provides valuable guidance for AI governance, particularly in regulatory contexts where concrete policy decisions must balance competing interests and scarce resources.</p>
+                        </div>
+
+                        <div class="match-text" data-text="B">
+                            <h5>Text B - Rights-Based Ethics</h5>
+                            <p>The deontological approach to AI ethics, rooted in the philosophical tradition of Immanuel Kant, emphasizes fundamental human rights and dignity that must be respected regardless of consequential considerations. This framework insists that certain principles are inviolable: humans must never be treated merely as means to an end, individuals possess inherent dignity that cannot be violated for the greater good, and moral agents have categorical duties that transcend utilitarian calculations. Applied to artificial intelligence, this perspective raises profound questions about consent, autonomy, and the commodification of human agency. AI systems that manipulate human behavior, even for ostensibly beneficial purposes, violate Kantian principles by treating people as objects to be influenced rather than as autonomous rational agents deserving respect. The rights-based approach also grapples with questions of transparency and explainability in AI decision-making, arguing that individuals have a fundamental right to understand how decisions affecting them are made. This framework faces particular challenges in addressing collective goods and societal benefits, as its focus on individual rights can sometimes conflict with broader social welfare. Nevertheless, rights-based thinking provides crucial protection for vulnerable populations and maintains essential human values that purely consequentialist approaches might sacrifice.</p>
+                        </div>
+
+                        <div class="match-text" data-text="C">
+                            <h5>Text C - Virtue Ethics Framework</h5>
+                            <p>Virtue ethics offers a distinctive lens for examining AI ethics by focusing on character, intentions, and the cultivation of moral excellence rather than rules or consequences. This Aristotelian approach asks not "what should we do?" but "what kind of people should we be?" and extends this inquiry to institutional actors: what virtues should characterize AI developers, companies, and regulatory bodies? The framework emphasizes practical wisdom (phronesis) in navigating complex moral terrain, recognizing that ethical AI deployment requires nuanced judgment that cannot be captured by rigid rules or simple utilitarian calculations. Virtue ethics particularly excels in addressing questions of responsibility and accountability in AI systems, as it focuses on the character and motivations of human agents who design, deploy, and govern these technologies. The approach also provides valuable insight into the long-term cultural implications of AI adoption, considering how these technologies might shape human character and social virtues over time. However, virtue ethics faces criticism for its apparent subjectivity and cultural relativity – different societies may emphasize different virtues, making universal AI ethics standards difficult to establish. Furthermore, the framework offers limited guidance for immediate policy decisions, as cultivating virtue is a gradual process that may not address urgent ethical dilemmas requiring rapid resolution.</p>
+                        </div>
+
+                        <div class="match-text" data-text="D">
+                            <h5>Text D - Care Ethics Perspective</h5>
+                            <p>Care ethics, emerging from feminist philosophical traditions, emphasizes relationships, interdependence, and contextual moral reasoning in addressing AI ethics challenges. This approach critiques the abstraction and universality of traditional ethical frameworks, arguing instead for situated, relational understanding of moral obligations that acknowledges the particular vulnerabilities and dependencies that characterize human existence. Applied to artificial intelligence, care ethics highlights often-overlooked dimensions of AI deployment, particularly its effects on caregiving relationships and vulnerable populations. The framework is especially valuable in analyzing AI applications in healthcare, eldercare, and child development, where technological intervention intersects with fundamental human needs for connection and care. Care ethics raises critical questions about the substitution of human care with technological solutions, arguing that certain forms of care require human presence and emotional connection that cannot be replicated by AI systems. The approach also emphasizes the importance of including marginalized voices in AI development and governance, recognizing that those most affected by technological change are often excluded from decision-making processes. While care ethics provides important insights into relational and contextual aspects of AI ethics, critics argue that its emphasis on particularity and context makes it difficult to scale for large-scale AI governance. The framework's resistance to universal principles can also create challenges in developing consistent policies across diverse social contexts.</p>
+                        </div>
+                    </div>
+
+                    <div class="questions-section">
+                        <h4>Questions 20-37: Match each statement to a text (A-D)</h4>
+                        <div class="matching-questions">
+                            <div class="match-question">
+                                <span class="q-number">20</span>
+                                <span class="q-text">This approach prioritizes overall welfare maximization over individual considerations.</span>
+                                <select name="q20" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">21</span>
+                                <span class="q-text">The framework emphasizes human dignity as inviolable regardless of outcomes.</span>
+                                <select name="q21" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">22</span>
+                                <span class="q-text">This perspective focuses on character development and moral excellence.</span>
+                                <select name="q22" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">23</span>
+                                <span class="q-text">The approach emphasizes relationships and contextual moral reasoning.</span>
+                                <select name="q23" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">24</span>
+                                <span class="q-text">This framework struggles with quantifying different types of benefits and harms.</span>
+                                <select name="q24" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">25</span>
+                                <span class="q-text">The approach insists on transparency and explainability in AI decision-making.</span>
+                                <select name="q25" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">26</span>
+                                <span class="q-text">This perspective is particularly valuable for analyzing AI in healthcare and caregiving.</span>
+                                <select name="q26" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">27</span>
+                                <span class="q-text">The framework emphasizes practical wisdom in navigating moral complexity.</span>
+                                <select name="q27" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">28</span>
+                                <span class="q-text">This approach faces challenges in developing universal standards due to cultural relativity.</span>
+                                <select name="q28" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">29</span>
+                                <span class="q-text">The framework critiques the abstraction and universality of traditional ethical approaches.</span>
+                                <select name="q29" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">30</span>
+                                <span class="q-text">This approach may justify harmful treatment of minorities for overall benefit.</span>
+                                <select name="q30" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">31</span>
+                                <span class="q-text">The framework treats manipulation as fundamentally wrong regardless of benefits.</span>
+                                <select name="q31" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">32</span>
+                                <span class="q-text">This perspective questions technological substitution of human emotional connection.</span>
+                                <select name="q32" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">33</span>
+                                <span class="q-text">The approach considers long-term cultural implications of AI adoption.</span>
+                                <select name="q33" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">34</span>
+                                <span class="q-text">This framework emphasizes inclusion of marginalized voices in AI governance.</span>
+                                <select name="q34" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">35</span>
+                                <span class="q-text">The approach provides clear criteria for policy assessment and resource allocation.</span>
+                                <select name="q35" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">36</span>
+                                <span class="q-text">This framework faces criticism for limited guidance on immediate policy decisions.</span>
+                                <select name="q36" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">37</span>
+                                <span class="q-text">The approach's resistance to universal principles creates policy consistency challenges.</span>
+                                <select name="q37" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Part 1: Essay -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Writing Part 1: Essay</h3>
+                    <p>Write a sophisticated academic essay of 280-320 words analyzing the given topic</p>
+                </div>
+                
+                <div class="writing-task">
+                    <div class="task-prompt">
+                        <h4>Essay Question</h4>
+                        <p><strong>In your advanced philosophy seminar, you have been discussing the implications of emerging biotechnology for human identity and society. You have made the following notes:</strong></p>
+                        
+                        <div class="essay-notes">
+                            <div class="note-box">
+                                <h5>Potential implications of biotechnology:</h5>
+                                <ul>
+                                    <li>genetic enhancement and human optimization</li>
+                                    <li>extension of human lifespan and aging reversal</li>
+                                    <li>integration of biological and artificial systems</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="opinions-box">
+                                <h5>Perspectives from the seminar discussion:</h5>
+                                <blockquote>"Biotechnology represents the next stage of human evolution, allowing us to transcend biological limitations."</blockquote>
+                                <blockquote>"These technologies threaten to fundamentally alter what it means to be human, potentially creating irreversible social stratification."</blockquote>
+                                <blockquote>"The ethical implications are so profound that we need comprehensive regulation before widespread adoption."</blockquote>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Write an essay evaluating TWO of the biotechnological implications mentioned in your notes. You should analyze the philosophical and ethical dimensions of these developments and present a nuanced argument about their potential impact on human society.</strong></p>
+                    </div>
+                    
+                    <div class="writing-area">
+                        <div class="word-counter">
+                            <span>Words: <span id="essay-word-count">0</span> / 280-320</span>
+                            <div class="counter-bar">
+                                <div id="essay-counter-fill" class="counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea id="essay-text" placeholder="Write your sophisticated academic essay here..." rows="18"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Part 2: Choice of Tasks -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Writing Part 2: Choice of Tasks</h3>
+                    <p>Choose ONE task and write 280-320 words demonstrating advanced writing skills</p>
+                </div>
+                
+                <div class="task-choice">
+                    <div class="task-option" data-task="formal-letter">
+                        <div class="task-type">
+                            <i class="fas fa-scroll"></i>
+                            Formal Letter
+                        </div>
+                        <h4>Option A: Letter to Academic Institution</h4>
+                        <p>You are writing to the Dean of a prestigious university to propose the establishment of an interdisciplinary research center focused on the ethical implications of emerging technologies.</p>
+                        <blockquote>Write a formal letter explaining the need for such a center, outlining its potential research areas and societal benefits, and requesting consideration for funding and institutional support.</blockquote>
+                    </div>
+
+                    <div class="task-option" data-task="report">
+                        <div class="task-type">
+                            <i class="fas fa-chart-line"></i>
+                            Academic Report
+                        </div>
+                        <h4>Option B: Research Report</h4>
+                        <p>You have conducted a comprehensive study on the impact of remote work policies on organizational innovation and employee wellbeing in post-pandemic professional environments.</p>
+                        <blockquote>Write a report presenting your key findings, analyzing the implications for organizational management, and making evidence-based recommendations for policy development.</blockquote>
+                    </div>
+
+                    <div class="task-option" data-task="review">
+                        <div class="task-type">
+                            <i class="fas fa-microscope"></i>
+                            Critical Review
+                        </div>
+                        <h4>Option C: Academic Review</h4>
+                        <p>You have been asked to write a critical review of a controversial new book that challenges established theories in your field of expertise for a leading academic journal.</p>
+                        <blockquote>Write a review that evaluates the author's arguments, assesses the evidence presented, and discusses the work's potential contribution to scholarly discourse in the field.</blockquote>
+                    </div>
+
+                    <div class="task-option" data-task="proposal">
+                        <div class="task-type">
+                            <i class="fas fa-lightbulb"></i>
+                            Policy Proposal
+                        </div>
+                        <h4>Option D: Policy Proposal</h4>
+                        <p>You are a senior policy advisor tasked with developing a comprehensive framework for regulating artificial intelligence applications in healthcare while promoting innovation.</p>
+                        <blockquote>Write a proposal that identifies key regulatory challenges, proposes specific policy measures, and justifies your approach while considering diverse stakeholder perspectives.</blockquote>
+                    </div>
+                </div>
+
+                <div id="part2-writing" class="writing-area" style="display: none;">
+                    <div class="word-counter">
+                        <span>Words: <span id="part2-word-count">0</span> / 280-320</span>
+                        <div class="counter-bar">
+                            <div id="part2-counter-fill" class="counter-fill"></div>
+                        </div>
+                    </div>
+                    <textarea id="part2-text" placeholder="Write your sophisticated response here..." rows="18"></textarea>
+                </div>
+            </div>
+
+            <!-- Section Actions -->
+            <div class="section-actions">
+                <button id="save-reading-writing" class="btn-primary">
+                    <i class="fas fa-save"></i> Save Progress
+                </button>
+                <button id="next-to-listening" class="btn-secondary">
+                    Next: Listening <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Listening Section -->
+        <section id="listening-section" class="exam-section">
+            <div class="section-header">
+                <h2><i class="fas fa-headphones-alt"></i> Listening</h2>
+                <p class="section-description">4 parts, 30 questions • 40 minutes</p>
+            </div>
+
+            <div class="listening-placeholder">
+                <i class="fas fa-headphones-alt"></i>
+                <h3>Advanced Listening Section</h3>
+                <p>This section would contain sophisticated audio materials and comprehensive listening tasks.</p>
+                <p>In a complete C2 Proficiency implementation, this would include:</p>
+                <ul style="text-align: left; margin-top: 2rem;">
+                    <li>Part 1: Multiple choice (6 questions) - Short extracts with sophisticated content</li>
+                    <li>Part 2: Sentence completion (9 questions) - Complex academic or professional content</li>
+                    <li>Part 3: Multiple choice (5 questions) - Interview or discussion with nuanced viewpoints</li>
+                    <li>Part 4: Multiple matching (10 questions) - Multiple speakers expressing complex ideas</li>
+                </ul>
+            </div>
+
+            <div class="section-actions">
+                <button id="save-listening" class="btn-primary">
+                    <i class="fas fa-save"></i> Save Progress
+                </button>
+                <button id="next-to-speaking" class="btn-secondary">
+                    Next: Speaking <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Speaking Section -->
+        <section id="speaking-section" class="exam-section">
+            <div class="section-header">
+                <h2><i class="fas fa-microphone-alt"></i> Speaking</h2>
+                <p class="section-description">3 parts • 16 minutes per pair of candidates</p>
+            </div>
+
+            <div class="speaking-placeholder">
+                <i class="fas fa-microphone-alt"></i>
+                <h3>Advanced Speaking Section</h3>
+                <p>This section would contain sophisticated speaking tasks requiring mastery-level performance.</p>
+                
+                <div class="speaking-parts">
+                    <div class="speaking-part">
+                        <h4>Part 1: Interview (2 minutes)</h4>
+                        <p>Sophisticated discussion of abstract topics, opinions, and experiences requiring nuanced expression.</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 2: Collaborative Task (4 minutes)</h4>
+                        <p>Complex collaborative discussion and decision-making on abstract or hypothetical scenarios.</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 3: Long Turn & Discussion (10 minutes)</h4>
+                        <p>Individual presentation followed by extended discussion demonstrating sophisticated argumentation skills.</p>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p><strong>Note:</strong> C2 Proficiency Speaking requires demonstration of mastery-level English with sophisticated vocabulary, complex grammatical structures, and nuanced expression of abstract concepts.</p>
+                </div>
+            </div>
+
+            <div class="section-actions">
+                <button id="save-speaking" class="btn-primary">
+                    <i class="fas fa-save"></i> Save Progress
+                </button>
+                <button id="finish-exam" class="btn-success">
+                    <i class="fas fa-crown"></i> Complete Mastery Assessment
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-trophy"></i> Mastery Assessment Results</h2>
+                <button id="close-results" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="results-summary">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <div id="fab-options" class="fab-options">
+            <div id="fab-help" class="fab-option">
+                <i class="fas fa-question-circle"></i>
+                <span>Help</span>
+            </div>
+            <div id="fab-bookmark" class="fab-option">
+                <i class="fas fa-bookmark"></i>
+                <span>Bookmark</span>
+            </div>
+            <div id="fab-calculator" class="fab-option">
+                <i class="fas fa-calculator"></i>
+                <span>Calculator</span>
+            </div>
+        </div>
+        <button id="fab-main" class="fab">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

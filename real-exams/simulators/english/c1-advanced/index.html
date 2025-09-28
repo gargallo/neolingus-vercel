@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambridge C1 Advanced - Reading & Writing Practice | NEOLINGUS</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Practice Cambridge C1 Advanced (CAE) exam with authentic simulation. Complete reading and writing tasks with automatic scoring and detailed feedback.">
+    <meta name="keywords" content="Cambridge C1 Advanced, CAE exam, English practice, reading writing simulation, NEOLINGUS">
+    <meta name="author" content="NEOLINGUS">
+    <meta property="og:title" content="Cambridge C1 Advanced Practice - NEOLINGUS">
+    <meta property="og:description" content="Authentic C1 Advanced exam simulation with automatic scoring">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Icons and Fonts -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#7c3aed">
+</head>
+
+<body>
+    <!-- Exam Header -->
+    <header class="exam-header">
+        <div class="exam-info">
+            <h1>
+                <i class="fas fa-graduation-cap"></i>
+                Cambridge C1 Advanced (CAE)
+            </h1>
+            <div class="exam-year">Practice Test 2024</div>
+        </div>
+        <div class="timer-section">
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time-display">03:30:00</span>
+            </div>
+            <button id="pause-btn" class="pause-btn">
+                <i class="fas fa-pause"></i> Pause
+            </button>
+        </div>
+    </header>
+
+    <!-- Section Navigation -->
+    <nav class="section-nav">
+        <div class="nav-pill active" data-section="reading-writing">
+            <i class="fas fa-book-reader"></i>
+            <span>Reading & Writing</span>
+            <div class="pill-time">3h 30m</div>
+        </div>
+        <div class="nav-pill" data-section="listening">
+            <i class="fas fa-headphones"></i>
+            <span>Listening</span>
+            <div class="pill-time">40 min</div>
+        </div>
+        <div class="nav-pill" data-section="speaking">
+            <i class="fas fa-microphone"></i>
+            <span>Speaking</span>
+            <div class="pill-time">15 min</div>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <span id="progress-text" class="progress-text">0 / 56 questions completed</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="exam-content">
+        
+        <!-- Reading & Writing Section -->
+        <section id="reading-writing-section" class="exam-section active">
+            <div class="section-header">
+                <h2><i class="fas fa-book-reader"></i> Reading & Writing</h2>
+                <p class="section-description">8 parts, 56 questions • 3 hours 30 minutes</p>
+            </div>
+
+            <!-- Reading Part 1: Multiple Choice -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Reading Part 1: Multiple Choice</h3>
+                    <p>Read three short texts and answer 6 multiple-choice questions (2 per text)</p>
+                </div>
+                
+                <div class="text-passage">
+                    <h4>Text 1</h4>
+                    <p><strong>The Rise of Urban Gardening</strong></p>
+                    <p>Urban gardening has experienced unprecedented growth in recent years, transforming vacant lots and rooftops into thriving green spaces. This movement represents more than just a trend; it embodies a fundamental shift in how city dwellers relate to their food and environment. Community gardens foster social cohesion while providing fresh produce in areas where access to nutritious food may be limited. Moreover, these green oases serve as crucial habitats for urban wildlife, creating biodiversity corridors that help sustain ecosystems within concrete jungles. The psychological benefits cannot be overstated either – studies consistently show that contact with nature reduces stress and improves overall mental well-being, making urban gardening a powerful tool for public health.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">1</div>
+                        <div class="question-text">What does the writer suggest about urban gardening in the first sentence?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="A"> A) Its popularity has exceeded expectations</label>
+                            <label><input type="radio" name="q1" value="B"> B) It has replaced traditional farming methods</label>
+                            <label><input type="radio" name="q1" value="C"> C) It requires significant financial investment</label>
+                            <label><input type="radio" name="q1" value="D"> D) It only works in certain urban environments</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">2</div>
+                        <div class="question-text">According to the text, what is particularly significant about the psychological benefits of urban gardening?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="A"> A) They are unexpected side effects</label>
+                            <label><input type="radio" name="q2" value="B"> B) They are supported by research evidence</label>
+                            <label><input type="radio" name="q2" value="C"> C) They vary significantly between individuals</label>
+                            <label><input type="radio" name="q2" value="D"> D) They depend on the size of the garden</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-passage">
+                    <h4>Text 2</h4>
+                    <p><strong>The Digital Detox Dilemma</strong></p>
+                    <p>As our dependence on digital technology intensifies, the concept of a 'digital detox' has gained considerable traction. Proponents argue that temporarily disconnecting from devices allows individuals to reconnect with themselves and their immediate environment. However, the reality of implementing such a detox in our hyperconnected world presents significant challenges. Many professionals find that stepping away from their devices, even briefly, can result in missed opportunities or important communications. Furthermore, the very notion of scheduling time to be 'offline' reveals how profoundly technology has infiltrated our daily routines. Perhaps the solution lies not in dramatic digital abstinence, but in developing a more mindful relationship with our devices – one that prioritizes intentional use over compulsive consumption.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">3</div>
+                        <div class="question-text">What point does the writer make about digital detox in the middle of the text?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="A"> A) It conflicts with professional responsibilities</label>
+                            <label><input type="radio" name="q3" value="B"> B) It requires expensive equipment to implement</label>
+                            <label><input type="radio" name="q3" value="C"> C) It doesn't work for everyone equally</label>
+                            <label><input type="radio" name="q3" value="D"> D) It should be government-mandated</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">4</div>
+                        <div class="question-text">What does the writer suggest about our relationship with technology?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="A"> A) Complete avoidance is the best strategy</label>
+                            <label><input type="radio" name="q4" value="B"> B) We should aim for more conscious usage</label>
+                            <label><input type="radio" name="q4" value="C"> C) Technology addiction is incurable</label>
+                            <label><input type="radio" name="q4" value="D"> D) Scheduled offline time is essential</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-passage">
+                    <h4>Text 3</h4>
+                    <p><strong>The Future of Work: Hybrid Models</strong></p>
+                    <p>The pandemic-driven shift to remote work has fundamentally altered employment landscape, giving rise to hybrid working models that blend in-office and remote work. While this flexibility offers undeniable benefits – reduced commuting stress, better work-life balance, and access to a global talent pool – it also presents novel challenges for organizational culture and management practices. Companies are grappling with maintaining team cohesion and ensuring effective collaboration across distributed workforces. The key to successful hybrid implementation lies in recognizing that it's not simply about splitting time between locations, but rather about reimagining how work gets done. Organizations must invest in robust digital infrastructure while simultaneously preserving the human connections that drive innovation and job satisfaction.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">5</div>
+                        <div class="question-text">What does the writer suggest about hybrid working models?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="A"> A) They will eventually replace traditional office work</label>
+                            <label><input type="radio" name="q5" value="B"> B) They require a fundamental rethinking of work processes</label>
+                            <label><input type="radio" name="q5" value="C"> C) They are mainly beneficial for large corporations</label>
+                            <label><input type="radio" name="q5" value="D"> D) They reduce the quality of work produced</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">6</div>
+                        <div class="question-text">According to the writer, what is crucial for successful hybrid work implementation?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="A"> A) Reducing the number of in-office days</label>
+                            <label><input type="radio" name="q6" value="B"> B) Balancing technology with interpersonal relationships</label>
+                            <label><input type="radio" name="q6" value="C"> C) Hiring only experienced remote workers</label>
+                            <label><input type="radio" name="q6" value="D"> D) Eliminating traditional management structures</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Part 2: Gapped Text -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Reading Part 2: Gapped Text</h3>
+                    <p>Read a text with paragraphs removed and choose the correct paragraph from options A-H</p>
+                </div>
+                
+                <div class="gapped-text-container">
+                    <div class="text-passage gapped">
+                        <h4>The Science of Happiness</h4>
+                        
+                        <p>For centuries, happiness remained the domain of philosophers and poets, but in recent decades, scientists have begun to study this elusive state with the same rigor applied to other aspects of human psychology. What they've discovered challenges many common assumptions about what makes people truly content.</p>
+
+                        <div class="gap" data-gap="7" id="gap-7">(7)</div>
+
+                        <p>Research has consistently shown that beyond meeting basic needs, additional wealth contributes surprisingly little to overall life satisfaction. This finding, known as the "hedonic treadmill," suggests that people quickly adapt to improved circumstances, returning to baseline happiness levels despite material gains.</p>
+
+                        <div class="gap" data-gap="8" id="gap-8">(8)</div>
+
+                        <p>Social connections emerge as perhaps the most crucial factor in determining happiness levels. The Harvard Study of Adult Development, which has followed subjects for over 80 years, consistently identifies strong relationships as the primary predictor of life satisfaction and mental health.</p>
+
+                        <div class="gap" data-gap="9" id="gap-9">(9)</div>
+
+                        <p>Another key finding relates to the importance of meaning and purpose. People who feel their lives have significance – whether through work, relationships, or contributing to something larger than themselves – report higher levels of well-being than those focused solely on personal pleasure.</p>
+
+                        <div class="gap" data-gap="10" id="gap-10">(10)</div>
+
+                        <p>The research also highlights the role of gratitude and mindfulness practices. Studies show that individuals who regularly express gratitude and engage in present-moment awareness experience measurably improved mood and life satisfaction.</p>
+
+                        <div class="gap" data-gap="11" id="gap-11">(11)</div>
+
+                        <p>Perhaps most encouragingly, the science suggests that happiness isn't entirely determined by genetics or circumstances. While these factors play a role, intentional activities and choices can significantly influence our overall well-being, offering hope for those seeking to improve their quality of life.</p>
+
+                        <div class="gap" data-gap="12" id="gap-12">(12)</div>
+
+                        <p>As this field of research continues to evolve, it promises to provide even more insights into the complex interplay of factors that contribute to human flourishing, potentially revolutionizing how we approach mental health and personal development.</p>
+                    </div>
+
+                    <div class="sentence-bank">
+                        <h5>Choose from the following sentences A-H:</h5>
+                        <div class="sentence-options">
+                            <div class="sentence-option" data-value="A" id="option-A">A) This counterintuitive finding has profound implications for how societies structure their economic policies and individual life choices.</div>
+                            <div class="sentence-option" data-value="B" id="option-B">B) The implications of this research extend far beyond academic circles, influencing everything from workplace policies to educational curricula.</div>
+                            <div class="sentence-option" data-value="C" id="option-C">C) One of the most striking discoveries concerns the relationship between income and happiness, which proves to be far more complex than most people assume.</div>
+                            <div class="sentence-option" data-value="D" id="option-D">D) This doesn't mean that everyone needs to be surrounded by crowds, but rather that having a few meaningful relationships is more valuable than many superficial ones.</div>
+                            <div class="sentence-option" data-value="E" id="option-E">E) Interestingly, this sense of purpose doesn't need to be grandiose – even small acts of kindness or dedication to family can provide the meaning that fuels happiness.</div>
+                            <div class="sentence-option" data-value="F" id="option-F">F) These practices, rooted in ancient wisdom traditions, have now been validated by modern neuroscience, showing measurable changes in brain activity.</div>
+                            <div class="sentence-option" data-value="G" id="option-G">G) This research suggests that approximately 40% of our happiness levels are within our control, leaving considerable room for improvement.</div>
+                            <div class="sentence-option" data-value="H" id="option-H">H) However, the challenge lies in translating these scientific insights into practical strategies that individuals can implement in their daily lives.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Part 3: Multiple Choice (Long Text) -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Reading Part 3: Multiple Choice</h3>
+                    <p>Read a long text and answer 7 multiple-choice questions about detailed understanding</p>
+                </div>
+                
+                <div class="text-passage">
+                    <h4>The Restoration of Notre-Dame: Balancing Preservation and Innovation</h4>
+                    <p>The devastating fire that engulfed Notre-Dame Cathedral in April 2019 presented restoration experts with an unprecedented challenge: how to rebuild one of the world's most iconic structures while respecting both its historical integrity and modern safety standards. The project has sparked intense debate among architects, historians, and cultural preservationists about the appropriate approach to reconstructing a building that has evolved continuously over its 800-year history.</p>
+
+                    <p>At the heart of the controversy lies a fundamental philosophical question: should restoration aim to recreate the cathedral exactly as it was before the fire, or should it embrace the opportunity to incorporate contemporary innovations? Advocates for historical accuracy argue that Notre-Dame's value lies precisely in its authentic medieval construction techniques and materials. They contend that using modern alternatives, even if technically superior, would compromise the building's integrity and historical authenticity. This purist approach demands sourcing traditional materials like the original oak timbers and lead roofing, despite their environmental and cost implications.</p>
+
+                    <p>Conversely, modernist advocates propose that Notre-Dame has always been a living building, incorporating the best technologies and design ideas of each era. They point out that many of the cathedral's most celebrated features, including the flying buttresses and the spire destroyed in the fire, were themselves innovations of their time. From this perspective, the restoration presents an opportunity to demonstrate contemporary architectural excellence while maintaining the building's spiritual and cultural significance. Proposals have included everything from solar panels integrated into the roof design to advanced fire suppression systems that would prevent future disasters.</p>
+
+                    <p>The technical challenges facing the restoration team are immense, regardless of philosophical approach. The fire's intense heat caused significant structural damage beyond what was immediately visible, requiring extensive analysis using cutting-edge diagnostic technologies. Laser scanning and 3D modeling have created detailed digital records of the cathedral's current state, providing blueprints for reconstruction that medieval builders could never have imagined. These technologies have also revealed previously unknown aspects of the cathedral's construction, offering new insights into medieval engineering techniques.</p>
+
+                    <p>Perhaps the most contentious decision concerned the reconstruction of the spire, which collapsed spectacularly during the fire. The original 19th-century spire, designed by Eugène Viollet-le-Duc, was itself a replacement for the medieval tower that had been removed in the 18th century. This layering of historical periods raises complex questions about which version of Notre-Dame should be considered "authentic." After extensive deliberation, authorities opted to recreate Viollet-le-Duc's design, but even this decision remains controversial among those who argue for either a more medieval approach or a thoroughly contemporary interpretation.</p>
+
+                    <p>The restoration project has also highlighted the challenges of preserving traditional craftsmanship skills in the modern era. The reconstruction requires master carpenters, stonemasons, and roofers with expertise in medieval techniques that few contemporary craftsmen possess. This has led to an intensive training program designed to pass down these ancient skills to a new generation of artisans. Ironically, the tragedy has created an opportunity to revitalize traditional building trades that were in danger of disappearing entirely.</p>
+
+                    <p>Financial considerations have added another layer of complexity to the project. The restoration is funded through a mixture of government resources and private donations, with contributions pouring in from around the world. However, the global nature of funding has brought diverse opinions about how the money should be spent, with some donors expressing preferences for particular approaches to the reconstruction. This has required careful diplomatic management to balance respect for benefactors with architectural and historical considerations.</p>
+
+                    <p>As work progresses, the Notre-Dame restoration has become more than just a building project – it's a reflection of how societies in the 21st century relate to their cultural heritage. The decisions made here will influence restoration projects worldwide, establishing precedents for how future generations might approach similar challenges. Whether the project ultimately succeeds in satisfying all stakeholders remains to be seen, but it has certainly succeeded in generating a valuable global conversation about the meaning and value of architectural preservation in our rapidly changing world.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">13</div>
+                        <div class="question-text">What is the main argument of historical accuracy advocates?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="A"> A) Modern materials are too expensive for the project</label>
+                            <label><input type="radio" name="q13" value="B"> B) Using contemporary elements would diminish the building's authenticity</label>
+                            <label><input type="radio" name="q13" value="C"> C) Medieval construction techniques are technically superior</label>
+                            <label><input type="radio" name="q13" value="D"> D) Environmental concerns should take priority over innovation</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">14</div>
+                        <div class="question-text">According to the text, what do modernist advocates emphasize about Notre-Dame?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="A"> A) Its need for complete redesign</label>
+                            <label><input type="radio" name="q14" value="B"> B) Its historical tradition of incorporating innovation</label>
+                            <label><input type="radio" name="q14" value="C"> C) Its primarily spiritual rather than architectural significance</label>
+                            <label><input type="radio" name="q14" value="D"> D) Its potential as a modern tourist attraction</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">15</div>
+                        <div class="question-text">What does the writer suggest about the technical challenges of the restoration?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="A"> A) They are impossible to overcome with current technology</label>
+                            <label><input type="radio" name="q15" value="B"> B) They exist regardless of the philosophical approach chosen</label>
+                            <label><input type="radio" name="q15" value="C"> C) They are primarily financial rather than technical</label>
+                            <label><input type="radio" name="q15" value="D"> D) They have been exaggerated by the media</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">16</div>
+                        <div class="question-text">What point does the writer make about the spire decision?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q16" value="A"> A) It was unanimously supported by experts</label>
+                            <label><input type="radio" name="q16" value="B"> B) It reflects the complex nature of architectural "authenticity"</label>
+                            <label><input type="radio" name="q16" value="C"> C) It was influenced primarily by cost considerations</label>
+                            <label><input type="radio" name="q16" value="D"> D) It ignores important historical evidence</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">17</div>
+                        <div class="question-text">What does the writer suggest about traditional craftsmanship skills?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q17" value="A"> A) They are inferior to modern construction methods</label>
+                            <label><input type="radio" name="q17" value="B"> B) They are too expensive to maintain in the modern era</label>
+                            <label><input type="radio" name="q17" value="C"> C) They have unexpectedly benefited from the restoration project</label>
+                            <label><input type="radio" name="q17" value="D"> D) They should be abandoned in favor of contemporary techniques</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">18</div>
+                        <div class="question-text">What complication has arisen from international funding?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q18" value="A"> A) Insufficient money has been raised</label>
+                            <label><input type="radio" name="q18" value="B"> B) Donors have conflicting preferences about the restoration approach</label>
+                            <label><input type="radio" name="q18" value="C"> C) Legal disputes have emerged over fund management</label>
+                            <label><input type="radio" name="q18" value="D"> D) Currency fluctuations have affected the budget</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">19</div>
+                        <div class="question-text">What does the writer conclude about the Notre-Dame restoration?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q19" value="A"> A) It will definitely satisfy all interested parties</label>
+                            <label><input type="radio" name="q19" value="B"> B) It has generated important discussions about heritage preservation</label>
+                            <label><input type="radio" name="q19" value="C"> C) It should have been approached differently from the beginning</label>
+                            <label><input type="radio" name="q19" value="D"> D) It is unlikely to influence future restoration projects</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Part 4: Multiple Matching -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Reading Part 4: Multiple Matching</h3>
+                    <p>Read 4 short texts and match statements 20-34 to the texts</p>
+                </div>
+                
+                <div class="matching-container">
+                    <div class="texts-section">
+                        <h4>Texts A-D: Environmental Innovation</h4>
+                        
+                        <div class="match-text" data-text="A">
+                            <h5>Text A - Vertical Farming</h5>
+                            <p>Vertical farming represents a revolutionary approach to agriculture that could address food security challenges in urban environments. By growing crops in vertically stacked layers within controlled environments, this method uses up to 95% less water than traditional farming while producing yields up to 365 times greater per square foot. LED lighting systems provide optimized light spectrums for plant growth, while automated nutrient delivery systems ensure consistent growing conditions. The technology eliminates the need for pesticides and herbicides, producing cleaner food while reducing environmental impact. Although initial setup costs are substantial, the long-term benefits include year-round production, independence from weather conditions, and dramatically reduced transportation needs when farms are located near urban centers.</p>
+                        </div>
+
+                        <div class="match-text" data-text="B">
+                            <h5>Text B - Ocean Plastic Recovery</h5>
+                            <p>Ocean plastic recovery systems have emerged as a promising solution to marine pollution, with several innovative approaches now being tested worldwide. The most ambitious projects involve large-scale collection systems that use ocean currents to concentrate plastic waste, making removal more efficient. Advanced sorting technologies can separate different types of plastic for recycling into new products, from clothing fibers to construction materials. However, critics argue that prevention is more important than cleanup, pointing out that millions of tons of new plastic enter the oceans annually. The technology also faces challenges in distinguishing between plastic waste and marine life, requiring sophisticated detection systems to avoid ecological damage. Despite these limitations, successful pilot projects have demonstrated the feasibility of removing significant quantities of plastic from ocean gyres.</p>
+                        </div>
+
+                        <div class="match-text" data-text="C">
+                            <h5>Text C - Carbon Capture and Storage</h5>
+                            <p>Carbon capture and storage (CCS) technology offers a potential pathway to reducing atmospheric CO2 levels, though its implementation faces significant technical and economic challenges. The process involves capturing carbon dioxide from industrial sources or directly from the atmosphere, then storing it underground or converting it into useful products. Direct air capture facilities can remove thousands of tons of CO2 annually, but current costs make the technology economically unviable without government subsidies. The storage component requires careful geological assessment to ensure captured carbon remains permanently sequestered. Recent innovations have focused on converting captured CO2 into synthetic fuels, building materials, and chemicals, creating economic incentives for carbon removal. While promising, critics argue that CCS could perpetuate fossil fuel dependence rather than accelerating the transition to renewable energy.</p>
+                        </div>
+
+                        <div class="match-text" data-text="D">
+                            <h5>Text D - Smart Grid Technology</h5>
+                            <p>Smart grid technology transforms traditional electrical networks into responsive, efficient systems capable of integrating renewable energy sources and optimizing power distribution. Two-way communication between utilities and consumers enables real-time monitoring of energy usage, allowing for dynamic pricing and demand management. The technology supports electric vehicle charging networks and enables households with solar panels to sell excess energy back to the grid. Advanced analytics predict peak demand periods and automatically balance supply across different sources, reducing waste and improving reliability. However, the transition requires massive infrastructure investments and raises concerns about cybersecurity vulnerabilities. Privacy advocates worry about the detailed energy usage data collected by smart meters. Despite these challenges, smart grids are essential for accommodating the variable nature of renewable energy sources like wind and solar power.</p>
+                        </div>
+                    </div>
+
+                    <div class="questions-section">
+                        <h4>Questions 20-34: Match each statement to a text (A-D)</h4>
+                        <div class="matching-questions">
+                            <div class="match-question">
+                                <span class="q-number">20</span>
+                                <span class="q-text">This technology enables two-way energy transactions between producers and consumers.</span>
+                                <select name="q20" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">21</span>
+                                <span class="q-text">Critics suggest this approach might delay necessary changes to current practices.</span>
+                                <select name="q21" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">22</span>
+                                <span class="q-text">The method produces significantly higher yields in a smaller space.</span>
+                                <select name="q22" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">23</span>
+                                <span class="q-text">The technology must avoid interfering with natural ecosystems.</span>
+                                <select name="q23" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">24</span>
+                                <span class="q-text">Economic viability currently depends on government financial support.</span>
+                                <select name="q24" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">25</span>
+                                <span class="q-text">The system requires substantial upfront investment but offers long-term advantages.</span>
+                                <select name="q25" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">26</span>
+                                <span class="q-text">Concerns exist about data privacy and security vulnerabilities.</span>
+                                <select name="q26" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">27</span>
+                                <span class="q-text">Prevention is considered more important than dealing with existing problems.</span>
+                                <select name="q27" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">28</span>
+                                <span class="q-text">The technology eliminates dependence on weather conditions.</span>
+                                <select name="q28" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">29</span>
+                                <span class="q-text">Natural forces are utilized to improve efficiency of the process.</span>
+                                <select name="q29" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">30</span>
+                                <span class="q-text">Collected materials can be transformed into various commercial products.</span>
+                                <select name="q30" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">31</span>
+                                <span class="q-text">The approach is essential for managing variable energy sources.</span>
+                                <select name="q31" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">32</span>
+                                <span class="q-text">The method produces cleaner output without harmful chemicals.</span>
+                                <select name="q32" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">33</span>
+                                <span class="q-text">Careful geological evaluation is necessary for permanent storage.</span>
+                                <select name="q33" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">34</span>
+                                <span class="q-text">Successful trials have demonstrated the potential for large-scale implementation.</span>
+                                <select name="q34" class="match-select">
+                                    <option value="">Choose...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Part 1: Essay -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Writing Part 1: Essay</h3>
+                    <p>Write an essay of 220-260 words giving your opinion on the topic</p>
+                </div>
+                
+                <div class="writing-task">
+                    <div class="task-prompt">
+                        <h4>Essay Question</h4>
+                        <p><strong>In your English class you have been talking about the impact of artificial intelligence on employment. You have made the notes below:</strong></p>
+                        
+                        <div class="essay-notes">
+                            <div class="note-box">
+                                <h5>Ways AI might affect employment:</h5>
+                                <ul>
+                                    <li>job displacement in certain industries</li>
+                                    <li>creation of new types of jobs</li>
+                                    <li>need for reskilling and education</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="opinions-box">
+                                <h5>Some opinions expressed in the discussion:</h5>
+                                <blockquote>"AI will make many jobs obsolete – we need to prepare for mass unemployment."</blockquote>
+                                <blockquote>"Technology has always created more jobs than it destroys in the long run."</blockquote>
+                                <blockquote>"The key is investing in education and training programs to help workers adapt."</blockquote>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Write an essay discussing TWO of the ways AI might affect employment mentioned in your notes. You should explain which way you think will have the greater impact and give reasons for your opinion.</strong></p>
+                    </div>
+                    
+                    <div class="writing-area">
+                        <div class="word-counter">
+                            <span>Words: <span id="essay-word-count">0</span> / 220-260</span>
+                            <div class="counter-bar">
+                                <div id="essay-counter-fill" class="counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea id="essay-text" placeholder="Write your essay here..." rows="15"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Part 2: Choice of Tasks -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Writing Part 2: Choice of Tasks</h3>
+                    <p>Choose ONE task and write 220-260 words</p>
+                </div>
+                
+                <div class="task-choice">
+                    <div class="task-option" data-task="letter">
+                        <div class="task-type">
+                            <i class="fas fa-envelope"></i>
+                            Letter/Email
+                        </div>
+                        <h4>Option A: Letter to Local Newspaper</h4>
+                        <p>You recently read an article in your local newspaper about plans to build a new shopping center in your area. Write a letter to the newspaper editor expressing your views on this development.</p>
+                        <blockquote>Write your letter. You should explain why you are writing, give your opinion on the proposed shopping center, and suggest what the community's priorities should be.</blockquote>
+                    </div>
+
+                    <div class="task-option" data-task="proposal">
+                        <div class="task-type">
+                            <i class="fas fa-lightbulb"></i>
+                            Proposal
+                        </div>
+                        <h4>Option B: Workplace Wellness Proposal</h4>
+                        <p>Your company wants to improve employee wellness and has asked for proposals from staff. Write a proposal suggesting ways to promote health and well-being in your workplace.</p>
+                        <blockquote>Write your proposal. You should describe the current situation, propose specific improvements, and explain how these changes would benefit both employees and the company.</blockquote>
+                    </div>
+
+                    <div class="task-option" data-task="review">
+                        <div class="task-type">
+                            <i class="fas fa-star"></i>
+                            Review
+                        </div>
+                        <h4>Option C: Technology Review</h4>
+                        <p>You have been asked to write a review of a piece of technology (smartphone, laptop, app, etc.) for a technology website. Write a review that will help other users decide whether to purchase or use it.</p>
+                        <blockquote>Write your review. You should describe the technology, evaluate its main features and performance, and make a clear recommendation about who would benefit from using it.</blockquote>
+                    </div>
+
+                    <div class="task-option" data-task="report">
+                        <div class="task-type">
+                            <i class="fas fa-chart-bar"></i>
+                            Report
+                        </div>
+                        <h4>Option D: Community Survey Report</h4>
+                        <p>You conducted a survey among young people in your community about their career aspirations and concerns. Write a report summarizing your findings for the local youth council.</p>
+                        <blockquote>Write your report. You should present the main findings from your survey, analyze the key trends, and make recommendations for supporting young people's career development.</blockquote>
+                    </div>
+                </div>
+
+                <div id="part2-writing" class="writing-area" style="display: none;">
+                    <div class="word-counter">
+                        <span>Words: <span id="part2-word-count">0</span> / 220-260</span>
+                        <div class="counter-bar">
+                            <div id="part2-counter-fill" class="counter-fill"></div>
+                        </div>
+                    </div>
+                    <textarea id="part2-text" placeholder="Write your answer here..." rows="15"></textarea>
+                </div>
+            </div>
+
+            <!-- Section Actions -->
+            <div class="section-actions">
+                <button id="save-reading-writing" class="btn-primary">
+                    <i class="fas fa-save"></i> Save Progress
+                </button>
+                <button id="next-to-listening" class="btn-secondary">
+                    Next: Listening <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Listening Section -->
+        <section id="listening-section" class="exam-section">
+            <div class="section-header">
+                <h2><i class="fas fa-headphones"></i> Listening</h2>
+                <p class="section-description">4 parts, 30 questions • 40 minutes</p>
+            </div>
+
+            <div class="listening-placeholder">
+                <i class="fas fa-headphones"></i>
+                <h3>Listening Section</h3>
+                <p>This section would contain audio files and listening comprehension tasks.</p>
+                <p>In a complete implementation, this would include:</p>
+                <ul style="text-align: left; margin-top: 2rem;">
+                    <li>Part 1: Multiple choice (6 questions)</li>
+                    <li>Part 2: Sentence completion (8 questions)</li>
+                    <li>Part 3: Multiple choice (6 questions)</li>
+                    <li>Part 4: Multiple matching (10 questions)</li>
+                </ul>
+            </div>
+
+            <div class="section-actions">
+                <button id="save-listening" class="btn-primary">
+                    <i class="fas fa-save"></i> Save Progress
+                </button>
+                <button id="next-to-speaking" class="btn-secondary">
+                    Next: Speaking <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Speaking Section -->
+        <section id="speaking-section" class="exam-section">
+            <div class="section-header">
+                <h2><i class="fas fa-microphone"></i> Speaking</h2>
+                <p class="section-description">4 parts • 15 minutes per pair of candidates</p>
+            </div>
+
+            <div class="speaking-placeholder">
+                <i class="fas fa-microphone"></i>
+                <h3>Speaking Section</h3>
+                <p>This section would contain speaking tasks and recording capabilities.</p>
+                
+                <div class="speaking-parts">
+                    <div class="speaking-part">
+                        <h4>Part 1: Interview (2 minutes)</h4>
+                        <p>Personal questions and general conversation with the examiner.</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 2: Long Turn (4 minutes)</h4>
+                        <p>1-minute presentations by each candidate, comparing photos.</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 3: Collaborative Task (4 minutes)</h4>
+                        <p>Discussion and decision-making task between candidates.</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 4: Discussion (5 minutes)</h4>
+                        <p>Extended discussion related to Part 3 theme.</p>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p><strong>Note:</strong> In the actual exam, this section would be conducted face-to-face with an examiner and another candidate.</p>
+                </div>
+            </div>
+
+            <div class="section-actions">
+                <button id="save-speaking" class="btn-primary">
+                    <i class="fas fa-save"></i> Save Progress
+                </button>
+                <button id="finish-exam" class="btn-success">
+                    <i class="fas fa-flag-checkered"></i> Finish Exam
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-bar"></i> Exam Results</h2>
+                <button id="close-results" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="results-summary">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <div id="fab-options" class="fab-options">
+            <div id="fab-help" class="fab-option">
+                <i class="fas fa-question-circle"></i>
+                <span>Help</span>
+            </div>
+            <div id="fab-bookmark" class="fab-option">
+                <i class="fas fa-bookmark"></i>
+                <span>Bookmark</span>
+            </div>
+            <div id="fab-calculator" class="fab-option">
+                <i class="fas fa-calculator"></i>
+                <span>Calculator</span>
+            </div>
+        </div>
+        <button id="fab-main" class="fab">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

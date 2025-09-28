@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Valenciano CIEACOVA - Simulador de Prova | NEOLINGUS</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Practica l'examen B1 de Valenciano CIEACOVA amb simulació autèntica. Comprensió lectora, expressió escrita i avaluació automàtica.">
+    <meta name="keywords" content="B1 Valenciano, CIEACOVA, examen valencià, simulador, NEOLINGUS">
+    <meta name="author" content="NEOLINGUS">
+    <meta property="og:title" content="Simulador B1 Valenciano CIEACOVA - NEOLINGUS">
+    <meta property="og:description" content="Simulació autèntica de l'examen B1 de Valenciano amb correcció automàtica">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Icons and Fonts -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#f59e0b">
+</head>
+
+<body>
+    <!-- Exam Header -->
+    <header class="exam-header">
+        <div class="exam-info">
+            <h1>
+                <i class="fas fa-mountain"></i>
+                B1 Valenciano CIEACOVA
+            </h1>
+            <div class="exam-year">Prova Oficial 2024</div>
+        </div>
+        <div class="timer-section">
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="time-display">02:30:00</span>
+            </div>
+            <button id="pause-btn" class="pause-btn">
+                <i class="fas fa-pause"></i> Pausa
+            </button>
+        </div>
+    </header>
+
+    <!-- Section Navigation -->
+    <nav class="section-nav">
+        <div class="nav-pill active" data-section="comprensio-lectora">
+            <i class="fas fa-book-reader"></i>
+            <span>Comprensió Lectora</span>
+            <div class="pill-time">1h 15m</div>
+        </div>
+        <div class="nav-pill" data-section="expressio-escrita">
+            <i class="fas fa-pen-fancy"></i>
+            <span>Expressió Escrita</span>
+            <div class="pill-time">1h 15m</div>
+        </div>
+        <div class="nav-pill" data-section="comprensio-auditiva">
+            <i class="fas fa-headphones"></i>
+            <span>Comprensió Auditiva</span>
+            <div class="pill-time">30 min</div>
+        </div>
+        <div class="nav-pill" data-section="expressio-oral">
+            <i class="fas fa-microphone"></i>
+            <span>Expressió Oral</span>
+            <div class="pill-time">15 min</div>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <span id="progress-text" class="progress-text">0 / 45 preguntes completades</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="exam-content">
+        
+        <!-- Comprensió Lectora Section -->
+        <section id="comprensio-lectora-section" class="exam-section active">
+            <div class="section-header">
+                <h2><i class="fas fa-book-reader"></i> Comprensió Lectora</h2>
+                <p class="section-description">4 exercicis, 20 preguntes • 1 hora 15 minuts</p>
+            </div>
+
+            <!-- Exercici 1: Text informatiu -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 1: Text informatiu</h3>
+                    <p>Llig el text i contesta les preguntes sobre el contingut</p>
+                </div>
+                
+                <div class="text-passage">
+                    <h4>La importància del valencià en l'era digital</h4>
+                    <p>En els darrers anys, la presència del valencià en l'àmbit digital ha experimentat un creixement notable. Les xarxes socials, els llocs web i les aplicacions mòbils han començat a incorporar aquesta llengua de manera més sistemàtica, cosa que ha contribuït a normalitzar-ne l'ús entre les generacions més joves.</p>
+
+                    <p>Aquest fenomen no és casualitat, sinó el resultat d'una política lingüística deliberada que busca adaptar el valencià als nous temps. Les institucions públiques han impulsat diverses iniciatives per fomentar l'ús de la llengua en els mitjans digitals, des de la creació de contingut audiovisual fins al desenvolupament d'eines tecnològiques específiques.</p>
+
+                    <p>Un dels aspectes més destacats és la incorporació de traductors automàtics que funcionen amb el valencià. Aquestes eines permeten que qualsevol persona puga accedir a contingut en aquesta llengua, independentment del seu nivell de competència lingüística. Això ha obert noves possibilitats per a la difusió cultural i educativa.</p>
+
+                    <p>No obstante, els reptes encara són considerables. La creació de contingut digital de qualitat en valencià requereix recursos humans i tècnics especialitzats, que no sempre estan disponibles. A més, la competència amb altres llengües majoritàries en l'àmbit digital continua sent un obstacle significatiu.</p>
+
+                    <p>Malgrat aquests desafiaments, l'evolució del valencià en el món digital mostra una tendència positiva. Cada vegada més empreses tecnològiques reconeixen la importància d'oferir els seus serveis en aquesta llengua, i la comunitat d'usuaris valencianoparlants es mostra cada cop més activa en la producció i consum de contingut digital propi.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">1</div>
+                        <div class="question-text">Segons el text, què ha contribuït a normalitzar l'ús del valencià entre els joves?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="A"> A) Les polítiques educatives tradicionals</label>
+                            <label><input type="radio" name="q1" value="B"> B) La presència en mitjans digitals i xarxes socials</label>
+                            <label><input type="radio" name="q1" value="C"> C) L'obligatorietat en l'administració pública</label>
+                            <label><input type="radio" name="q1" value="D"> D) Els programes de televisió autonòmica</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">2</div>
+                        <div class="question-text">Quin avantatge específic menciona el text sobre els traductors automàtics?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="A"> A) Són més ràpids que els humans</label>
+                            <label><input type="radio" name="q2" value="B"> B) Permeten l'accés a contingut sense necessitat d'alt nivell lingüístic</label>
+                            <label><input type="radio" name="q2" value="C"> C) Funcionen millor que en altres llengües</label>
+                            <label><input type="radio" name="q2" value="D"> D) Són gratuïts per a tothom</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">3</div>
+                        <div class="question-text">Segons el text, quin és el principal obstacle per al valencià digital?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="A"> A) La falta d'interès dels usuaris</label>
+                            <label><input type="radio" name="q3" value="B"> B) La competència amb llengües majoritàries</label>
+                            <label><input type="radio" name="q3" value="C"> C) L'absència de polítiques públiques</label>
+                            <label><input type="radio" name="q3" value="D"> D) Els problemes tècnics dels dispositius</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">4</div>
+                        <div class="question-text">Com valora l'autor l'evolució futura del valencià digital?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="A"> A) Pessimista a causa dels obstacles</label>
+                            <label><input type="radio" name="q4" value="B"> B) Neutra, sense prendre posició</label>
+                            <label><input type="radio" name="q4" value="C"> C) Optimista per la tendència positiva</label>
+                            <label><input type="radio" name="q4" value="D"> D) Preocupada per la falta de recursos</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">5</div>
+                        <div class="question-text">Què indica el text sobre la comunitat valencianoparlant en l'àmbit digital?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="A"> A) Només consumeix contingut, no el produeix</label>
+                            <label><input type="radio" name="q5" value="B"> B) És passiva davant els canvis tecnològics</label>
+                            <label><input type="radio" name="q5" value="C"> C) Està cada vegada més activa en producció i consum</label>
+                            <label><input type="radio" name="q5" value="D"> D) Prefereix altres llengües per a l'ús digital</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercici 2: Text literari -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 2: Text literari</h3>
+                    <p>Llig el fragment següent i respon les preguntes</p>
+                </div>
+                
+                <div class="text-passage">
+                    <h4>Fragment de "Paisatges de la memòria"</h4>
+                    <p><em>Aquell matí de novembre, quan la boira encara embolicava els carrers del barri vell, Marina va decidir que ja era hora de tornar. Havia passat tres anys a la ciutat, estudiant i treballant, però el cor li tirava cap a casa com una força invisible.</em></p>
+
+                    <p><em>El tren va travessar pobles que coneixia de memòria, camps que havia recorregut de menuda amb el seu avi, ponts que guardaven secrets d'estius llunyans. Cada paisatge era una pàgina del llibre de la seua vida, escrita amb la tinta de les emocions més pures.</em></p>
+
+                    <p><em>Quan va arribar a l'estació del seu poble, tot li va semblar més petit del que recordava. Les cases, els carrers, fins i tot les muntanyes de l'horitzó. Però no era que les coses hagueren encongit, sinó que ella havia crescut, havia vist món, havia descobert que la vida podia ser molt més àmplia del que mai havia imaginat.</em></p>
+
+                    <p><em>A casa l'esperaven amb un sopar de reis. La taula parada com en les grans ocasions, amb la vaixella bona i el llum de les espelmes que feia brillar els ulls de tots. En aquell moment va comprendre que, malgrat tot el que havia viscut lluny de casa, aquest era el seu lloc en el món, el punt de partida i d'arribada de tots els seus viatges.</em></p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">6</div>
+                        <div class="question-text">Per què Marina decideix tornar al seu poble?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="A"> A) Perquè ha acabat els estudis</label>
+                            <label><input type="radio" name="q6" value="B"> B) Per problemes econòmics</label>
+                            <label><input type="radio" name="q6" value="C"> C) Perquè sent una atracció emocional cap a casa</label>
+                            <label><input type="radio" name="q6" value="D"> D) Per obligacions familiars</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">7</div>
+                        <div class="question-text">Què simbolitzen els paisatges durant el viatge en tren?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="A"> A) La bellesa natural de la comarca</label>
+                            <label><input type="radio" name="q7" value="B"> B) Els records i les emocions del passat</label>
+                            <label><input type="radio" name="q7" value="C"> C) Els canvis socials del territori</label>
+                            <label><input type="radio" name="q7" value="D"> D) La ruta més ràpida cap a casa</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">8</div>
+                        <div class="question-text">Com interpreta Marina que tot li sembli més petit?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="A"> A) El poble ha perdut habitants</label>
+                            <label><input type="radio" name="q8" value="B"> B) Han demolit edificis</label>
+                            <label><input type="radio" name="q8" value="C"> C) Ella ha madurat i canviat la perspectiva</label>
+                            <label><input type="radio" name="q8" value="D"> D) La memòria li jugava males passades</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">9</div>
+                        <div class="question-text">Què comprèn Marina durant el sopar familiar?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="A"> A) Que ha malgastat el temps a la ciutat</label>
+                            <label><input type="radio" name="q9" value="B"> B) Que casa és el seu veritable lloc en el món</label>
+                            <label><input type="radio" name="q9" value="C"> C) Que la familia ha canviat massa</label>
+                            <label><input type="radio" name="q9" value="D"> D) Que ha de marxar de nou</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">10</div>
+                        <div class="question-text">Quin to predomina en aquest fragment?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="A"> A) Melancòlic i nostàlgic</label>
+                            <label><input type="radio" name="q10" value="B"> B) Alegre i festiu</label>
+                            <label><input type="radio" name="q10" value="C"> C) Crític i irònic</label>
+                            <label><input type="radio" name="q10" value="D"> D) Dramàtic i tràgic</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercici 3: Text argumentatiu -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 3: Text argumentatiu</h3>
+                    <p>Llig l'article d'opinió i contesta les preguntes</p>
+                </div>
+                
+                <div class="text-passage">
+                    <h4>El futur del transport públic valencià</h4>
+                    <p>El transport públic a les ciutats valencianes es troba en un moment crític. Les necessitats de mobilitat de la ciutadania han canviat dràsticament en les darreres dècades, però la infraestructura i els serveis no sempre han sabut adaptar-se a aquests canvis.</p>
+
+                    <p>En primer lloc, cal reconèixer els avanços significatius que s'han produït. La xarxa de metro de València ha crescut considerablement, connectant punts estratègics de la ciutat i millorant l'accessibilitat. Així mateix, l'electrificació progressiva de la flota d'autobusos representa un pas endavant cap a un transport més sostenible.</p>
+
+                    <p>Tanmateix, els reptes pendents són nombrosos. La freqüència dels serveis encara és insuficient en moltes línies, especialment durant els caps de setmana i en horaris nocturns. A més, la coordinació entre diferents modes de transport continua sent deficient, cosa que dificulta els trajectes combinats.</p>
+
+                    <p>Per altra banda, no podem obviar l'impacte de les noves tecnologies. Les aplicacions mòbils han revolucionat la manera com els usuaris planifiquen els seus desplaçaments, i els sistemes de pagament electrònic han simplificat l'accés als serveis. Però encara hi ha marge per a la innovació, especialment en l'àmbit de la informació en temps real.</p>
+
+                    <p>En conclusió, el futur del transport públic valencià passa per una aposta decidida per la modernització tecnològica, l'ampliació de la cobertura i la millora de la coordinació entre serveis. Només així podrem oferir una alternativa realment atractiva al transport privat i contribuir a la sostenibilitat urbana.</p>
+                </div>
+
+                <div class="questions-grid">
+                    <div class="question-item">
+                        <div class="question-number">11</div>
+                        <div class="question-text">Segons l'autor, en quin moment es troba el transport públic valencià?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q11" value="A"> A) En plena expansió</label>
+                            <label><input type="radio" name="q11" value="B"> B) En un moment crític</label>
+                            <label><input type="radio" name="q11" value="C"> C) En declivi</label>
+                            <label><input type="radio" name="q11" value="D"> D) Estabilitzat</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">12</div>
+                        <div class="question-text">Quin exemple d'avanç destaca l'article?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q12" value="A"> A) L'augment del preu dels bitllets</label>
+                            <label><input type="radio" name="q12" value="B"> B) L'ampliació de la xarxa de metro</label>
+                            <label><input type="radio" name="q12" value="C"> C) La reducció d'horaris</label>
+                            <label><input type="radio" name="q12" value="D"> D) La privatització dels serveis</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">13</div>
+                        <div class="question-text">Quin problema menciona l'autor sobre la freqüència?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q13" value="A"> A) És excessiva durant la setmana</label>
+                            <label><input type="radio" name="q13" value="B"> B) És insuficient caps de setmana i nits</label>
+                            <label><input type="radio" name="q13" value="C"> C) Només afecta el metro</label>
+                            <label><input type="radio" name="q13" value="D"> D) S'ha solucionat recentment</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">14</div>
+                        <div class="question-text">Com valora l'autor l'impacte de les noves tecnologies?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q14" value="A"> A) Negativament, creen confusió</label>
+                            <label><input type="radio" name="q14" value="B"> B) Positivament, han millorat l'experiència</label>
+                            <label><input type="radio" name="q14" value="C"> C) Amb indiferència</label>
+                            <label><input type="radio" name="q14" value="D"> D) Sols per a joves</label>
+                        </div>
+                    </div>
+
+                    <div class="question-item">
+                        <div class="question-number">15</div>
+                        <div class="question-text">Quina és la conclusió principal de l'article?</div>
+                        <div class="options">
+                            <label><input type="radio" name="q15" value="A"> A) Cal privatitzar els serveis</label>
+                            <label><input type="radio" name="q15" value="B"> B) És necessari modernitzar i ampliar</label>
+                            <label><input type="radio" name="q15" value="C"> C) El transport privat és millor</label>
+                            <label><input type="radio" name="q15" value="D"> D) La situació és irreversible</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercici 4: Comprensió global -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 4: Comprensió global</h3>
+                    <p>Relaciona els textos breus amb les situacions corresponents</p>
+                </div>
+                
+                <div class="matching-container">
+                    <div class="texts-section">
+                        <h4>Textos A-F</h4>
+                        
+                        <div class="match-text" data-text="A">
+                            <h5>Text A</h5>
+                            <p>"Estimada clientela, informem que el nostre restaurant romandrà tancat del 15 al 30 de novembre per renovació de la cuina. Reobrirem amb noves especialitats i un menú renovat. Gràcies per la vostra comprensió."</p>
+                        </div>
+
+                        <div class="match-text" data-text="B">
+                            <h5>Text B</h5>
+                            <p>"S'ofereix habitació individual en pis compartit, zona universitària. Ambient tranquil, ideal per a estudiants. Inclou connexió wifi i ús de cuina. Contactar per WhatsApp: 666123456."</p>
+                        </div>
+
+                        <div class="match-text" data-text="C">
+                            <h5>Text C</h5>
+                            <p>"Recordatori: La cita amb el Dr. Martínez està programada per demà, dijous 18, a les 10:30h. Si no pot assistir-hi, avise amb 24 hores d'antelació."</p>
+                        </div>
+
+                        <div class="match-text" data-text="D">
+                            <h5>Text D</h5>
+                            <p>"Felicitats! Ha guanyat un val de 500€ per a gastar en la nostra botiga. Per recollir el premi, faça clic en l'enllaç i introduïsca les seues dades bancàries."</p>
+                        </div>
+
+                        <div class="match-text" data-text="E">
+                            <h5>Text E</h5>
+                            <p>"Degut a les condicions meteorològiques adverses, l'excursió programada per a diumenge s'ajorna fins a nou avís. Els participants seran informats de la nova data."</p>
+                        </div>
+
+                        <div class="match-text" data-text="F">
+                            <h5>Text F</h5>
+                            <p>"Mare, no podré arribar a sopar. La reunió s'ha allargat més del previst. Guarda'm quelcom al frigorífic, per favor. Petó!"</p>
+                        </div>
+                    </div>
+
+                    <div class="questions-section">
+                        <h4>Preguntes 16-20: Quina situació correspon a cada text?</h4>
+                        <div class="matching-questions">
+                            <div class="match-question">
+                                <span class="q-number">16</span>
+                                <span class="q-text">Un missatge familiar informal</span>
+                                <select name="q16" class="match-select">
+                                    <option value="">Tria...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">17</span>
+                                <span class="q-text">Un possible intent d'estafa</span>
+                                <select name="q17" class="match-select">
+                                    <option value="">Tria...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">18</span>
+                                <span class="q-text">Una cancel·lació per motius meteorològics</span>
+                                <select name="q18" class="match-select">
+                                    <option value="">Tria...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">19</span>
+                                <span class="q-text">Un anunci de lloguer d'habitació</span>
+                                <select name="q19" class="match-select">
+                                    <option value="">Tria...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+
+                            <div class="match-question">
+                                <span class="q-number">20</span>
+                                <span class="q-text">Un avís de tancament temporal</span>
+                                <select name="q20" class="match-select">
+                                    <option value="">Tria...</option>
+                                    <option value="A">Text A</option>
+                                    <option value="B">Text B</option>
+                                    <option value="C">Text C</option>
+                                    <option value="D">Text D</option>
+                                    <option value="E">Text E</option>
+                                    <option value="F">Text F</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Actions -->
+            <div class="section-actions">
+                <button id="save-comprensio-lectora" class="btn-primary">
+                    <i class="fas fa-save"></i> Guarda el Progrés
+                </button>
+                <button id="next-to-expressio-escrita" class="btn-secondary">
+                    Següent: Expressió Escrita <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Expressió Escrita Section -->
+        <section id="expressio-escrita-section" class="exam-section">
+            <div class="section-header">
+                <h2><i class="fas fa-pen-fancy"></i> Expressió Escrita</h2>
+                <p class="section-description">2 exercicis • 1 hora 15 minuts</p>
+            </div>
+
+            <!-- Exercici 1: Text informal -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 1: Correu electrònic informal</h3>
+                    <p>Escriu un correu electrònic informal d'entre 120-150 paraules</p>
+                </div>
+                
+                <div class="writing-task">
+                    <div class="task-prompt">
+                        <h4>Situació</h4>
+                        <p><strong>Un amic estranger vol visitar la teua ciutat durant les festes nadalenques. Escriu-li un correu electrònic amb informació pràctica i recomanacions.</strong></p>
+                        
+                        <div class="task-guidelines">
+                            <h5>Ha d'incloure:</h5>
+                            <ul>
+                                <li>Recomanacions d'allotjament</li>
+                                <li>Activitats típiques de Nadal</li>
+                                <li>Informació sobre el temps i la roba adequada</li>
+                                <li>Consells de transport</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="writing-area">
+                        <div class="word-counter">
+                            <span>Paraules: <span id="email-word-count">0</span> / 120-150</span>
+                            <div class="counter-bar">
+                                <div id="email-counter-fill" class="counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea id="email-text" placeholder="Escriu el teu correu electrònic ací..." rows="12"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercici 2: Text formal -->
+            <div class="part-container">
+                <div class="part-header">
+                    <h3>Exercici 2: Text argumentatiu</h3>
+                    <p>Escriu un text argumentatiu d'entre 150-180 paraules</p>
+                </div>
+                
+                <div class="writing-task">
+                    <div class="task-prompt">
+                        <h4>Tema</h4>
+                        <p><strong>"L'ús de les xarxes socials entre els joves: avantatges i inconvenients"</strong></p>
+                        
+                        <div class="task-guidelines">
+                            <h5>El text ha de contenir:</h5>
+                            <ul>
+                                <li>Una introducció que presente el tema</li>
+                                <li>Arguments a favor i en contra</li>
+                                <li>Exemples concrets</li>
+                                <li>Una conclusió amb la teua opinió personal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="writing-area">
+                        <div class="word-counter">
+                            <span>Paraules: <span id="article-word-count">0</span> / 150-180</span>
+                            <div class="counter-bar">
+                                <div id="article-counter-fill" class="counter-fill"></div>
+                            </div>
+                        </div>
+                        <textarea id="article-text" placeholder="Escriu el teu text argumentatiu ací..." rows="15"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Actions -->
+            <div class="section-actions">
+                <button id="save-expressio-escrita" class="btn-primary">
+                    <i class="fas fa-save"></i> Guarda el Progrés
+                </button>
+                <button id="next-to-comprensio-auditiva" class="btn-secondary">
+                    Següent: Comprensió Auditiva <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Comprensió Auditiva Section -->
+        <section id="comprensio-auditiva-section" class="exam-section">
+            <div class="section-header">
+                <h2><i class="fas fa-headphones"></i> Comprensió Auditiva</h2>
+                <p class="section-description">3 exercicis, 15 preguntes • 30 minuts</p>
+            </div>
+
+            <div class="listening-placeholder">
+                <i class="fas fa-headphones"></i>
+                <h3>Secció de Comprensió Auditiva</h3>
+                <p>Esta secció contindria materials d'àudio en valencià i tasques d'escolta.</p>
+                <p>En una implementació completa, inclouria:</p>
+                <ul style="text-align: left; margin-top: 2rem;">
+                    <li>Exercici 1: Diàlegs breus (5 preguntes)</li>
+                    <li>Exercici 2: Monòleg informatiu (5 preguntes)</li>
+                    <li>Exercici 3: Conversa llarga (5 preguntes)</li>
+                </ul>
+            </div>
+
+            <div class="section-actions">
+                <button id="save-comprensio-auditiva" class="btn-primary">
+                    <i class="fas fa-save"></i> Guarda el Progrés
+                </button>
+                <button id="next-to-expressio-oral" class="btn-secondary">
+                    Següent: Expressió Oral <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Expressió Oral Section -->
+        <section id="expressio-oral-section" class="exam-section">
+            <div class="section-header">
+                <h2><i class="fas fa-microphone"></i> Expressió Oral</h2>
+                <p class="section-description">3 parts • 15 minuts</p>
+            </div>
+
+            <div class="speaking-placeholder">
+                <i class="fas fa-microphone"></i>
+                <h3>Secció d'Expressió Oral</h3>
+                <p>Esta secció contindria tasques d'expressió oral en valencià.</p>
+                
+                <div class="speaking-parts">
+                    <div class="speaking-part">
+                        <h4>Part 1: Presentació personal (3 minuts)</h4>
+                        <p>Parlar sobre la pròpia vida, interessos i experiències.</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 2: Descriure i comparar (4 minuts)</h4>
+                        <p>Descriure imatges i comparar situacions o objectes.</p>
+                    </div>
+                    <div class="speaking-part">
+                        <h4>Part 3: Conversa (8 minuts)</h4>
+                        <p>Mantindre una conversa sobre temes d'interès general.</p>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p><strong>Nota:</strong> En l'examen real, esta secció es realitza amb un examinador i inclou gravació d'àudio per a l'avaluació.</p>
+                </div>
+            </div>
+
+            <div class="section-actions">
+                <button id="save-expressio-oral" class="btn-primary">
+                    <i class="fas fa-save"></i> Guarda el Progrés
+                </button>
+                <button id="finish-exam" class="btn-success">
+                    <i class="fas fa-flag-checkered"></i> Finalitza l'Examen
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-bar"></i> Resultats de l'Examen</h2>
+                <button id="close-results" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="results-summary">
+                    <!-- Els resultats s'omplin amb JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <div id="fab-options" class="fab-options">
+            <div id="fab-help" class="fab-option">
+                <i class="fas fa-question-circle"></i>
+                <span>Ajuda</span>
+            </div>
+            <div id="fab-bookmark" class="fab-option">
+                <i class="fas fa-bookmark"></i>
+                <span>Marca</span>
+            </div>
+            <div id="fab-calculator" class="fab-option">
+                <i class="fas fa-calculator"></i>
+                <span>Calculadora</span>
+            </div>
+        </div>
+        <button id="fab-main" class="fab">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

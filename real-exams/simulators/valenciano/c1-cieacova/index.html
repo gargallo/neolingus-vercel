@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ca-valencia">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen C1 Valencià CIEACOVA 2025 - Simulador NEOLINGUS</title>
+    <link rel="stylesheet" href="estils.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="contenidor-examen">
+        <!-- Capçalera -->
+        <header class="capçalera-examen">
+            <div class="info-examen">
+                <h1><i class="fas fa-graduation-cap"></i> Examen C1 Valencià</h1>
+                <span class="any-examen">CIEACOVA 2025</span>
+            </div>
+            <div class="secció-cronòmetre">
+                <div class="cronòmetre" id="cronòmetre">
+                    <i class="fas fa-clock"></i>
+                    <span id="pantalla-temps">02:30:00</span>
+                </div>
+                <button class="botó-pausa" id="botó-pausa">
+                    <i class="fas fa-pause"></i> Pausar
+                </button>
+            </div>
+        </header>
+
+        <!-- Navegació per Seccions -->
+        <nav class="nav-seccions">
+            <button class="pastilla-nav activa" data-secció="comprensió">
+                <i class="fas fa-book-open"></i>
+                Comprensió lectora
+                <span class="temps-pastilla">45m</span>
+            </button>
+            <button class="pastilla-nav" data-secció="expressió">
+                <i class="fas fa-pen"></i>
+                Expressió escrita
+                <span class="temps-pastilla">60m</span>
+            </button>
+            <button class="pastilla-nav" data-secció="mediació">
+                <i class="fas fa-exchange-alt"></i>
+                Mediació lingüística
+                <span class="temps-pastilla">30m</span>
+            </button>
+            <button class="pastilla-nav" data-secció="oral">
+                <i class="fas fa-microphone"></i>
+                Expressió oral
+                <span class="temps-pastilla">15m</span>
+            </button>
+        </nav>
+
+        <!-- Barra de Progrés -->
+        <div class="contenidor-progrés">
+            <div class="barra-progrés">
+                <div class="farciment-progrés" id="farciment-progrés"></div>
+            </div>
+            <span class="text-progrés" id="text-progrés">0 / 35 preguntes completades</span>
+        </div>
+
+        <!-- Contingut Principal -->
+        <main class="contingut-examen">
+            
+            <!-- Secció Comprensió Lectora -->
+            <section id="secció-comprensió" class="secció-examen activa">
+                <div class="capçalera-secció">
+                    <h2><i class="fas fa-book-open"></i> Comprensió Lectora</h2>
+                    <p class="descripció-secció">Llig els textos i contesta les preguntes corresponents</p>
+                </div>
+
+                <!-- Text 1: Article sobre sostenibilitat -->
+                <div class="contenidor-part">
+                    <div class="capçalera-part">
+                        <h3>Text 1: La sostenibilitat en les ciutats valencianes</h3>
+                        <p>Llig el text i contesta les preguntes 1-8 marcant l'opció correcta (A, B, C o D).</p>
+                    </div>
+                    
+                    <div class="passatge-text">
+                        <h4>Cap a unes ciutats més sostenibles</h4>
+                        <p>
+                            La Comunitat Valenciana està <strong>(1) ____</strong> un procés de transformació urbana cap a la sostenibilitat que pretén convertir les seues ciutats en models de desenvolupament responsable. Les iniciatives que s'estan portant a terme abasten des de la millora del transport públic fins a la creació d'espais verds urbans.
+                        </p>
+                        <p>
+                            València, com a capital autonòmica, lidera aquest canvi amb projectes <strong>(2) ____</strong> com la renaturalització del Túria i la implementació de la xarxa de carrils bici. Estos projectes no només milloren la qualitat de vida dels ciutadans, sinó que també <strong>(3) ____</strong> a la reducció de les emissions de CO2.
+                        </p>
+                        <p>
+                            L'Ajuntament ha posat en marxa diverses mesures per a <strong>(4) ____</strong> l'ús del transport privat i fomentar alternatives més ecològiques. Entre aquestes mesures destaca la creació de zones de baixa emissió i l'ampliació de la xarxa de transport públic.
+                        </p>
+                        <p>
+                            A més, la gestió dels residus s'ha convertit en una prioritat. La separació selectiva i el reciclatge són pràctiques que <strong>(5) ____</strong> cada vegada més ciutadans, gràcies als programes educatius i de conscienciació implementats.
+                        </p>
+                        <p>
+                            Els espais verds urbans també juguen un paper fonamental. Els parcs i jardins no només ofereixen zones de descans i oci, sinó que actuen com a <strong>(6) ____</strong> naturals que milloren la qualitat de l'aire i regulen la temperatura urbana.
+                        </p>
+                        <p>
+                            La col·laboració entre institucions públiques i privades ha sigut clau per a l'èxit d'aquestes iniciatives. Les empreses locals s'han <strong>(7) ____</strong> als objectius de sostenibilitat, implementant polítiques més respectuoses amb el medi ambient.
+                        </p>
+                        <p>
+                            El futur de les ciutats valencianes passa per continuar <strong>(8) ____</strong> en tecnologies netes i en la sensibilització ciutadana. Només així es podrà garantir un desenvolupament urbà realment sostenible per a les generacions futures.
+                        </p>
+                    </div>
+
+                    <div class="graella-preguntes">
+                        <div class="element-pregunta">
+                            <span class="número-pregunta">1</span>
+                            <div class="opcions">
+                                <label><input type="radio" name="p1" value="A"> A) iniciant</label>
+                                <label><input type="radio" name="p1" value="B"> B) començant</label>
+                                <label><input type="radio" name="p1" value="C"> C) desenvolupant</label>
+                                <label><input type="radio" name="p1" value="D"> D) executant</label>
+                            </div>
+                        </div>
+
+                        <div class="element-pregunta">
+                            <span class="número-pregunta">2</span>
+                            <div class="opcions">
+                                <label><input type="radio" name="p2" value="A"> A) innovadors</label>
+                                <label><input type="radio" name="p2" value="B"> B) creatius</label>
+                                <label><input type="radio" name="p2" value="C"> C) novedosos</label>
+                                <label><input type="radio" name="p2" value="D"> D) originals</label>
+                            </div>
+                        </div>
+
+                        <div class="element-pregunta">
+                            <span class="número-pregunta">3</span>
+                            <div class="opcions">
+                                <label><input type="radio" name="p3" value="A"> A) ajuden</label>
+                                <label><input type="radio" name="p3" value="B"> B) contribueixen</label>
+                                <label><input type="radio" name="p3" value="C"> C) participes</label>
+                                <label><input type="radio" name="p3" value="D"> D) col·laboren</label>
+                            </div>
+                        </div>
+
+                        <div class="element-pregunta">
+                            <span class="número-pregunta">4</span>
+                            <div class="opcions">
+                                <label><input type="radio" name="p4" value="A"> A) reduir</label>
+                                <label><input type="radio" name="p4" value="B"> B) disminuir</label>
+                                <label><input type="radio" name="p4" value="C"> C) limitar</label>
+                                <label><input type="radio" name="p4" value="D"> D) restringir</label>
+                            </div>
+                        </div>
+
+                        <div class="element-pregunta">
+                            <span class="número-pregunta">5</span>
+                            <div class="opcions">
+                                <label><input type="radio" name="p5" value="A"> A) adopten</label>
+                                <label><input type="radio" name="p5" value="B"> B) apliquen</label>
+                                <label><input type="radio" name="p5" value="C"> C) practiquen</label>
+                                <label><input type="radio" name="p5" value="D"> D) realitzen</label>
+                            </div>
+                        </div>
+
+                        <div class="element-pregunta">
+                            <span class="número-pregunta">6</span>
+                            <div class="opcions">
+                                <label><input type="radio" name="p6" value="A"> A) filtres</label>
+                                <label><input type="radio" name="p6" value="B"> B) purificadors</label>
+                                <label><input type="radio" name="p6" value="C"> C) depuradors</label>
+                                <label><input type="radio" name="p6" value="D"> D) netejadors</label>
+                            </div>
+                        </div>
+
+                        <div class="element-pregunta">
+                            <span class="número-pregunta">7</span>
+                            <div class="opcions">
+                                <label><input type="radio" name="p7" value="A"> A) unit</label>
+                                <label><input type="radio" name="p7" value="B"> B) adherit</label>
+                                <label><input type="radio" name="p7" value="C"> C) sumat</label>
+                                <label><input type="radio" name="p7" value="D"> D) associat</label>
+                            </div>
+                        </div>
+
+                        <div class="element-pregunta">
+                            <span class="número-pregunta">8</span>
+                            <div class="opcions">
+                                <label><input type="radio" name="p8" value="A"> A) invertint</label>
+                                <label><input type="radio" name="p8" value="B"> B) apostant</label>
+                                <label><input type="radio" name="p8" value="C"> C) confiant</label>
+                                <label><input type="radio" name="p8" value="D"> D) dedicant</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text 2: Comprensió de text obert -->
+                <div class="contenidor-part">
+                    <div class="capçalera-part">
+                        <h3>Text 2: La importància de les tradicions</h3>
+                        <p>Llig el text i contesta les preguntes 9-15 escrivint una paraula en cada espai.</p>
+                    </div>
+                    
+                    <div class="passatge-text">
+                        <h4>Tradicions valencianes en el segle XXI</h4>
+                        <p>
+                            Les tradicions valencianes han sabut adaptar-se <strong>(9) ____</strong> temps moderns sense perdre la seua essència. Festes com les Falles, la Tomatina o els Moros i Cristians continuen congregant <strong>(10) ____</strong> de milers de participants cada any.
+                        </p>
+                        <p>
+                            Aquests esdeveniments no només preserven el patrimoni cultural, sinó que també generen un important impacte econòmic <strong>(11) ____</strong> les localitats on se celebren. El turisme cultural s'ha convertit en una font d'ingressos fonamental.
+                        </p>
+                        <p>
+                            La transmissió d'aquestes tradicions a les noves generacions <strong>(12) ____</strong> un repte en la societat actual. Les escoles i les associacions culturals juguen un paper clau en aquest procés.
+                        </p>
+                        <p>
+                            A més, la inclusió de noves tecnologies ha permès <strong>(13) ____</strong> aquestes celebracions arriben a un públic més ampli. Les xarxes socials i les plataformes digitals contribueixen a la difusió del patrimoni valencià.
+                        </p>
+                        <p>
+                            L'equilibri entre tradició i modernitat és fonamental. <strong>(14) ____</strong> és important mantenir les arrels culturals, també cal adaptar-se als canvis socials per garantir la continuïtat d'aquestes manifestacions.
+                        </p>
+                        <p>
+                            El futur de les tradicions valencianes dependrà de la capacitat d'innovar <strong>(15) ____</strong> respectar el seu origen. Només així podran continuar formant part de la identitat valenciana.
+                        </p>
+                    </div>
+
+                    <div class="graella-preguntes espais-buits">
+                        <div class="pregunta-espai">
+                            <span class="número-pregunta">9</span>
+                            <input type="text" name="p9" placeholder="Introdueix una paraula" maxlength="20">
+                        </div>
+                        <div class="pregunta-espai">
+                            <span class="número-pregunta">10</span>
+                            <input type="text" name="p10" placeholder="Introdueix una paraula" maxlength="20">
+                        </div>
+                        <div class="pregunta-espai">
+                            <span class="número-pregunta">11</span>
+                            <input type="text" name="p11" placeholder="Introdueix una paraula" maxlength="20">
+                        </div>
+                        <div class="pregunta-espai">
+                            <span class="número-pregunta">12</span>
+                            <input type="text" name="p12" placeholder="Introdueix una paraula" maxlength="20">
+                        </div>
+                        <div class="pregunta-espai">
+                            <span class="número-pregunta">13</span>
+                            <input type="text" name="p13" placeholder="Introdueix una paraula" maxlength="20">
+                        </div>
+                        <div class="pregunta-espai">
+                            <span class="número-pregunta">14</span>
+                            <input type="text" name="p14" placeholder="Introdueix una paraula" maxlength="20">
+                        </div>
+                        <div class="pregunta-espai">
+                            <span class="número-pregunta">15</span>
+                            <input type="text" name="p15" placeholder="Introdueix una paraula" maxlength="20">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accions-secció">
+                    <button class="botó-secundari" id="guardar-comprensió">
+                        <i class="fas fa-save"></i> Guardar Progrés
+                    </button>
+                    <button class="botó-primari" id="següent-expressió">
+                        Següent Secció: Expressió <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Secció Expressió Escrita -->
+            <section id="secció-expressió" class="secció-examen">
+                <div class="capçalera-secció">
+                    <h2><i class="fas fa-pen"></i> Expressió Escrita</h2>
+                    <p class="descripció-secció">Completa les dues tasques d'escriptura (200-250 paraules cada una)</p>
+                </div>
+
+                <!-- Tasca 1: Assaig argumentatiu -->
+                <div class="contenidor-part">
+                    <div class="capçalera-part">
+                        <h3>Tasca 1: Assaig argumentatiu (Obligatòria)</h3>
+                        <p>Escriu un assaig de 200-250 paraules sobre el tema proposat.</p>
+                    </div>
+                    
+                    <div class="tasca-escriptura">
+                        <div class="enunciat-tasca">
+                            <h4>Tema</h4>
+                            <p>En la teua classe d'valencià heu estat parlant sobre l'impacte de les xarxes socials en la societat. El professor t'ha demanat que escrigues un assaig sobre el següent tema:</p>
+                            <blockquote>
+                                <strong>"Les xarxes socials han millorat la comunicació entre les persones."</strong>
+                            </blockquote>
+                            <p>Escriu un assaig donant la teua opinió sobre aquesta afirmació. Has de:</p>
+                            <ul>
+                                <li>Donar raons per a la teua opinió</li>
+                                <li>Proporcionar exemples per a recolzar les teues idees</li>
+                                <li>Considerar punts de vista alternatius</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="àrea-escriptura">
+                            <div class="comptador-paraules">
+                                <span id="recompte-assaig">0</span> / 250 paraules
+                                <div class="barra-comptador">
+                                    <div class="farciment-comptador" id="farciment-assaig"></div>
+                                </div>
+                            </div>
+                            <textarea 
+                                id="text-assaig" 
+                                placeholder="Escriu el teu assaig ací..."
+                                rows="15"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasca 2: Elecció entre opcions -->
+                <div class="contenidor-part">
+                    <div class="capçalera-part">
+                        <h3>Tasca 2: Tria UNA de les següents tasques</h3>
+                        <p>Escriu la teua resposta en 200-250 paraules amb un estil adequat.</p>
+                    </div>
+                    
+                    <div class="elecció-tasca">
+                        <div class="opció-tasca" data-tasca="article">
+                            <div class="tipus-tasca">
+                                <i class="fas fa-newspaper"></i> Article
+                            </div>
+                            <h4>Pregunta 2</h4>
+                            <p>Veus aquest anunci en una revista valenciana:</p>
+                            <blockquote>
+                                <strong>EL MILLOR LLOC PER VISITAR AL PAÍS VALENCIÀ</strong><br>
+                                Volem que els nostres lectors descobreixen llocs increïbles del nostre territori. Escriu un article sobre el millor lloc per visitar al País Valencià. Explica per què el recomanaries i què el fa especial.
+                            </blockquote>
+                        </div>
+
+                        <div class="opció-tasca" data-tasca="carta">
+                            <div class="tipus-tasca">
+                                <i class="fas fa-envelope"></i> Carta formal
+                            </div>
+                            <h4>Pregunta 3</h4>
+                            <p>Has rebut aquesta carta del teu ajuntament:</p>
+                            <blockquote>
+                                Estem planificant millores al barri i ens agradaria conèixer l'opinió dels veïns sobre les prioritats. Podries escriure'ns explicant quins problemes del barri consideres més urgents i quines solucions proposes?<br>
+                                Moltes gràcies per la teua col·laboració.
+                            </blockquote>
+                        </div>
+
+                        <div class="opció-tasca" data-tasca="informe">
+                            <div class="tipus-tasca">
+                                <i class="fas fa-chart-bar"></i> Informe
+                            </div>
+                            <h4>Pregunta 4</h4>
+                            <p>El teu cap t'ha demanat que prepares un informe:</p>
+                            <blockquote>
+                                <strong>INFORME: Avantatges del teletreball</strong><br>
+                                La nostra empresa està considerant implementar el teletreball per als empleats. Pots preparar un informe analitzant els avantatges i inconvenients d'aquesta modalitat de treball? Inclou recomanacions per a la implementació.
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <div class="àrea-escriptura" id="escriptura-tasca2" style="display: none;">
+                        <div class="comptador-paraules">
+                            <span id="recompte-tasca2">0</span> / 250 paraules
+                            <div class="barra-comptador">
+                                <div class="farciment-comptador" id="farciment-tasca2"></div>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="text-tasca2" 
+                            placeholder="Tria una tasca de dalt i escriu la teua resposta ací..."
+                            rows="15"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="accions-secció">
+                    <button class="botó-secundari" id="guardar-expressió">
+                        <i class="fas fa-save"></i> Guardar Progrés
+                    </button>
+                    <button class="botó-primari" id="següent-mediació">
+                        Següent Secció: Mediació <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Secció Mediació -->
+            <section id="secció-mediació" class="secció-examen">
+                <div class="capçalera-secció">
+                    <h2><i class="fas fa-exchange-alt"></i> Mediació Lingüística</h2>
+                    <p class="descripció-secció">Tasques de transferència d'informació entre idiomes</p>
+                </div>
+
+                <div class="placeholder-mediació">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Simulador de Mediació</h3>
+                    <p>Tasques de mediació escrita i oral</p>
+                    <p class="nota">Aquesta secció estarà disponible en la versió completa.</p>
+                    
+                    <div class="parts-mediació">
+                        <div class="part-mediació">
+                            <h4>Part 1: Mediació escrita (15 minuts)</h4>
+                            <p>Transferència d'informació d'un text en castellà a valencià</p>
+                        </div>
+                        <div class="part-mediació">
+                            <h4>Part 2: Mediació oral (15 minuts)</h4>
+                            <p>Resum i transferència d'informació oral</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accions-secció">
+                    <button class="botó-secundari" id="guardar-mediació">
+                        <i class="fas fa-save"></i> Guardar Progrés
+                    </button>
+                    <button class="botó-primari" id="següent-oral">
+                        Següent Secció: Expressió Oral <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Secció Expressió Oral -->
+            <section id="secció-oral" class="secció-examen">
+                <div class="capçalera-secció">
+                    <h2><i class="fas fa-microphone"></i> Expressió Oral</h2>
+                    <p class="descripció-secció">Conversa amb l'examinador sobre diferents temes</p>
+                </div>
+
+                <div class="placeholder-oral">
+                    <i class="fas fa-microphone"></i>
+                    <h3>Simulador d'Expressió Oral</h3>
+                    <p>Pràctica de conversació amb IA examinadora</p>
+                    <p class="nota">Aquesta secció requereix accés al micròfon i estarà disponible en la versió completa.</p>
+                    
+                    <div class="parts-oral">
+                        <div class="part-oral">
+                            <h4>Part 1: Presentació personal (3 minuts)</h4>
+                            <p>Parla sobre tu mateix, els teus interessos i la teua experiència</p>
+                        </div>
+                        <div class="part-oral">
+                            <h4>Part 2: Tema monogràfic (4 minuts)</h4>
+                            <p>Desenvolupa un tema específic amb suport visual</p>
+                        </div>
+                        <div class="part-oral">
+                            <h4>Part 3: Conversa amb l'examinador (8 minuts)</h4>
+                            <p>Discussió sobre temes d'actualitat i d'interès general</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accions-secció">
+                    <button class="botó-secundari" id="guardar-oral">
+                        <i class="fas fa-save"></i> Guardar Progrés
+                    </button>
+                    <button class="botó-èxit" id="finalitzar-examen">
+                        <i class="fas fa-flag-checkered"></i> Finalitzar Examen
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Botó d'Acció Flotant -->
+        <div class="contenidor-fab">
+            <button class="fab" id="fab-principal">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="opcions-fab" id="opcions-fab">
+                <button class="opció-fab" id="fab-ajuda">
+                    <i class="fas fa-question"></i>
+                    <span>Ajuda</span>
+                </button>
+                <button class="opció-fab" id="fab-marcador">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Marcar</span>
+                </button>
+                <button class="opció-fab" id="fab-calculadora">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculadora</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal per als Resultats -->
+    <div id="modal-resultats" class="modal">
+        <div class="contingut-modal">
+            <div class="capçalera-modal">
+                <h2><i class="fas fa-chart-bar"></i> Resultats de l'Examen</h2>
+                <button class="tancar-modal" id="tancar-resultats">&times;</button>
+            </div>
+            <div class="cos-modal">
+                <div class="resum-resultats">
+                    <!-- Els resultats seran generats per JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

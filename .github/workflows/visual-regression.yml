@@ -1,0 +1,551 @@
+name: Visual Regression Testing
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'components/**'
+      - 'app/**'
+      - 'styles/**'
+      - 'tests/visual/**'
+      - 'package*.json'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'components/**'
+      - 'app/**'
+      - 'styles/**'
+      - 'tests/visual/**'
+      - 'package*.json'
+  workflow_dispatch:
+    inputs:
+      test_level:
+        description: 'Test level to run'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - 'smoke'
+          - 'full'
+          - 'comprehensive'
+      update_baselines:
+        description: 'Update baseline screenshots'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  NODE_VERSION: '18'
+  PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/ms-playwright
+
+jobs:
+  # Detect changes to determine test scope
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      should-run-visual: ${{ steps.changes.outputs.visual }}
+      test-scope: ${{ steps.scope.outputs.scope }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            visual:
+              - 'components/**'
+              - 'app/**'
+              - 'styles/**'
+              - 'tests/visual/**'
+              - 'package*.json'
+              - 'next.config.js'
+              - 'tailwind.config.js'
+
+      - name: Determine test scope
+        id: scope
+        run: |
+          if [[ "${{ github.event.inputs.test_level }}" != "" ]]; then
+            echo "scope=${{ github.event.inputs.test_level }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "scope=smoke" >> $GITHUB_OUTPUT
+          else
+            echo "scope=full" >> $GITHUB_OUTPUT
+          fi
+
+  # Build application for testing
+  build:
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.should-run-visual == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            .next/
+            public/
+          retention-days: 1
+
+  # Visual regression testing matrix
+  visual-regression:
+    runs-on: ubuntu-latest
+    needs: [detect-changes, build]
+    if: needs.detect-changes.outputs.should-run-visual == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+        test-group:
+          - dashboard-layout
+          - responsive-design
+          - component-states
+          - theme-accessibility
+        exclude:
+          # Reduce matrix for smoke tests
+          - browser: firefox
+            test-group: component-states
+          - browser: webkit
+            test-group: component-states
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
+          key: ${{ runner.os }}-playwright-${{ matrix.browser }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-${{ matrix.browser }}-
+
+      - name: Download baseline screenshots
+        uses: actions/download-artifact@v4
+        with:
+          name: visual-baselines-${{ matrix.browser }}-${{ matrix.test-group }}
+          path: tests/visual/test-results/visual-snapshots
+        continue-on-error: true
+
+      - name: Run visual regression tests
+        run: |
+          case "${{ needs.detect-changes.outputs.test-scope }}" in
+            "smoke")
+              npx playwright test tests/visual/${{ matrix.test-group }}.visual.spec.ts --project=${{ matrix.browser }} --grep="@smoke"
+              ;;
+            "comprehensive")
+              npx playwright test tests/visual/${{ matrix.test-group }}.visual.spec.ts --project=${{ matrix.browser }}
+              ;;
+            *)
+              npx playwright test tests/visual/${{ matrix.test-group }}.visual.spec.ts --project=${{ matrix.browser }} --grep="@critical"
+              ;;
+          esac
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+          CI: true
+
+      - name: Start application server
+        run: |
+          npm start &
+          npx wait-on http://localhost:3000 -t 60000
+        env:
+          NODE_ENV: production
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-test-results-${{ matrix.browser }}-${{ matrix.test-group }}
+          path: |
+            tests/visual/test-results/
+            tests/visual/playwright-report/
+          retention-days: 7
+
+      - name: Upload baseline screenshots
+        uses: actions/upload-artifact@v4
+        if: github.event.inputs.update_baselines == 'true' || (github.ref == 'refs/heads/main' && github.event_name == 'push')
+        with:
+          name: visual-baselines-${{ matrix.browser }}-${{ matrix.test-group }}
+          path: tests/visual/test-results/visual-snapshots
+          retention-days: 30
+
+  # Visual diff analysis and reporting
+  visual-analysis:
+    runs-on: ubuntu-latest
+    needs: [detect-changes, visual-regression]
+    if: always() && needs.detect-changes.outputs.should-run-visual == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download all test results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: visual-test-results-*
+          path: test-results/
+          merge-multiple: true
+
+      - name: Generate visual regression report
+        run: |
+          node << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          // Aggregate test results
+          const resultsDir = 'test-results';
+          const reportData = {
+            timestamp: new Date().toISOString(),
+            totalTests: 0,
+            passedTests: 0,
+            failedTests: 0,
+            visualDiffs: [],
+            browsers: new Set(),
+            testGroups: new Set()
+          };
+
+          // Scan for JSON results
+          function scanResults(dir) {
+            const files = fs.readdirSync(dir, { withFileTypes: true });
+
+            for (const file of files) {
+              const fullPath = path.join(dir, file.name);
+
+              if (file.isDirectory()) {
+                scanResults(fullPath);
+              } else if (file.name === 'visual-results.json') {
+                try {
+                  const data = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+
+                  reportData.totalTests += data.tests?.length || 0;
+
+                  data.tests?.forEach(test => {
+                    if (test.outcome === 'expected') {
+                      reportData.passedTests++;
+                    } else {
+                      reportData.failedTests++;
+
+                      // Extract browser and test group from path
+                      const pathParts = fullPath.split('/');
+                      const browser = pathParts.find(p => ['chromium', 'firefox', 'webkit'].includes(p));
+                      const testGroup = pathParts.find(p => p.includes('visual.spec.ts'))?.replace('.visual.spec.ts', '');
+
+                      reportData.visualDiffs.push({
+                        title: test.title,
+                        browser: browser || 'unknown',
+                        testGroup: testGroup || 'unknown',
+                        error: test.errors?.[0]?.message || 'Visual difference detected'
+                      });
+                    }
+
+                    // Track browsers and test groups
+                    if (browser) reportData.browsers.add(browser);
+                    if (testGroup) reportData.testGroups.add(testGroup);
+                  });
+                } catch (e) {
+                  console.warn(`Failed to parse ${fullPath}:`, e.message);
+                }
+              }
+            }
+          }
+
+          if (fs.existsSync(resultsDir)) {
+            scanResults(resultsDir);
+          }
+
+          // Convert sets to arrays
+          reportData.browsers = Array.from(reportData.browsers);
+          reportData.testGroups = Array.from(reportData.testGroups);
+
+          // Generate summary
+          const summary = {
+            total: reportData.totalTests,
+            passed: reportData.passedTests,
+            failed: reportData.failedTests,
+            passRate: reportData.totalTests > 0 ? Math.round((reportData.passedTests / reportData.totalTests) * 100) : 0,
+            browsers: reportData.browsers,
+            testGroups: reportData.testGroups,
+            visualDiffs: reportData.visualDiffs.length
+          };
+
+          console.log('Visual Regression Test Summary:');
+          console.log(`📊 Total Tests: ${summary.total}`);
+          console.log(`✅ Passed: ${summary.passed}`);
+          console.log(`❌ Failed: ${summary.failed}`);
+          console.log(`📈 Pass Rate: ${summary.passRate}%`);
+          console.log(`🌐 Browsers: ${summary.browsers.join(', ')}`);
+          console.log(`🧪 Test Groups: ${summary.testGroups.join(', ')}`);
+
+          if (summary.visualDiffs > 0) {
+            console.log('\n🔍 Visual Differences Detected:');
+            reportData.visualDiffs.forEach((diff, index) => {
+              console.log(`${index + 1}. ${diff.testGroup}/${diff.browser}: ${diff.title}`);
+              console.log(`   Error: ${diff.error}`);
+            });
+          }
+
+          // Save summary for artifact
+          fs.writeFileSync('visual-regression-summary.json', JSON.stringify(reportData, null, 2));
+
+          // Set GitHub Actions output
+          const core = require('@actions/core');
+          core.setOutput('total-tests', summary.total);
+          core.setOutput('passed-tests', summary.passed);
+          core.setOutput('failed-tests', summary.failed);
+          core.setOutput('pass-rate', summary.passRate);
+          core.setOutput('visual-diffs', summary.visualDiffs);
+          EOF
+
+      - name: Upload visual regression report
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-report
+          path: |
+            visual-regression-summary.json
+            test-results/
+          retention-days: 30
+
+      - name: Comment on PR with visual regression results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            let summary;
+            try {
+              summary = JSON.parse(fs.readFileSync('visual-regression-summary.json', 'utf8'));
+            } catch (e) {
+              console.log('Could not read summary file, skipping comment');
+              return;
+            }
+
+            const passRate = summary.totalTests > 0 ? Math.round((summary.passedTests / summary.totalTests) * 100) : 0;
+            const status = passRate >= 95 ? '✅' : passRate >= 85 ? '⚠️' : '❌';
+
+            let body = `## ${status} Visual Regression Test Results\n\n`;
+            body += `📊 **Test Summary:**\n`;
+            body += `- Total Tests: ${summary.totalTests}\n`;
+            body += `- Passed: ${summary.passedTests}\n`;
+            body += `- Failed: ${summary.failedTests}\n`;
+            body += `- Pass Rate: ${passRate}%\n\n`;
+
+            if (summary.browsers.length > 0) {
+              body += `🌐 **Browsers Tested:** ${summary.browsers.join(', ')}\n`;
+            }
+
+            if (summary.testGroups.length > 0) {
+              body += `🧪 **Test Groups:** ${summary.testGroups.join(', ')}\n\n`;
+            }
+
+            if (summary.visualDiffs.length > 0) {
+              body += `🔍 **Visual Differences Detected:**\n`;
+              summary.visualDiffs.slice(0, 10).forEach((diff, index) => {
+                body += `${index + 1}. **${diff.testGroup}** (${diff.browser}): ${diff.title}\n`;
+              });
+
+              if (summary.visualDiffs.length > 10) {
+                body += `\n...and ${summary.visualDiffs.length - 10} more differences.\n`;
+              }
+
+              body += `\n📎 View detailed results in the [test artifacts](${context.payload.pull_request.html_url}/checks).\n`;
+            } else {
+              body += `🎉 **No visual differences detected!** All components rendered as expected.\n`;
+            }
+
+            body += `\n---\n*Visual regression tests help ensure UI consistency across updates.*`;
+
+            // Find existing comment
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existingComment = comments.data.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Visual Regression Test Results')
+            );
+
+            if (existingComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existingComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }
+
+  # Performance impact analysis
+  performance-impact:
+    runs-on: ubuntu-latest
+    needs: [detect-changes, build]
+    if: needs.detect-changes.outputs.should-run-visual == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Lighthouse
+        run: npm install -g @lhci/cli
+
+      - name: Start application
+        run: |
+          npm start &
+          npx wait-on http://localhost:3000 -t 60000
+
+      - name: Run Lighthouse performance audit
+        run: |
+          lhci autorun --config='{
+            "ci": {
+              "collect": {
+                "url": ["http://localhost:3000/academia/english/b2"],
+                "numberOfRuns": 3
+              },
+              "assert": {
+                "assertions": {
+                  "categories:performance": ["error", {"minScore": 0.8}],
+                  "categories:accessibility": ["error", {"minScore": 0.9}],
+                  "categories:best-practices": ["error", {"minScore": 0.8}],
+                  "categories:seo": ["error", {"minScore": 0.8}]
+                }
+              }
+            }
+          }'
+
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/
+          retention-days: 7
+
+  # Update baseline images on main branch
+  update-baselines:
+    runs-on: ubuntu-latest
+    needs: [visual-regression]
+    if: |
+      always() &&
+      (github.ref == 'refs/heads/main' && github.event_name == 'push') ||
+      github.event.inputs.update_baselines == 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download all baseline artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: visual-baselines-*
+          path: tests/visual/test-results/visual-snapshots/
+          merge-multiple: true
+
+      - name: Commit updated baselines
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          if [[ -n $(git status --porcelain tests/visual/test-results/visual-snapshots/) ]]; then
+            git add tests/visual/test-results/visual-snapshots/
+            git commit -m "Update visual regression baselines [skip ci]"
+            git push
+          else
+            echo "No baseline changes to commit"
+          fi
+
+  # Cleanup
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: [visual-analysis, performance-impact, update-baselines]
+    if: always()
+    steps:
+      - name: Clean up old artifacts
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+
+            // Keep only essential artifacts for longer term
+            const keepPatterns = [
+              'visual-regression-report',
+              'lighthouse-results',
+              'visual-baselines-'
+            ];
+
+            for (const artifact of artifacts.data.artifacts) {
+              const shouldKeep = keepPatterns.some(pattern => artifact.name.includes(pattern));
+
+              if (!shouldKeep && artifact.name.includes('visual-test-results-')) {
+                await github.rest.actions.deleteArtifact({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  artifact_id: artifact.id,
+                });
+                console.log(`Deleted artifact: ${artifact.name}`);
+              }
+            }

@@ -1,0 +1,806 @@
+openapi: 3.0.3
+info:
+  title: Plan Management API
+  description: RESTful API for managing subscription plans, user assignments, and trial functionality
+  version: 1.0.0
+  contact:
+    name: Plan Management System
+    
+servers:
+  - url: /api/admin/plans
+    description: Admin plan management endpoints
+  - url: /api/plans
+    description: Public plan information endpoints
+
+security:
+  - AdminAuth: []
+
+components:
+  securitySchemes:
+    AdminAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Admin authentication required for management operations
+      
+    UserAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: User authentication for personal plan operations
+
+  schemas:
+    Plan:
+      type: object
+      required: [id, name, tier, features, pricing]
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique plan identifier
+        name:
+          type: string
+          maxLength: 255
+          description: Plan display name
+          example: "Professional"
+        tier:
+          type: string
+          enum: [basic, standard, premium]
+          description: Plan tier level
+        description:
+          type: string
+          description: Plan description for UI display
+          example: "Full access with AI tutoring and analytics"
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanFeature'
+          description: Array of plan features
+        limits:
+          $ref: '#/components/schemas/PlanLimits'
+        pricing:
+          $ref: '#/components/schemas/PlanPricing'
+        trial_enabled:
+          type: boolean
+          default: true
+          description: Whether plan supports trial periods
+        trial_duration_days:
+          type: integer
+          minimum: 1
+          maximum: 30
+          default: 7
+          description: Trial period length in days
+        is_active:
+          type: boolean
+          default: true
+          description: Plan availability status
+        display_order:
+          type: integer
+          description: Sort order in UI
+        subscriber_count:
+          type: integer
+          readOnly: true
+          description: Current number of active subscribers
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+
+    PlanFeature:
+      type: object
+      required: [id, name, included]
+      properties:
+        id:
+          type: string
+          description: Feature identifier
+        name:
+          type: string
+          description: Feature display name
+          example: "AI Tutoring Sessions"
+        description:
+          type: string
+          description: Feature description
+        included:
+          type: boolean
+          description: Whether feature is included in plan
+        limit:
+          type: integer
+          minimum: 0
+          description: Optional usage limit
+
+    PlanLimits:
+      type: object
+      properties:
+        max_courses:
+          type: integer
+          minimum: 1
+          description: Maximum enrolled courses
+        max_exams_per_month:
+          type: integer
+          minimum: 0
+          description: Monthly exam limit
+        ai_tutoring_sessions:
+          type: integer
+          minimum: 0
+          description: AI tutoring session limit
+        storage_gb:
+          type: number
+          minimum: 0
+          description: File storage limit in GB
+        concurrent_sessions:
+          type: integer
+          minimum: 1
+          description: Simultaneous exam sessions
+
+    PlanPricing:
+      type: object
+      required: [monthly_price, yearly_price, currency]
+      properties:
+        monthly_price:
+          type: integer
+          minimum: 0
+          description: Monthly price in cents
+        yearly_price:
+          type: integer
+          minimum: 0
+          description: Annual price in cents
+        currency:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          description: ISO currency code
+          example: "EUR"
+        billing_period:
+          type: string
+          enum: [monthly, yearly]
+          description: Default billing period
+
+    UserPlanAssignment:
+      type: object
+      required: [id, user_id, plan_id, subscription_status]
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        course_id:
+          type: string
+          format: uuid
+        plan_id:
+          type: string
+          format: uuid
+        subscription_status:
+          type: string
+          enum: [active, trial, expired, cancelled]
+        subscription_tier:
+          type: string
+          enum: [basic, standard, premium]
+        access_expires_at:
+          type: string
+          format: date-time
+          description: Subscription expiration date
+        trial_started_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Trial start timestamp
+        trial_expires_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Trial expiration timestamp
+        assigned_by:
+          type: string
+          format: uuid
+          description: Admin who assigned the plan
+        assignment_reason:
+          type: string
+          description: Reason for plan assignment
+        billing_cycle:
+          type: string
+          enum: [monthly, yearly, trial]
+        auto_renew:
+          type: boolean
+          default: true
+        user_details:
+          $ref: '#/components/schemas/UserDetails'
+        plan_details:
+          $ref: '#/components/schemas/Plan'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+
+    UserDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        full_name:
+          type: string
+        avatar_url:
+          type: string
+          format: uri
+          nullable: true
+
+    CreatePlanRequest:
+      type: object
+      required: [name, tier, features, limits, pricing]
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        tier:
+          type: string
+          enum: [basic, standard, premium]
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanFeature'
+        limits:
+          $ref: '#/components/schemas/PlanLimits'
+        pricing:
+          $ref: '#/components/schemas/PlanPricing'
+        trial_enabled:
+          type: boolean
+          default: true
+        trial_duration_days:
+          type: integer
+          minimum: 1
+          maximum: 30
+          default: 7
+        display_order:
+          type: integer
+
+    UpdatePlanRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanFeature'
+        limits:
+          $ref: '#/components/schemas/PlanLimits'
+        pricing:
+          $ref: '#/components/schemas/PlanPricing'
+        trial_enabled:
+          type: boolean
+        trial_duration_days:
+          type: integer
+          minimum: 1
+          maximum: 30
+        is_active:
+          type: boolean
+        display_order:
+          type: integer
+
+    AssignPlanRequest:
+      type: object
+      required: [user_id, plan_id, course_id]
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        plan_id:
+          type: string
+          format: uuid
+        course_id:
+          type: string
+          format: uuid
+        start_trial:
+          type: boolean
+          default: false
+          description: Whether to start as trial
+        assignment_reason:
+          type: string
+          description: Reason for assignment
+        billing_cycle:
+          type: string
+          enum: [monthly, yearly]
+          default: monthly
+        auto_renew:
+          type: boolean
+          default: true
+
+    PlanChangeRequest:
+      type: object
+      required: [new_plan_id]
+      properties:
+        new_plan_id:
+          type: string
+          format: uuid
+        change_reason:
+          type: string
+        effective_immediately:
+          type: boolean
+          default: true
+          description: Apply change immediately or at next billing cycle
+
+    ApiResponse:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        error:
+          type: string
+          nullable: true
+
+    PaginatedResponse:
+      type: object
+      required: [data, pagination]
+      properties:
+        success:
+          type: boolean
+          default: true
+        data:
+          type: array
+        pagination:
+          type: object
+          properties:
+            page:
+              type: integer
+            limit:
+              type: integer
+            total:
+              type: integer
+            pages:
+              type: integer
+            has_next:
+              type: boolean
+            has_prev:
+              type: boolean
+
+paths:
+  # Admin Plan Management
+  /admin/plans:
+    get:
+      summary: List all plans
+      description: Retrieve all plans with subscriber counts for admin management
+      security:
+        - AdminAuth: []
+      parameters:
+        - name: include_inactive
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Include inactive plans in results
+        - name: tier
+          in: query
+          schema:
+            type: string
+            enum: [basic, standard, premium]
+          description: Filter by plan tier
+      responses:
+        '200':
+          description: Plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Plan'
+        '401':
+          description: Unauthorized - Admin authentication required
+        '403':
+          description: Forbidden - Insufficient permissions
+
+    post:
+      summary: Create new plan
+      description: Create a new subscription plan
+      security:
+        - AdminAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlanRequest'
+      responses:
+        '201':
+          description: Plan created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Plan'
+        '400':
+          description: Bad request - Validation errors
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict - Plan name already exists
+
+  /admin/plans/{planId}:
+    get:
+      summary: Get plan by ID
+      description: Retrieve a specific plan with detailed information
+      security:
+        - AdminAuth: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Plan retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Plan'
+        '404':
+          description: Plan not found
+
+    put:
+      summary: Update plan
+      description: Update an existing plan
+      security:
+        - AdminAuth: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePlanRequest'
+      responses:
+        '200':
+          description: Plan updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Plan'
+        '400':
+          description: Bad request
+        '404':
+          description: Plan not found
+        '409':
+          description: Conflict - Name already exists
+
+    delete:
+      summary: Delete plan
+      description: Delete a plan (only if no active subscribers)
+      security:
+        - AdminAuth: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: force
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Force deletion by cancelling active subscriptions
+      responses:
+        '200':
+          description: Plan deleted successfully
+        '400':
+          description: Bad request - Plan has active subscribers
+        '404':
+          description: Plan not found
+
+  /admin/plans/{planId}/subscribers:
+    get:
+      summary: Get plan subscribers
+      description: List all users subscribed to a specific plan
+      security:
+        - AdminAuth: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, trial, expired, cancelled]
+          description: Filter by subscription status
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: Subscribers retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/UserPlanAssignment'
+
+  /admin/plans/assign:
+    post:
+      summary: Assign plan to user
+      description: Assign a plan to a specific user
+      security:
+        - AdminAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignPlanRequest'
+      responses:
+        '201':
+          description: Plan assigned successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/UserPlanAssignment'
+        '400':
+          description: Bad request - User already has plan for this course
+        '404':
+          description: User, plan, or course not found
+
+  /admin/users/{userId}/plans:
+    get:
+      summary: Get user's plans
+      description: List all plans assigned to a specific user
+      security:
+        - AdminAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: User plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/UserPlanAssignment'
+
+  /admin/users/{userId}/plans/{assignmentId}:
+    put:
+      summary: Update user's plan assignment
+      description: Update or change a user's plan assignment
+      security:
+        - AdminAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: assignmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanChangeRequest'
+      responses:
+        '200':
+          description: Plan assignment updated successfully
+        '404':
+          description: User or assignment not found
+
+    delete:
+      summary: Revoke user's plan
+      description: Cancel/revoke a user's plan assignment
+      security:
+        - AdminAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: assignmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: reason
+          in: query
+          schema:
+            type: string
+          description: Reason for revocation
+      responses:
+        '200':
+          description: Plan revoked successfully
+        '404':
+          description: Assignment not found
+
+  # Public Plan Information
+  /plans:
+    get:
+      summary: Get public plan information
+      description: Retrieve active plans for frontend plan selection
+      parameters:
+        - name: course_id
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Filter plans available for specific course
+      responses:
+        '200':
+          description: Plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              format: uuid
+                            name:
+                              type: string
+                            tier:
+                              type: string
+                            description:
+                              type: string
+                            features:
+                              type: array
+                              items:
+                                $ref: '#/components/schemas/PlanFeature'
+                            pricing:
+                              $ref: '#/components/schemas/PlanPricing'
+                            trial_enabled:
+                              type: boolean
+                            trial_duration_days:
+                              type: integer
+
+  /plans/{planId}/trial:
+    post:
+      summary: Start plan trial
+      description: Start a trial period for a specific plan
+      security:
+        - UserAuth: []
+      parameters:
+        - name: planId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [course_id]
+              properties:
+                course_id:
+                  type: string
+                  format: uuid
+      responses:
+        '201':
+          description: Trial started successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          trial_expires_at:
+                            type: string
+                            format: date-time
+                          access_expires_at:
+                            type: string
+                            format: date-time
+        '400':
+          description: User already has trial or plan for this course
+        '403':
+          description: Trial not available for this plan
+        '404':
+          description: Plan or course not found
+
+tags:
+  - name: Admin Plans
+    description: Admin operations for plan management
+  - name: Admin Users
+    description: Admin operations for user plan assignments
+  - name: Public Plans
+    description: Public plan information and trial management

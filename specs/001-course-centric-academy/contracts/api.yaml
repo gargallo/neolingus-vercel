@@ -1,0 +1,337 @@
+openapi: 3.0.0
+info:
+  title: Course-Centric Academy API
+  version: 1.0.0
+  description: API for language course selection, dashboard access, and exam management
+
+paths:
+  /api/languages:
+    get:
+      summary: Get available languages
+      responses:
+        "200":
+          description: List of available languages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Language"
+
+  /api/languages/{languageId}/levels:
+    get:
+      summary: Get levels for a specific language
+      parameters:
+        - name: languageId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of levels for the language
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Level"
+
+  /api/courses/{courseId}:
+    get:
+      summary: Get course details and dashboard data
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Course dashboard data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseDashboard"
+
+  /api/courses/{courseId}/exam-types:
+    get:
+      summary: Get available exam types for a course
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of exam types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ExamType"
+
+  /api/exam-sessions:
+    post:
+      summary: Start a new exam session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartExamRequest"
+      responses:
+        "201":
+          description: Exam session created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamSession"
+
+  /api/exam-sessions/{sessionId}:
+    get:
+      summary: Get exam session details
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Exam session data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamSession"
+
+    patch:
+      summary: Update exam session (submit answers, complete)
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateExamRequest"
+      responses:
+        "200":
+          description: Exam session updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExamSession"
+
+  /api/user/progress/{courseId}:
+    get:
+      summary: Get user progress for a specific course
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User progress data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProgress"
+
+components:
+  schemas:
+    Language:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "en"
+        name:
+          type: string
+          example: "English"
+        certification_body:
+          type: string
+          example: "EOI"
+        cultural_context:
+          type: object
+        status:
+          type: string
+          enum: [active, coming_soon, maintenance]
+        supported_levels:
+          type: array
+          items:
+            type: string
+
+    Level:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "B2"
+        language_id:
+          type: string
+          example: "en"
+        name:
+          type: string
+          example: "Intermediate B2"
+        description:
+          type: string
+        cefr_equivalent:
+          type: string
+          example: "B2"
+        certification_requirements:
+          type: object
+        estimated_duration:
+          type: number
+
+    CourseDashboard:
+      type: object
+      properties:
+        course:
+          $ref: "#/components/schemas/Course"
+        user_progress:
+          $ref: "#/components/schemas/UserProgress"
+        exam_types:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExamType"
+        recent_sessions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExamSession"
+
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "en-B2"
+        language_id:
+          type: string
+        level_id:
+          type: string
+        title:
+          type: string
+          example: "English B2 Preparation"
+        description:
+          type: string
+        certification_target:
+          type: string
+        curriculum:
+          type: object
+        ui_theme:
+          type: object
+        content_language:
+          type: string
+        status:
+          type: string
+
+    ExamType:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "en-B2-reading"
+        course_id:
+          type: string
+        name:
+          type: string
+          example: "Reading Comprehension"
+        skill_type:
+          type: string
+          enum: [reading, writing, listening, speaking]
+        official_format:
+          type: object
+        time_limit:
+          type: number
+        passing_score:
+          type: number
+
+    ExamSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        exam_type_id:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [in_progress, completed, abandoned]
+        score:
+          type: number
+        detailed_results:
+          type: object
+        ai_feedback:
+          type: string
+        time_taken:
+          type: number
+        answers:
+          type: object
+
+    UserProgress:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        course_id:
+          type: string
+        enrollment_date:
+          type: string
+          format: date-time
+        current_level:
+          type: string
+        completion_percentage:
+          type: number
+        study_hours:
+          type: number
+        exam_scores:
+          type: object
+        learning_preferences:
+          type: object
+
+    StartExamRequest:
+      type: object
+      required:
+        - exam_type_id
+      properties:
+        exam_type_id:
+          type: string
+        practice_mode:
+          type: boolean
+          default: false
+
+    UpdateExamRequest:
+      type: object
+      properties:
+        answers:
+          type: object
+        status:
+          type: string
+          enum: [in_progress, completed, abandoned]
+        completed_at:
+          type: string
+          format: date-time
